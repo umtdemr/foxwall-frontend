@@ -1,0 +1,72 @@
+.no-login{
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	display: -webkit-flex;     /* NEW - Chrome */
+	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+.no-login .left, .no-login .right{
+	width:50%;
+	text-align: left;
+	height: 100vh;
+	z-index: 2;
+	position: relative;
+}
+.no-login .left{
+	background-color: rgba(255, 102, 0, .9);	
+}
+.no-login .left .text-centerr{
+	color: #fff;
+	font-size: 30px;
+}
+.no-login .right .text-centerr{
+	color: #000;
+	font-size: 25px;
+}
+.no-login .right .text-centerr .btn{
+	display: block;
+	width: 100%;
+	margin: 5px auto;
+	background: rgba(255, 102, 0);
+	color: #333;
+	border-radius: 15px;
+}
+.no-login .right .text-centerr .btn-register{
+	background:#333;
+	color: rgba(255, 102, 0);
+}
+.no-login .text-centerr{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate3d(-50%,-50%, 0);
+}
+.no-login::after{
+	content: "";
+  background: url('../../images/logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+
+}
+
+@media only screen and (max-width: 767px){
+	.no-login .left, .no-login .right{
+		width: 100%;
+	}
+	.no-login .left{
+		display: none;
+	}
+	.no-login .text-centerr{
+		width: 80%;
+	}
+}

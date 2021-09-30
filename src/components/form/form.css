@@ -1,0 +1,29 @@
+.form_field {
+    margin: 10px 0 !important;
+}
+.form_field.full {
+    width: 100%;
+}
+.form_have_not_text {
+    font-size: 12px;
+    margin-left: 20px;
+}
+.form_box {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .form_box {
+        max-width: 93%;
+    }
+    .form_field {
+        margin: 7px 0 !important;
+    }
+    .form_have_not_text {
+        display: block;
+        margin-top: 20px;
+    }
+}
