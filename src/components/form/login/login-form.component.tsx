@@ -10,7 +10,9 @@ const LoginForm: React.FC = () => {
             <TextField className="form_field full" label="email"/>
             <TextField className="form_field full" label="password"/>
             <Button variant="outlined">Login</Button> 
-            <span className="form_have_not_text">Don't you have an account? Sign up.</span>
+            <span className="form_have_not_text">Don't you have an account? 
+                <button>Sign up.</button>
+            </span>
             
         </form>
     )

@@ -8,6 +8,14 @@
     font-size: 12px;
     margin-left: 20px;
 }
+.form_have_not_text button {
+    border: none;
+    background: transparent;
+    color: rgb(255, 102, 0);
+}
+.form_have_not_text button:hover {
+    cursor: pointer;
+}
 .form_box {
     background-color: #fff;
     width: 100%;

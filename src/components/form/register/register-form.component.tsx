@@ -12,7 +12,11 @@ const RegisterForm: React.FC = () => {
             <TextField className="form_field full" label="username"/>
             <TextField className="form_field full" label="password"/>
             <Button variant="outlined">Sign up</Button> 
-            <span className="form_have_not_text">Do you have an account? Sign in.</span>
+            <span className="form_have_not_text">
+                <button>
+                    Do you have an account? Sign in.
+                </button>
+            </span>
         </form>
     )
 }
