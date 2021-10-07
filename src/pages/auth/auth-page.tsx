@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 
 import { Box, Stack, Button } from "@mui/material";
 
-import LoginForm from '../../components/form/login/login-form.component';
-import RegisterForm from '../../components/form/register/register-form.component';
+import { authActionTypes } from "../../types/auth/auth-types";
 
 import "./style.css"
-
+import FormBox from '../../components/form/box/box.component';
 
 const AuthPage: React.FC = () => {
-  const [authTyped, setAuthTyped] = useState<string>("");
+  const [authTyped, setAuthTyped] = useState<authActionTypes>(authActionTypes.EMPTY);
   return (
     <div className="home no-login">
       <div className="left">
@@ -24,10 +23,13 @@ const AuthPage: React.FC = () => {
       <div className="right">
         <div className="text-centerr" style={{ width: "80%" }}>
           <h4 style={{ textAlign: "center" }}>Dünyada neler dönüyor?</h4>
-          <Stack spacing={2} direction="row" justifyContent="center">
-            <Button variant="outlined" onClick={() => setAuthTyped("login")}>Giriş Yap</Button>
-            <Button variant="outlined" onClick={() => setAuthTyped("register")} color="secondary">Kayıt Ol</Button>
-          </Stack>
+          {authTyped === "" ? (
+            <Stack spacing={2} direction="row" justifyContent="center">
+              <Button variant="outlined" onClick={() => setAuthTyped(authActionTypes.LOGIN)}>Giriş Yap</Button>
+              <Button variant="outlined" onClick={() => setAuthTyped(authActionTypes.REGISTER)} color="secondary">Kayıt Ol</Button>
+            </Stack>
+          ) : ""}
+          <FormBox type={authTyped} />
           <Box mt={5} className="form_box">
           </Box>
         </div>
