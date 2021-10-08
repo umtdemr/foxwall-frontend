@@ -5,7 +5,9 @@ import AuthPage from './pages/auth/auth-page';
 
 function App() {
   return (
-    <AuthPage />
+    <AuthActionProvider>
+      <AuthPage />
+    </AuthActionProvider>
   );
 }
 

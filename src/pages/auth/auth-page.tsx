@@ -9,7 +9,7 @@ import FormBox from '../../components/form/box/box.component';
 import { AuthActionContext } from '../../modules/contexts/auth/auth.context';
 
 const AuthPage: React.FC = () => {
-  const { changeAuthActionType, authTyped } = useContext(AuthActionContext)!;
+  const { current_type, changeType } = useContext(AuthActionContext);
 
   return (
     <div className="home no-login">
@@ -25,14 +25,14 @@ const AuthPage: React.FC = () => {
       <div className="right">
         <div className="text-centerr" style={{ width: "80%" }}>
           <h4 style={{ textAlign: "center" }}>Dünyada neler dönüyor?</h4>
-          {authTyped === "" ? (
+          {current_type === "" && (
             <Stack spacing={2} direction="row" justifyContent="center">
-              <Button variant="outlined" onClick={() => changeAuthActionType(authActionTypes.LOGIN)}>Giriş Yap</Button>
-              <Button variant="outlined" onClick={() => changeAuthActionType(authActionTypes.REGISTER)} color="secondary">Kayıt Ol</Button>
+              <Button variant="outlined" onClick={() => changeType!(authActionTypes.LOGIN)}>Giriş Yap</Button>
+              <Button variant="outlined" onClick={() => changeType!(authActionTypes.REGISTER)} color="secondary">Kayıt Ol</Button>
             </Stack>
-          ) : ""}
+          )}
           {
-            authTyped !==authActionTypes.EMPTY && <FormBox type={authTyped} />
+            current_type !==authActionTypes.EMPTY && <FormBox type={current_type} />
           }
         </div>
       </div>
