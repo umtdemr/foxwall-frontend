@@ -16,7 +16,7 @@ const FormBox: React.FC<FormBoxProps> = ({ type }) => {
     return (
         <Box mt={5} className="form_box">
             {type === authActionTypes.LOGIN && <LoginForm />}
-            {type === authActionTypes.REGISTER && <LoginForm />}
+            {type === authActionTypes.REGISTER && <RegisterForm />}
         </Box>
     )
 }
