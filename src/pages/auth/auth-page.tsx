@@ -9,6 +9,7 @@ import FormBox from '../../components/form/box/box.component';
 
 const AuthPage: React.FC = () => {
   const [authTyped, setAuthTyped] = useState<authActionTypes>(authActionTypes.EMPTY);
+
   return (
     <div className="home no-login">
       <div className="left">
@@ -29,9 +30,9 @@ const AuthPage: React.FC = () => {
               <Button variant="outlined" onClick={() => setAuthTyped(authActionTypes.REGISTER)} color="secondary">Kayıt Ol</Button>
             </Stack>
           ) : ""}
-          <FormBox type={authTyped} />
-          <Box mt={5} className="form_box">
-          </Box>
+          {
+            authTyped !==authActionTypes.EMPTY && <FormBox type={authTyped} />
+          }
         </div>
       </div>
     </div>
