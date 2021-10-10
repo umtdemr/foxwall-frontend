@@ -5,7 +5,7 @@ import { Stack, Button } from "@mui/material";
 import { authActionTypes } from "../../types/auth/auth-types";
 
 import "./style.css"
-import FormBox from '../../components/form/box/box.component';
+import FormBox from '../../components/auth-form/box/box.component';
 import { AuthActionContext } from '../../modules/contexts/auth/auth.context';
 
 const AuthPage: React.FC = () => {
