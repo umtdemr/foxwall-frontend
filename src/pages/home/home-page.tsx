@@ -1,7 +1,7 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import React from "react";
-import AddPostForm from "../../components/add-post/form.component";
+import AddPostForm from "../../components/add-post/form/form.component";
 import HeadWithLogo from "../../components/head/head-with-logo.component";
 
 import SideBar from "../../components/sidebar/sidebar_component";
