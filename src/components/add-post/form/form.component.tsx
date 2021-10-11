@@ -4,6 +4,7 @@ import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
 import { deepOrange } from "@mui/material/colors";
 import { Button, TextField } from "@mui/material";
+import ImageUploadPostForm from "../image-upload/image-upload.component";
 
 const AddPostForm: React.FC = () => {
   return (
@@ -20,7 +21,10 @@ const AddPostForm: React.FC = () => {
             label={"Text"}
           />
         </Paper>
-        <Button>Create</Button>
+        <Box mt={5} sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <ImageUploadPostForm />
+          <Button>Create</Button>
+        </Box>
       </Box>
     </Box>
   );
