@@ -1,6 +1,9 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import React from "react";
+import AddPostForm from "../../components/add-post/form.component";
+import HeadWithLogo from "../../components/head/head-with-logo.component";
+
 import SideBar from "../../components/sidebar/sidebar_component";
 
 const HomePage: React.FC = () => {
@@ -9,7 +12,8 @@ const HomePage: React.FC = () => {
       <Container>
         <Grid container spacing={2}>
           <Grid item xs={8}>
-            <div>What do you think?</div>
+            <HeadWithLogo />
+            <AddPostForm />
           </Grid>
           <Grid item xs={4}>
             <SideBar />
