@@ -4,7 +4,7 @@ import { Avatar, Stack, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import theme from "../../theme/theme";
 
-const PostHeader = () => {
+const PostHeader: React.FC = () => {
   return (
     <Stack direction="row">
       <Avatar

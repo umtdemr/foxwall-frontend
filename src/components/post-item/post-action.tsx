@@ -4,7 +4,7 @@ import { Stack, IconButton, Typography } from "@mui/material";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 import theme from "../../theme/theme";
 
-const PostAction = () => {
+const PostAction: React.FC = () => {
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {};

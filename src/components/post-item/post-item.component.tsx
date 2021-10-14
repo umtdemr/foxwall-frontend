@@ -4,7 +4,7 @@ import { Box, Paper, Typography } from "@mui/material";
 import PostHeader from "./post-header";
 import PostAction from "./post-action";
 
-const Post = () => {
+const Post: React.FC = () => {
   return (
     <Box mt={4}>
       <Paper elevation={3} sx={{ padding: "10px" }}>
