@@ -2,7 +2,7 @@ import React from "react";
 
 import { Avatar, Stack, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import { deepOrange } from "@mui/material/colors";
+import theme from "../../theme/theme";
 
 const PostHeader = () => {
   return (
@@ -20,7 +20,7 @@ const PostHeader = () => {
             sx={{
               width: 16,
               height: 16,
-              bgcolor: deepOrange[400],
+              bgcolor: theme.palette.primary.main,
             }}
           >
             <CheckIcon sx={{ width: 12, height: 12 }} />
