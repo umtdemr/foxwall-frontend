@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Chip, Divider, List, Stack } from "@mui/material";
+import { Chip, Divider, List, Stack, Collapse } from "@mui/material";
+import { TransitionGroup } from 'react-transition-group';
 
 import RequestItem from "./request-item.component";
 import { IRequestItem } from "./request-item.type";
@@ -18,7 +19,10 @@ const RequestItems: React.FC = () => {
   ])
 
   const deleteItem = (id: number) => {
-    console.log("requested to delete " + id);
+    let t_requests = requests;
+    t_requests = t_requests.filter((item) => item.id !== id);
+    console.log(t_requests);
+    setRequests(t_requests);
   }
 
   return (
@@ -27,10 +31,16 @@ const RequestItems: React.FC = () => {
         <Chip label="requests" />
       </Divider>
       <List>
-        {
-          requests.map((request_item) => <RequestItem item={request_item}/>
-          )
-        }
+        <TransitionGroup>
+          {
+            requests.map((request_item) => (
+                <Collapse key={request_item.id}>
+                   <RequestItem item={request_item} handleDelete={deleteItem}/>
+                </Collapse>
+              )
+            )
+          }
+        </TransitionGroup>
       </List>
     </Stack>
   )

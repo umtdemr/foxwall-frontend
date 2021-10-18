@@ -7,15 +7,16 @@ import { IRequestItem } from "./request-item.type";
 
 interface RequestItemProps {
   item: IRequestItem;
+  handleDelete: (id: number) => void;
 }
 
 
-const RequestItem: React.FC<RequestItemProps> = ({ item }) => {
+const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
   return (
     <ListItem
       secondaryAction={
         <>
-          <IconButton color="error" edge="end" aria-label="remove" sx={{ marginRight: "2px" }}>
+      <IconButton color="error" edge="end" aria-label="remove" sx={{ marginRight: "2px" }} onClick={() => handleDelete(item.id)}>
             <Remove />
           </IconButton>
           <IconButton color="success" edge="end" aria-label="accept">
