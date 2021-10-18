@@ -1,38 +1,37 @@
-import { Check, Remove } from "@mui/icons-material";
-import { Avatar, Chip, Divider, IconButton, List, ListItem, ListItemAvatar, ListItemText, Stack } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { Chip, Divider, List, Stack } from "@mui/material";
+
+import RequestItem from "./request-item.component";
+import { IRequestItem } from "./request-item.type";
 
 
 const RequestItems: React.FC = () => {
+  const [requests, setRequests] = useState<IRequestItem[]>([
+    {
+      id: 1,
+      name: "Ümit Demir",
+    },
+    {
+      id: 2,
+      name: "Demir Ümit",
+    }
+  ])
+
+  const deleteItem = (id: number) => {
+    console.log("requested to delete " + id);
+  }
+
   return (
     <Stack direction="column">
       <Divider sx={{ marginTop: "20px" }}>
         <Chip label="requests" />
       </Divider>
-      <List >
-        <ListItem
-          secondaryAction={
-            <>
-              <IconButton color="error" edge="end" aria-label="remove" sx={{ marginRight: "2px" }}>
-                <Remove />
-              </IconButton>
-              <IconButton color="success" edge="end" aria-label="accept">
-                <Check />
-              </IconButton>
-            </>
-          }
-        >
-          <ListItemAvatar>
-            <Avatar
-              src="https://www.pngrepo.com/png/9649/512/avatar.png"
-            />
-          </ListItemAvatar>
-          <ListItemText
-            primary="Ümit Demir"
-          />
-        </ListItem>
+      <List>
+        {
+          requests.map((request_item) => <RequestItem item={request_item}/>
+          )
+        }
       </List>
-
     </Stack>
   )
 }
