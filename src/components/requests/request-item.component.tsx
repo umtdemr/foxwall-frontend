@@ -27,6 +27,10 @@ const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
   useEffect(() => {
     if (reqMessage === "accept") setAlertMessage(`Accepted ${item.name}'s request`)
     else if (reqMessage === "decline") setAlertMessage(`Declined ${item.name}'s request`)
+
+    return () => {
+      setAlertMessage("");
+    }
   }, [reqMessage]);
 
   return (
