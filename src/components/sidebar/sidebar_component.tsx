@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button, } from "@mui/material";
 import { Search } from "@mui/icons-material"
-import RequestItems from "./requests/requests.component";
+import RequestItems from "../requests/requests.component";
 
 const SideBar: React.FC = () => {
   return (
