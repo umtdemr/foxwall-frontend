@@ -1,0 +1,9 @@
+import { configureStore, applyMiddleware } from "@reduxjs/toolkit";
+
+
+export const store = configureStore({
+  reducer: {}
+});
+
+export type RootSate = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
