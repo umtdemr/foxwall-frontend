@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { Provider as StoreProvider} from "react-redux";
-import { store } from './redux/store'
+import { store, persistor } from './redux/store'
 import theme from "./theme/theme"
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme} >
       <StoreProvider store={store}>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </StoreProvider>
     </ThemeProvider>
   </React.StrictMode>,
