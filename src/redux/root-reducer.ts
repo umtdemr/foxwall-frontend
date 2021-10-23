@@ -2,6 +2,8 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"
 
+import layout from "./slices/layout";
+
 
 const persistConfig = {
   key: 'root',
@@ -10,7 +12,9 @@ const persistConfig = {
 }
 
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  layout,
+});
 
 export default persistReducer(
   persistConfig,
