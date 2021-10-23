@@ -4,9 +4,9 @@ export interface ILayoutState {
   isSearchPopupOpen: boolean;
 }
 
-const initialState = {
+const initialState: ILayoutState = {
   isSearchPopupOpen: false,
-} as ILayoutState;
+};
 
 const layoutSlice = createSlice({
   name: "layout",
