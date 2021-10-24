@@ -12,3 +12,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.button_outline {
+  padding: 7px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 300ms all;
+}
+.button_outline.light {
+  background-color: #f1f5fa;
+  color: #333;
+  border: 1px solid rgba(51, 51, 51, 0.294);
+}
+.button_outline.light:hover {
+  background-color: #fff;
+}
+.button_outline.black {
+  background: #000;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.align-baseline {
+  align-self: baseline;
+}

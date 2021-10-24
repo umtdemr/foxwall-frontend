@@ -38,10 +38,11 @@ const ProfileHeader: React.FC = () => {
                     }}
                     src="https://www.pngrepo.com/png/9649/512/avatar.png"
                 ></Avatar>
-                <Button 
-                    sx={{alignSelf: "baseline", marginTop: "10px"}}
-                    className="button"
-                >Edit Profile</Button>
+                <button className="button_outline light align-baseline" style={{ 
+                    marginTop: "10px",
+                 }}>
+                    edit profile
+                </button>
             </Stack>
         </Box>
     );
