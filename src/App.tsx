@@ -10,6 +10,7 @@ import { RootState } from "./redux/store";
 import { Container, Grid } from "@mui/material";
 import HeadWithLogo from "./components/head/head-with-logo.component";
 import SideBar from "./components/sidebar/sidebar_component";
+import ProfilePage from "./pages/profile/profile-page";
 
 function App() {
   const state: IAuthSlice = useSelector((state: RootState) => state.auth);
@@ -25,7 +26,10 @@ function App() {
                     <HeadWithLogo />
                       <Switch>
                         <Route exact path="/">
-                            <HomePage />
+                          <HomePage />
+                        </Route>
+                        <Route path="/profile/:username">
+                          <ProfilePage />
                         </Route>
                       </Switch>
                   </Grid>
