@@ -6,7 +6,7 @@ import theme from "../../theme/theme";
 
 const PostHeader: React.FC = () => {
   return (
-    <Stack direction="row">
+    <Stack direction="row" alignItems="center">
       <Avatar
         sx={{ marginRight: "10px" }}
         src="https://www.pngrepo.com/png/9649/512/avatar.png"
