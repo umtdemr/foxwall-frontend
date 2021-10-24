@@ -15,34 +15,34 @@ function App() {
   const state: IAuthSlice = useSelector((state: RootState) => state.auth);
   return (
     <div className="content">
-      {
-        state.isAuthenticated ? (
-          <div className="page">
-            <Container>
-              <Grid container justifyContent="center" spacing={2}>
-                <Grid item xs={6}>
-                  <HeadWithLogo />
-                  <Router>
-                    <Switch>
-                      <Route exact path="/">
-                          <HomePage />
-                      </Route>
-                    </Switch>
-                  </Router>
+      <Router>
+        {
+          state.isAuthenticated ? (
+            <div className="page">
+              <Container>
+                <Grid container justifyContent="center" spacing={2}>
+                  <Grid item xs={6}>
+                    <HeadWithLogo />
+                      <Switch>
+                        <Route exact path="/">
+                            <HomePage />
+                        </Route>
+                      </Switch>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <SideBar />
+                  </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                  <SideBar />
-                </Grid>
-              </Grid>
-            </Container>
-            <SearchModal />
-          </div>
-        ): (
-          <AuthActionProvider>
-            <AuthPage />
-          </AuthActionProvider>
-        )
-      }
+              </Container>
+              <SearchModal />
+            </div>
+          ): (
+            <AuthActionProvider>
+              <AuthPage />
+            </AuthActionProvider>
+          )
+        }
+      </Router>
     </div>
   );
 }
