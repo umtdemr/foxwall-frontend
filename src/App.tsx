@@ -7,25 +7,42 @@ import AuthPage from "./pages/auth/auth-page";
 import HomePage from "./pages/home/home-page";
 import { IAuthSlice } from "./redux/slices/auth";
 import { RootState } from "./redux/store";
+import { Container, Grid } from "@mui/material";
+import HeadWithLogo from "./components/head/head-with-logo.component";
+import SideBar from "./components/sidebar/sidebar_component";
 
 function App() {
   const state: IAuthSlice = useSelector((state: RootState) => state.auth);
   return (
     <div className="content">
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            {state.isAuthenticated ? (
-              <HomePage />
-            ) : (
-              <AuthActionProvider>
-                <AuthPage />
-              </AuthActionProvider>
-            )}
-          </Route>
-        </Switch>
-      </Router>
-      <SearchModal />
+      {
+        state.isAuthenticated ? (
+          <div className="page">
+            <Container>
+              <Grid container justifyContent="center" spacing={2}>
+                <Grid item xs={6}>
+                  <HeadWithLogo />
+                  <Router>
+                    <Switch>
+                      <Route exact path="/">
+                          <HomePage />
+                      </Route>
+                    </Switch>
+                  </Router>
+                </Grid>
+                <Grid item xs={4}>
+                  <SideBar />
+                </Grid>
+              </Grid>
+            </Container>
+            <SearchModal />
+          </div>
+        ): (
+          <AuthActionProvider>
+            <AuthPage />
+          </AuthActionProvider>
+        )
+      }
     </div>
   );
 }
