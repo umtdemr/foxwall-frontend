@@ -27,10 +27,13 @@ code {
 .button_outline.light:hover {
   background-color: #fff;
 }
-.button_outline.black {
-  background: #000;
+.button_outline.dark {
+  background: #333;
   color: #fff;
   border: 1px solid #fff;
+}
+.button_outline.dark:hover {
+  background: rgba(0, 0, 0, 0.541);
 }
 
 .align-baseline {

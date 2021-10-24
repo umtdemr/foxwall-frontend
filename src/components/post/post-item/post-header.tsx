@@ -2,7 +2,7 @@ import React from "react";
 
 import { Avatar, Stack, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import theme from "../../theme/theme";
+import theme from "../../../theme/theme";
 
 const PostHeader: React.FC = () => {
   return (
