@@ -1,8 +1,7 @@
 import React from 'react'
 import Box from "@mui/material/Box"
 
-
-const ImageOverlay: React.FC = () => {
+const ImageOverlay: React.FC = ({ children }) => {
     return (
         <Box sx={{
             position: "absolute",
@@ -20,7 +19,7 @@ const ImageOverlay: React.FC = () => {
         }}
         onClick={() => alert("there is more...")}
         >
-            +
+            {children}
         </Box>
     );
 }

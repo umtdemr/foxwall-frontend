@@ -7,7 +7,8 @@ import {
     InputAdornment,
     Button
 } from '@mui/material';
-import { Check } from "@mui/icons-material"
+import { Check, FindInPage } from "@mui/icons-material"
+import ImageOverlay from '../../image-overlay/image-overlay.component';
 
 const EditProfileHeader: React.FC = () => {
     return (
@@ -15,6 +16,7 @@ const EditProfileHeader: React.FC = () => {
             <Box sx={{
                 width: "100%",
                 height: "200px",
+                position: "relative",
             }}
             >
                 <img src="https://via.placeholder.com/1024x200"
@@ -25,10 +27,14 @@ const EditProfileHeader: React.FC = () => {
                     }}
                     alt="Username's cover"
                 />
+                <ImageOverlay>
+                    <FindInPage /> 
+                </ImageOverlay>
             </Box>
             <Stack
                 sx={{
                     padding: "0 30px;",
+                    position: "relative",
                 }}
                 direction="row"
                 justifyContent="space-between"
@@ -41,7 +47,11 @@ const EditProfileHeader: React.FC = () => {
                         marginTop: "-30px",
                     }}
                     src="https://www.pngrepo.com/png/9649/512/avatar.png"
-                ></Avatar>
+                >
+                    <ImageOverlay>
+                        <FindInPage /> 
+                    </ImageOverlay>
+                </Avatar>
             </Stack>
             <Box>
                 <Stack direction="row" mt={5} justifyContent="space-between"> 
