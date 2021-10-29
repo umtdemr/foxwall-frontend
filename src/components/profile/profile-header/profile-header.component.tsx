@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 
 const ProfileHeader: React.FC = () => {
@@ -45,6 +46,14 @@ const ProfileHeader: React.FC = () => {
                     }}>
                     edit profile
                 </button>
+            </Stack>
+            <Stack sx={{
+                    padding: "0 30px;",
+                }}
+            >
+                <Typography variant="h5">Ümit</Typography>
+                <Typography variant="body2" color="#777">@username</Typography>
+                <Typography variant="body1" mt={2}>Geek chick in over drive.</Typography>
             </Stack>
         </Box>
     );
