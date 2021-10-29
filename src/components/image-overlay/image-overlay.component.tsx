@@ -2,7 +2,7 @@ import React from 'react'
 import Box from "@mui/material/Box"
 
 
-const PostImageOverlay: React.FC = () => {
+const ImageOverlay: React.FC = () => {
     return (
         <Box sx={{
             position: "absolute",
@@ -15,6 +15,8 @@ const PostImageOverlay: React.FC = () => {
             alignItems: "center",
             justifyContent: "center",
             fontSize: "20px",
+            left: "0",
+            top: "0",
         }}
         onClick={() => alert("there is more...")}
         >
@@ -24,4 +26,4 @@ const PostImageOverlay: React.FC = () => {
 }
 
 
-export default PostImageOverlay
+export default ImageOverlay;
