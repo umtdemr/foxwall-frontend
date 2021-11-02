@@ -15,14 +15,13 @@ const RequestItems: React.FC = () => {
     {
       id: 2,
       name: "Demir Ümit",
-    }
+    },
   ])
 
   const deleteItem = (id: number) => {
-    let t_requests = requests;
-    t_requests = t_requests.filter((item) => item.id !== id);
-    console.log(t_requests);
-    setRequests(t_requests);
+    let tempRequests = requests;
+    tempRequests = tempRequests.filter((item) => item.id !== id);
+    setRequests(tempRequests);
   }
 
   return (
@@ -33,9 +32,9 @@ const RequestItems: React.FC = () => {
       <List>
         <TransitionGroup>
           {
-            requests.map((request_item) => (
-                <Collapse key={request_item.id}>
-                   <RequestItem item={request_item} handleDelete={deleteItem}/>
+            requests.map((requestItem) => (
+                <Collapse key={requestItem.id}>
+                   <RequestItem item={requestItem} handleDelete={deleteItem}/>
                 </Collapse>
               )
             )

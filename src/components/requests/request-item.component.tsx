@@ -17,11 +17,10 @@ type TReqMessage = "nan" | TClickEvent
 const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
   const [reqMessage, setReqMessage] = useState<TReqMessage>("nan");
   const [alertMessage, setAlertMessage] = useState("");
+
   const clickEvent = (type: TClickEvent ) => {
     setReqMessage(type);
-    setTimeout(() => {
-      handleDelete(item.id);
-    }, 1000);
+    handleDelete(item.id);
   }
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
     return () => {
       setAlertMessage("");
     }
-  }, [reqMessage]);
+  }, [reqMessage, item.name]);
 
   return (
     <ListItem
