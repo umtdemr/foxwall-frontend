@@ -1,11 +1,10 @@
 import React from 'react'
 import { 
-    Avatar,
     Box,
     Stack,
     TextField,
     InputAdornment,
-    Button
+    Button,
 } from '@mui/material';
 import { Check, FindInPage } from "@mui/icons-material"
 import ImageOverlay from '../../image-overlay/image-overlay.component';
@@ -39,19 +38,24 @@ const EditProfileHeader: React.FC = () => {
                 direction="row"
                 justifyContent="space-between"
             >
-                <Avatar
+                <Box
                     sx={{ 
                         width: 90,
                         height: 90,
                         border: "3px solid #fff",
                         marginTop: "-30px",
+                        backgroundImage: "url(https://www.pngrepo.com/png/9649/512/avatar.png)",
+                        backgroundSize: "100%",
+                        backgroundPosition: "center",
+                        borderRadius: 90,
+                        position: "relative",
+                        overflow: "hidden",
                     }}
-                    src="https://www.pngrepo.com/png/9649/512/avatar.png"
                 >
                     <ImageOverlay>
                         <FindInPage /> 
                     </ImageOverlay>
-                </Avatar>
+                </Box>
             </Stack>
             <Box>
                 <Stack direction="row" mt={5} justifyContent="space-between"> 
