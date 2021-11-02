@@ -1,6 +1,6 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
-import { InsertPhoto } from "@mui/icons-material";
+import { AddAPhoto } from "@mui/icons-material";
 import { blue } from "@mui/material/colors";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
@@ -21,7 +21,7 @@ const ImageUploadPostForm: React.FC = () => {
           aria-label="upload picture"
           component="span"
         >
-          <InsertPhoto sx={{ color: blue[200] }} />
+          <AddAPhoto sx={{ color: blue[200] }} />
         </IconButton>
       </label>
     </Stack>

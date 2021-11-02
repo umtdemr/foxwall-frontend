@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Modal, Stack, TextField } from "@mui/material";
+import { Box, Modal, Stack, TextField, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { ILayoutState, toggleSearchPopup } from "../../redux/slices/layout";
 import { RootState } from "../../redux/store";
@@ -28,8 +28,11 @@ const SearchModal: React.FC = () => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
+        <Typography variant="h5" mb={2}>
+          Search from foxwallers
+        </Typography>
         <Stack>
-          <TextField placeholder="search users..." />
+          <TextField placeholder="username, name..." />
         </Stack>
       </Box>
     </Modal>
