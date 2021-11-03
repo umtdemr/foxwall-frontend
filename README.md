@@ -6,4 +6,6 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 
 ## TO DO
 
+- [ ] Should customize theme more.
 - [ ] Start writing test after finished design
+
