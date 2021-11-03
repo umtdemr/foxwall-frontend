@@ -12,44 +12,35 @@ import HeadWithLogo from "./components/head/head-with-logo.component";
 import SideBar from "./components/sidebar/sidebar_component";
 import ProfilePage from "./pages/profile/profile-page";
 import EditProfilePage from "./pages/profile/edit/edit-profile-page";
+import Layout from "./components/layout/layout";
 
 function App() {
   const state: IAuthSlice = useSelector((state: RootState) => state.auth);
   return (
     <div className="content">
       <Router>
-        {
-          state.isAuthenticated ? (
-            <div className="page">
-              <Container>
-                <Grid container justifyContent="center" spacing={2}>
-                  <Grid item xs={6}>
-                    <HeadWithLogo />
-                      <Switch>
-                        <Route exact path="/">
-                          <HomePage />
-                        </Route>
-                        <Route exact path="/profile/:username">
-                          <ProfilePage />
-                        </Route>
-                        <Route path="/profile/:username/edit">
-                          <EditProfilePage />
-                        </Route>
-                      </Switch>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <SideBar />
-                  </Grid>
-                </Grid>
-              </Container>
-              <SearchModal />
-            </div>
-          ): (
-            <AuthActionProvider>
-              <AuthPage />
-            </AuthActionProvider>
-          )
-        }
+        {state.isAuthenticated ? (
+          <div className="page">
+            <Layout>
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/profile/:username">
+                  <ProfilePage />
+                </Route>
+                <Route path="/profile/:username/edit">
+                  <EditProfilePage />
+                </Route>
+              </Switch>
+            </Layout>
+            <SearchModal />
+          </div>
+        ) : (
+          <AuthActionProvider>
+            <AuthPage />
+          </AuthActionProvider>
+        )}
       </Router>
     </div>
   );
