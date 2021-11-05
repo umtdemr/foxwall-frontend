@@ -43,6 +43,11 @@ const CustomThemeProvider = ({ children }: ProviderProps) => {
     []
   );
 
+  React.useEffect(() => {
+    let body = document.querySelector("body") as HTMLBodyElement;
+    // ...
+  }, [mode]);
+
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
