@@ -2,7 +2,6 @@ import React from "react";
 
 import { Avatar, Stack, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
-import theme from "../../../theme/theme";
 
 const PostHeader: React.FC = () => {
   return (
@@ -20,7 +19,6 @@ const PostHeader: React.FC = () => {
             sx={{
               width: 16,
               height: 16,
-              bgcolor: theme.palette.primary.main,
             }}
           >
             <CheckIcon sx={{ width: 12, height: 12 }} />

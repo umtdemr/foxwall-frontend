@@ -1,31 +1,12 @@
 import React from "react";
-import { PaletteMode } from "@mui/material";
+import { CssBaseline, PaletteMode } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { themeDark, themeLight } from "../../../theme/theme";
 
 type ProviderProps = { children: React.ReactElement };
 
 const getDesignTokens = (mode: PaletteMode) => ({
-  palette: {
-    mode,
-    primary: {
-      main: "#FF6600",
-      contrastText: "rgba(255,255,255,0.87)",
-    },
-    secondary: {
-      main: "#f50057",
-    },
-    text: {
-      ...(mode === "light"
-        ? {
-            primary: "rgba(0,0,0,0.87)",
-            secondary: "rgba(0,0,0,0.54)",
-          }
-        : {
-            primary: "rgba(255,255,255, 0.87)",
-            secondary: "rgba(255,255,255, 0.54)",
-          }),
-    },
-  },
+  ...(mode === "light" ? { ...themeLight } : { ...themeDark }),
 });
 
 export const ColorModeContext = React.createContext({
@@ -43,16 +24,14 @@ const CustomThemeProvider = ({ children }: ProviderProps) => {
     []
   );
 
-  React.useEffect(() => {
-    let body = document.querySelector("body") as HTMLBodyElement;
-    // ...
-  }, [mode]);
-
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
     </ColorModeContext.Provider>
   );
 };

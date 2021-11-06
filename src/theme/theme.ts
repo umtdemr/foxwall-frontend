@@ -1,9 +1,5 @@
+export { default as themeDark } from "./theme-dark";
+export * from "./theme-dark";
 
-import { createTheme } from '@mui/material/styles';
-
-
-
-const theme = createTheme();
-
-export default theme;
-
+export { default as themeLight } from "./theme-light";
+export * from "./theme-light";
