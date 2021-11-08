@@ -13,6 +13,7 @@ const SideBar: React.FC = () => {
   const state: ILayoutState = useSelector((state: RootState) => state.layout);
   const dispatch = useDispatch();
   const colorMode = React.useContext(ColorModeContext);
+
   return (
     <div className="sidebar" style={{ padding: "10px" }}>
       <Stack direction="row" justifyContent="space-between">
@@ -29,10 +30,11 @@ const SideBar: React.FC = () => {
         >
           search users...
         </Button>
-        <SwitchButton />
+        <SwitchButton
+          onChange={(e: React.ChangeEvent) => colorMode.toggleColorMode()}
+        />
       </Stack>
       <RequestItems />
-      <Button onClick={() => colorMode.toggleColorMode()}>DEMO THEME</Button>
     </div>
   );
 };

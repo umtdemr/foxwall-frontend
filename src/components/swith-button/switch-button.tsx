@@ -1,7 +1,12 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 
 import { styled } from "@mui/material/styles";
 import { Switch } from "@mui/material";
+
+interface ISwitchButton {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void | any;
+  checked?: boolean;
+}
 
 const StyledSwitchButton = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -50,8 +55,15 @@ const StyledSwitchButton = styled(Switch)(({ theme }) => ({
   },
 }));
 
-export const SwitchButton: React.FC = () => {
-  return <StyledSwitchButton />;
+export const SwitchButton: React.FC<ISwitchButton> = ({
+  onChange,
+  checked,
+}) => {
+  return (
+    <StyledSwitchButton
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
+    />
+  );
 };
 
 export default SwitchButton;
