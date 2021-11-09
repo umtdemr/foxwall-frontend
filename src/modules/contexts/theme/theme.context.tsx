@@ -3,6 +3,8 @@ import { CssBaseline, PaletteMode } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { themeDark, themeLight } from "../../../theme/theme";
 
+import usePersistedState from "../../hooks/persist-state";
+
 type ProviderProps = { children: React.ReactElement };
 
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -14,14 +16,16 @@ export const ColorModeContext = React.createContext({
 });
 
 const CustomThemeProvider = ({ children }: ProviderProps) => {
-  const [mode, setMode] = React.useState<"light" | "dark">("light");
+  const [mode, setMode] = usePersistedState<string>("theme", "light");
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
+        setMode((prevMode: string) =>
+          prevMode === "light" ? "dark" : "light"
+        );
       },
     }),
-    []
+    [setMode]
   );
 
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
