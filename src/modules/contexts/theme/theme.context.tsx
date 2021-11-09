@@ -13,6 +13,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
 
 export const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
+  current: "",
 });
 
 const CustomThemeProvider = ({ children }: ProviderProps) => {
@@ -31,7 +32,9 @@ const CustomThemeProvider = ({ children }: ProviderProps) => {
   const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
+    <ColorModeContext.Provider
+      value={{ toggleColorMode: colorMode.toggleColorMode, current: mode }}
+    >
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {children}

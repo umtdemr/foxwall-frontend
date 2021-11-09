@@ -32,6 +32,7 @@ const SideBar: React.FC = () => {
         </Button>
         <SwitchButton
           onChange={(e: React.ChangeEvent) => colorMode.toggleColorMode()}
+          defaultChecked={colorMode.current === "light" ? false : true}
         />
       </Stack>
       <RequestItems />
