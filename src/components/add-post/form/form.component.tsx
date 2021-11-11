@@ -23,7 +23,7 @@ const AddPostForm: React.FC = () => {
         </Paper>
         <Box mt={5} sx={{ display: "flex", justifyContent: "flex-end" }}>
           <ImageUploadPostForm />
-          <Button color={"info"}>Create</Button>
+          <Button variant="outlined">Create</Button>
         </Box>
       </Box>
     </Box>
