@@ -1,5 +1,6 @@
 const themeDark = {
     palette: {
+        mode: "dark",
         primary: {
             main: "#FF6600",
             contrastText: "rgba(255,255,255,0.87)",
