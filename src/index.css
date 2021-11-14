@@ -39,3 +39,14 @@ code {
 .align-baseline {
   align-self: baseline;
 }
+
+.sidebar {
+  position: fixed;
+  width: 373px;
+}
+
+@media screen and (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+}
