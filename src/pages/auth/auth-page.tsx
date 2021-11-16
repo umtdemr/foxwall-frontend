@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { Stack, Button } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 import { authActionTypes } from "../../types/auth/auth-types";
 
@@ -10,6 +11,7 @@ import { AuthActionContext } from "../../modules/contexts/auth/auth.context";
 
 const AuthPage: React.FC = () => {
   const { current_type, changeType } = useContext(AuthActionContext);
+  const theme = useTheme();
 
   return (
     <div className="home no-login">
@@ -24,7 +26,7 @@ const AuthPage: React.FC = () => {
       </div>
       <div className="right">
         <div className="text-centerr" style={{ width: "80%" }}>
-          <h4 style={{ textAlign: "center" }}>Dünyada neler dönüyor?</h4>
+          <h4 style={{ textAlign: "center",  color: theme.palette.text.primary}}>Dünyada neler dönüyor?</h4>
           {current_type === "" && (
             <Stack spacing={2} direction="row" justifyContent="center">
               <Button
