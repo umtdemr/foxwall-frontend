@@ -13,6 +13,8 @@ import Layout from "./components/layout/layout";
 
 import CustomThemeProvider from "./modules/contexts/theme/theme.context";
 
+import "./App.css";
+
 function App() {
   const state: IAuthSlice = useSelector((state: RootState) => state.auth);
   return (
