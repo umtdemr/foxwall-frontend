@@ -1,21 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Container, Grid } from "@mui/material";
 import SideBar from "../sidebar/sidebar_component";
 import HeadWithLogo from "../head/head-with-logo.component";
+import BottomNav from "../bottom-nav/bottom-nav.component";
 
 const Layout: React.FC = ({ children }) => {
+  const [screenWidth, setScreenWidth] = useState<number>();
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleScreenSizeChange = () => {
+    setScreenWidth(window.innerWidth);
+    if (window.innerWidth < 900) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }
+
+  useEffect(() => {
+    handleScreenSizeChange();
+    window.addEventListener('resize', handleScreenSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleScreenSizeChange);
+    }
+  }, [])
+
   return (
-    <Container>
+    <Container style={{ paddingBottom: isMobile ? "80px": "20px" }}>
       <Grid container justifyContent="center" spacing={2}>
         <Grid item md={6} xs={12}>
           <HeadWithLogo />
           {children}
         </Grid>
-        <Grid item md={4} xs={12}>
-          <SideBar />
-        </Grid>
+        {
+          !isMobile && (<Grid item md={4} xs={12}>
+              <SideBar />
+            </Grid>
+          ) 
+        }
       </Grid>
+      {
+        isMobile && <BottomNav></BottomNav>
+      }
     </Container>
   );
 };
