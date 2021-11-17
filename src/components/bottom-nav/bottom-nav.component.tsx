@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSearchPopup, ILayoutState } from "../../redux/slices/layout";
 
 import { Paper, BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { 
@@ -8,31 +10,41 @@ import {
     Person,
 } from "@mui/icons-material";
 import { useLocation, useHistory } from "react-router-dom";
+import { RootState } from '../../redux/store';
 
 enum NAV_TYPES {
     NAN,
-    HOME = "/home",
+    HOME = "/",
     SEARCH = "/search",
     ACTIVITIES = "/activities",
-    PROFILE = "/qwe",
+    PROFILE = "/profile/username",
 }
 
 const BottomNav = () => {
     const location = useLocation();
     const history = useHistory();
     const [navValue, setNavValue] = useState<NAV_TYPES>(NAV_TYPES.NAN);
+    const state: ILayoutState = useSelector((state: RootState) => state.layout);
+    const dispatch = useDispatch();
     
-    const handleNavChange = (event: React.SyntheticEvent, value: any) => {
-        history.push(value);
+    const handleNavChange = (event: React.SyntheticEvent, requestedAction: any) => {
+        if (requestedAction === NAV_TYPES.HOME || requestedAction === NAV_TYPES.PROFILE) {
+            history.push(requestedAction);
+        } else if (requestedAction === NAV_TYPES.SEARCH) {
+            dispatch(toggleSearchPopup());
+        }
     }
 
     useEffect(() => {
-        if (location.pathname === "/") {
+        if (state.isSearchPopupOpen) {
+            setNavValue(NAV_TYPES.SEARCH);
+        }
+        else if (location.pathname === "/") {
             setNavValue(NAV_TYPES.HOME);
         } else if (location.pathname === "/profile/username" || location.pathname === "/profile/username/edit") {
             setNavValue(NAV_TYPES.PROFILE);
         }
-    }, [location])
+    }, [location, state])
 
     return (
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
