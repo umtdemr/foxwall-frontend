@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
@@ -6,10 +7,13 @@ import { deepOrange } from "@mui/material/colors";
 import { Button, TextField } from "@mui/material";
 import ImageUploadPostForm from "../image-upload/image-upload.component";
 
+
 const AddPostForm: React.FC = () => {
   return (
     <Box mt={5} sx={{ display: "flex" }}>
-      <Avatar sx={{ bgcolor: deepOrange[500] }}>NS</Avatar>
+      <Link to="/profile/username">
+        <Avatar sx={{ bgcolor: deepOrange[500] }}>NS</Avatar>
+      </Link>
       <Box ml={3} sx={{ width: "100%" }}>
         <Paper>
           <TextField

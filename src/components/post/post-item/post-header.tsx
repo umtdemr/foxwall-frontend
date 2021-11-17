@@ -1,22 +1,31 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { Avatar, Stack, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { useTheme } from "@mui/material/styles";
 
+
 const PostHeader: React.FC = () => {
   const theme = useTheme();
   return (
     <Stack direction="row" alignItems="center">
-      <Avatar
-        sx={{ marginRight: "10px" }}
-        src="https://www.pngrepo.com/png/9649/512/avatar.png"
-      ></Avatar>
+      <Link to="/profile/username">
+        <Avatar
+          sx={{ marginRight: "10px" }}
+          src="https://www.pngrepo.com/png/9649/512/avatar.png"
+        ></Avatar>
+      </Link>
       <Stack direction="column">
         <Stack direction="row" alignItems="center">
-          <Typography variant="subtitle1" sx={{ marginRight: "5px" }}>
-            Ümit Demir
-          </Typography>
+          <Link to="/profile/qwe" style={{
+            color: theme.palette.text.primary,
+            textDecoration: "none",
+          }}>
+            <Typography variant="subtitle1" sx={{ marginRight: "5px" }}>
+              Ümit Demir
+            </Typography>
+          </Link>
           <Avatar
             sx={{
               width: 16,

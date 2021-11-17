@@ -1,8 +1,11 @@
 
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
+
 import { Check, Remove } from "@mui/icons-material";
 import { Avatar, Box, IconButton, ListItem, ListItemAvatar, ListItemText, Alert } from "@mui/material";
 import { IRequestItem } from "./request-item.type";
+import { useTheme } from "@mui/material/styles";
 
 
 interface RequestItemProps {
@@ -17,6 +20,8 @@ type TReqMessage = "nan" | TClickEvent
 const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
   const [reqMessage, setReqMessage] = useState<TReqMessage>("nan");
   const [alertMessage, setAlertMessage] = useState("");
+
+  const theme = useTheme();
 
   const clickEvent = (type: TClickEvent ) => {
     setReqMessage(type);
@@ -45,14 +50,25 @@ const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
         </>
       }
     >
-      <ListItemAvatar>
-        <Avatar
-          src="https://www.pngrepo.com/png/9649/512/avatar.png"
+      <Link to="/profile/qwe">
+        <ListItemAvatar>
+          <Avatar
+            src="https://www.pngrepo.com/png/9649/512/avatar.png"
+          />
+        </ListItemAvatar>
+      </Link>
+      <Link to="/profile/qwe"
+        style={{
+          textDecoration: "none",
+        }} 
+      >
+        <ListItemText
+          primary={item.name}
+          sx={{
+            color: theme.palette.text.primary,
+          }}
         />
-      </ListItemAvatar>
-      <ListItemText
-        primary={item.name}
-      />
+      </Link>
       {
        reqMessage !== "nan" && <Box className="alert_section" sx={{
           position: "absolute",
