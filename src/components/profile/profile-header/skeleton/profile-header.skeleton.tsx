@@ -9,11 +9,24 @@ import {
 const ProfileHeaderSkeleton: React.FC = () => {
     return (
         <Box>
-            <Skeleton 
-                variant="rectangular"
-                height="200px"
-                width="100%"
-            />
+            <Box
+                sx={{
+                    width: "100%",
+                    paddingTop: "39.06%",
+                    position: "relative",
+                }}
+            >
+                <Skeleton 
+                    variant="rectangular"
+                    width="100%"
+                    height="100%"
+                    sx={{
+                        position: "absolute",
+                        left: "0",
+                        top: "0",
+                    }}
+                />
+            </Box>
             
             <Stack
                 sx={{

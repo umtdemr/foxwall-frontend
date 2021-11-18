@@ -14,15 +14,16 @@ const EditProfileHeader: React.FC = () => {
         <Box>
             <Box sx={{
                 width: "100%",
-                height: "200px",
                 position: "relative",
+                paddingTop: "39.06%",
             }}
             >
-                <img src="https://via.placeholder.com/1024x200"
+                <img src="https://via.placeholder.com/1024x400"
                     style={{
                         width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
+                        position: "absolute",
+                        left: "0",
+                        top: "0",
                     }}
                     alt="Username's cover"
                 />

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
@@ -6,18 +7,22 @@ import { Typography } from '@mui/material';
 
 
 const ProfileHeader: React.FC = () => {
+    const history = useHistory();
+    const routeMatch = useRouteMatch();
     return (
         <Box>
             <Box sx={{
                 width: "100%",
-                height: "200px",
+                position: "relative",
+                paddingTop: "39.06%",
             }}
             >
-                <img src="https://via.placeholder.com/1024x200"
+                <img src="https://via.placeholder.com/1024x400"
                     style={{
+                        position: "absolute",
+                        left: "0",
+                        top: "0",
                         width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
                     }}
                     alt="Username's cover"
                 />
@@ -40,6 +45,7 @@ const ProfileHeader: React.FC = () => {
                 ></Avatar>
                 <button 
                     className="button_outline dark align-baseline"
+                    onClick={() => history.push(`${routeMatch.url}/edit`)}
                     style={{ 
                         marginTop: "10px",
                     }}>
