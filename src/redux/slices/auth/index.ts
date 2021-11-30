@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { registerThunk } from "./auth-thunks";
+import { loginThunk, registerThunk } from "./auth-thunks";
 
 export interface IAuthSlice {
   isAuthenticated: boolean;
@@ -16,8 +16,13 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(registerThunk.fulfilled, (state, action) => {
-      state.isAuthenticated = true;
-    })
+      // state.isAuthenticated = true;
+    });
+    builder.addCase(loginThunk.fulfilled, (state, action) => {
+      console.log(state, action);
+      console.log(action!.payload!.data.token);
+      // state.isAuthenticated = true;
+    });
   },
 });
 

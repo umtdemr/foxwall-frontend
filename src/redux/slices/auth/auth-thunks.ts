@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { useAPI } from "../../../modules/api/api";
 
-import { IRegisterForm } from "../../../types/api/auth";
+import { ILoginForm, IRegisterForm } from "../../../types/api/auth";
 
 
 export const registerThunk = createAsyncThunk(
@@ -26,3 +26,24 @@ export const registerThunk = createAsyncThunk(
         return response;
     }
 );
+
+
+export const loginThunk = createAsyncThunk(
+    'auth/postLogin',
+    async (data: ILoginForm, thunkAPI) => {
+        if (!data.email && !data.username) {
+            return;
+        }
+
+        const API = useAPI();
+
+        const response = await API.post("/user/login/", {
+            email: data.email,
+            username: data.username,
+            password: data.password,
+        });
+        
+        console.log(response);
+        return response;
+    }
+)
