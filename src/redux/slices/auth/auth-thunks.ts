@@ -43,7 +43,6 @@ export const loginThunk = createAsyncThunk(
             password: data.password,
         });
         
-        console.log(response);
         return response;
     }
 )
