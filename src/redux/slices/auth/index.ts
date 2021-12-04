@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { loginThunk, registerThunk } from "./auth-thunks";
 
@@ -21,6 +21,7 @@ export interface IAuthSlice {
   }
 }
 
+
 const initialState: IAuthSlice = {
   isAuthenticated: false,  // during designing this should be true
   user: {},
@@ -33,7 +34,17 @@ const initialState: IAuthSlice = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    syncAuth: (state, action: PayloadAction<{isAuthenticated: boolean, token?: string}>) => {
+      if (action.payload.isAuthenticated) {
+        state.isAuthenticated = true;
+        state.user.token = action.payload.token;
+      } else {
+        state.isAuthenticated = false;
+        state.user.token = "";
+      }
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(registerThunk.fulfilled, (state, action) => {
       // state.isAuthenticated = true;
@@ -48,10 +59,12 @@ const authSlice = createSlice({
       state.user.token = action?.payload?.data.token;
       state.user.username = action?.payload?.data.username;
       state.user.email = action?.payload?.data.email;
+
+      localStorage.setItem("token", action?.payload?.data.token);
     });
   },
 });
 
-// export const {  } = authSlice.action return reducers
+export const { syncAuth } = authSlice.actions;
 
 export default authSlice.reducer;
