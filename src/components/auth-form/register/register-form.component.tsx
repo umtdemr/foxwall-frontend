@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { TextField, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -10,6 +10,11 @@ import { AuthActionContext } from "../../../modules/contexts/auth/auth.context";
 import { registerThunk } from "../../../redux/slices/auth/auth-thunks";
 
 const RegisterForm: React.FC = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
   const { changeType } = React.useContext(AuthActionContext);
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -24,10 +29,30 @@ const RegisterForm: React.FC = () => {
 
   return (
     <form>
-      <TextField className="form_field full" label="name" />
-      <TextField className="form_field full" label="email" />
-      <TextField className="form_field full" label="username" />
-      <TextField className="form_field full" label="password" />
+      <TextField 
+        className="form_field full" 
+        label="Name" 
+        onChange={(e) => setName(e.target.value)}
+        value={name}
+      />
+      <TextField 
+        className="form_field full" 
+        label="email" 
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+      />
+      <TextField 
+        className="form_field full" 
+        label="username"
+        onChange={(e) => setUsername(e.target.value)}
+        value={username}
+      />
+      <TextField 
+        className="form_field full" 
+        label="password" 
+        onChange={(e) => setPassword(e.target.value)}
+        value={password}
+      />
       <Button variant="outlined" onClick={() => handleRegister()}>Sign up</Button>
       <span className="form_have_not_text" style={{color: theme.palette.text.primary}}>
         Do you have an account?
