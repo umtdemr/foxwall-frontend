@@ -26,9 +26,10 @@ function App() {
   
       if (token != null) {
         const response: any = await dispatch(fetchCurrentUser());
-        if (response.payload.status === 200) {
-          dispatch(syncAuth({isAuthenticated: true, token: token}));
-        } else {
+        if (response.type !== "user/fetchCurrentUser/rejected" && response.payload.status === 200) {
+          dispatch(syncAuth({isAuthenticated: true, token}));
+        }
+        else {
           dispatch(syncAuth({isAuthenticated: false}));
         }
       }
