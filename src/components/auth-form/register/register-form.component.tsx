@@ -3,19 +3,44 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
-import { Formik, Form, Field, FieldAttributes, useField } from "formik";
+import { Formik, Form, Field, FieldAttributes, useField, FormikValues, FormikErrors } from "formik";
 
 import "../form.css";
 import { authActionTypes } from "../../../types/auth/auth-types";
 import { AuthActionContext } from "../../../modules/contexts/auth/auth.context";
 import { registerThunk } from "../../../redux/slices/auth/auth-thunks";
 
+import * as yup from "yup";
 
-const TextFieldFormik: React.FC<FieldAttributes<{}>> = ({...props }) => {
+
+const TextFieldFormik: React.FC<FieldAttributes<{}>> = ({placeholder, className, type="text",   ...props }) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : '';
-  return <TextField {...field} helperText={errorText} error/>
+  return <TextField 
+    {...field}
+    label={placeholder} 
+    className={className}
+    helperText={errorText} 
+    error={!!errorText}
+    type={type}
+  />
 }
+
+const validationSchema = yup.object({
+  name: yup
+    .string()
+    .required()
+    .min(2)
+    .max(40),
+  email: yup
+    .string()
+    .required()
+    .email(),
+  password: yup
+    .string()
+    .required()
+    .min(8),
+});
 
 
 const RegisterForm: React.FC = () => {
@@ -28,15 +53,6 @@ const RegisterForm: React.FC = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
 
-  const handleRegister = () => {
-    dispatch(registerThunk({
-      email: "test@test.com",
-      password: "test123test",
-      name: "test test",
-    }));
-  }
-
-
   return (
     <div>
       <Formik 
@@ -46,52 +62,54 @@ const RegisterForm: React.FC = () => {
           username: '',
           password: '',
         }}
-        onSubmit={(data, {setSubmitting}) => {
-          setSubmitting(true);
-          // make some async works here...
+        validationSchema={validationSchema}
+        onSubmit={async (data, {setSubmitting}) => {
           console.log("Submit : ", data);
+          setSubmitting(true);
+        
+          const response: any = await dispatch(registerThunk({
+            email: data.email,
+            username: data.username,
+            name: data.name,
+            password: data.password,
+          }));
+
+          if (response.type === "auth/postRegister/fulfilled") {
+            changeType!(authActionTypes.LOGIN);
+          }
           setSubmitting(false);
         }
       }>
         { ({
           values,
           isSubmitting,
-          handleBlur,
-          handleChange,
         }) => (
           <Form>
             <TextFieldFormik
               name="name"
               className="form_field full" 
               type="input"
+              placeholder="Name"
             />
-            <Field
+            <TextFieldFormik 
               name="email"
-              label="Email"
+              placeholder="Email"
               className="form_field full" 
               type="mail"
-              as={TextField}
             />
-            <Field
+            <TextFieldFormik 
               name="username"
-              label="Username"
+              placeholder="Username"
               className="form_field full" 
               type="input"
-              as={TextField}
             />
-            <Field
+            <TextFieldFormik
               name="password"
-              label="Password"
+              placeholder="Password"
               className="form_field full" 
               type="password"
-              as={TextField}
             />
             <Button variant="outlined" type="submit" disabled={isSubmitting}>Sign up</Button>
-            <pre>
-              {
-                JSON.stringify(values, null, 2)
-              }
-            </pre>
           </Form>
         )}
       </Formik>
