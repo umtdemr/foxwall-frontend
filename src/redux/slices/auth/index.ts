@@ -9,14 +9,12 @@ export interface IAuthSlice {
     token?: string;
   };
   isAuthenticated: boolean;
-  register?: {
-    loading: boolean;
-    erorr: boolean;
-    errorMessage?: boolean;
-  };
+  message: {
+    show: boolean;
+    content?: string;
+  },
   login: {
     loading: boolean;
-    erorr: boolean;
     errorMessage?: string;
   }
 }
@@ -25,9 +23,11 @@ export interface IAuthSlice {
 const initialState: IAuthSlice = {
   isAuthenticated: false,  // during designing this should be true
   user: {},
+  message: {
+    show: false,
+  },
   login: {
     loading: false,
-    erorr: false,
   },
 };
 
@@ -43,11 +43,20 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
         state.user.token = "";
       }
-    }
+    },
+    removeMessage: (state) => {
+      state.message.show = false;
+      state.message.content = '';
+    },
   },
   extraReducers: (builder) => {
+    builder.addCase(registerThunk.rejected, (state, action) => {
+      state.message.show = true;
+      state.message.content = "Error during registiration";
+    });
     builder.addCase(registerThunk.fulfilled, (state, action) => {
-      // state.isAuthenticated = true;
+      state.message.show = true;
+      state.message.content = "Register success! Please login";
     });
     builder.addCase(loginThunk.pending, (state, action) => {
       state.login!.loading = true;
@@ -65,6 +74,9 @@ const authSlice = createSlice({
   },
 });
 
-export const { syncAuth } = authSlice.actions;
+export const { 
+  syncAuth,
+  removeMessage,
+} = authSlice.actions;
 
 export default authSlice.reducer;

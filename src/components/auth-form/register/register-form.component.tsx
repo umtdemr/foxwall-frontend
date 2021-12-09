@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { TextField, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
-import { Formik, Form, Field, FieldAttributes, useField, FormikValues, FormikErrors } from "formik";
+import { Formik, Form, FieldAttributes, useField } from "formik";
 
 import "../form.css";
 import { authActionTypes } from "../../../types/auth/auth-types";
@@ -11,7 +11,6 @@ import { AuthActionContext } from "../../../modules/contexts/auth/auth.context";
 import { registerThunk } from "../../../redux/slices/auth/auth-thunks";
 
 import * as yup from "yup";
-
 
 const TextFieldFormik: React.FC<FieldAttributes<{}>> = ({placeholder, className, type="text",   ...props }) => {
   const [field, meta] = useField(props);
@@ -59,7 +58,6 @@ const RegisterForm: React.FC = () => {
         }}
         validationSchema={validationSchema}
         onSubmit={async (data, {setSubmitting}) => {
-          console.log("Submit : ", data);
           setSubmitting(true);
         
           const response: any = await dispatch(registerThunk({
