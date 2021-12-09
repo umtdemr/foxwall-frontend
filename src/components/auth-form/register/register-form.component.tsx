@@ -44,11 +44,6 @@ const validationSchema = yup.object({
 
 
 const RegisterForm: React.FC = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-
   const { changeType } = React.useContext(AuthActionContext);
   const theme = useTheme();
   const dispatch = useDispatch();
