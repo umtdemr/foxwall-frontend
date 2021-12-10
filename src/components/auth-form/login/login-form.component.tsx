@@ -1,18 +1,14 @@
 import React from "react";
 
-import { Button, TextField } from "@mui/material";
-
+import { Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { loginThunk } from "../../../redux/slices/auth/auth-thunks";
 
 import "../form.css";
 import { AuthActionContext } from "../../../modules/contexts/auth/auth.context";
 import { authActionTypes } from "../../../types/auth/auth-types";
-import { IAuthSlice } from "../../../redux/slices/auth";
-import { RootState } from "../../../redux/store";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import TextFieldFormik from "../text-formik-field/text-formik-field.component";
@@ -29,14 +25,9 @@ const loginValidationSchema = yup.object({
 
 const LoginForm: React.FC = () => {
   const { changeType } = React.useContext(AuthActionContext);
-  const auth_state: IAuthSlice = useSelector((state: RootState) => state.auth);
   const theme = useTheme();
   const dispatch = useDispatch();
   
-  const hanleLogin = () => {
-    
-  }
-
   return (
     <div>
       <Formik
