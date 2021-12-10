@@ -1,9 +1,9 @@
 import React from "react";
 
-import { TextField, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
-import { Formik, Form, FieldAttributes, useField } from "formik";
+import { Formik, Form } from "formik";
 
 import "../form.css";
 import { authActionTypes } from "../../../types/auth/auth-types";
@@ -11,19 +11,8 @@ import { AuthActionContext } from "../../../modules/contexts/auth/auth.context";
 import { registerThunk } from "../../../redux/slices/auth/auth-thunks";
 
 import * as yup from "yup";
+import TextFieldFormik from "../text-formik-field/text-formik-field.component";
 
-const TextFieldFormik: React.FC<FieldAttributes<{}>> = ({placeholder, className, type="text",   ...props }) => {
-  const [field, meta] = useField(props);
-  const errorText = meta.error && meta.touched ? meta.error : '';
-  return <TextField 
-    {...field}
-    label={placeholder} 
-    className={className}
-    helperText={errorText} 
-    error={!!errorText}
-    type={type}
-  />
-}
 
 const validationSchema = yup.object({
   name: yup
