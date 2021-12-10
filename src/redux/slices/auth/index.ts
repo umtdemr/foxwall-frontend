@@ -68,8 +68,14 @@ const authSlice = createSlice({
       state.user.token = action?.payload?.data.token;
       state.user.username = action?.payload?.data.username;
       state.user.email = action?.payload?.data.email;
+      state.message.show = false;
+      state.message.content = "";
 
       localStorage.setItem("token", action?.payload?.data.token);
+    });
+    builder.addCase(loginThunk.rejected, (state, action) => {
+      state.message.show = true;
+      state.message.content = "Invalid Credentials";
     });
   },
 });
