@@ -6,7 +6,7 @@ export const fetchTimelinePosts = createAsyncThunk(
     "post/fetchTimeline",
     async (thunkAPI) => {
         const API = useAuthenticatedAPI();
-
+        
         const response = await API.get("/post/timeline/");
         return response;
     }

@@ -7,7 +7,7 @@ const ProfilePage: React.FC = () => {
     return (
         <div>
             <ProfileHeader />
-            <PostList />
+            {/* <PostList /> */}
         </div>
     )
 }
