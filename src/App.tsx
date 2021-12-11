@@ -32,6 +32,8 @@ function App() {
         else {
           dispatch(syncAuth({isAuthenticated: false}));
         }
+      } else {
+        dispatch(syncAuth({ isAuthenticated: false }));
       }
     }
     userLogin();

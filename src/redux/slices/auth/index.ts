@@ -21,7 +21,7 @@ export interface IAuthSlice {
 
 
 const initialState: IAuthSlice = {
-  isAuthenticated: false,  // during designing this should be true
+  isAuthenticated: true,  // during designing this should be true
   user: {},
   message: {
     show: false,
