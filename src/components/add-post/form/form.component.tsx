@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
-import { deepOrange } from "@mui/material/colors";
 import { Button, TextField } from "@mui/material";
 import { useSelector } from "react-redux";
 
