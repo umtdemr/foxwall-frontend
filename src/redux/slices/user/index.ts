@@ -3,18 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchCurrentUser } from "./user-thunks";
 
 
-interface IUserInitialState {
-    email: string;
-    username: string;
-    name: string;
-    avatar: string;
+export interface IUserInitialState {
+    email?: string;
+    username?: string;
+    name?: string;
+    avatar?: string;
     bio?: string;
-    cover: string;
-    is_celebrity: boolean;
-    is_hidden: boolean;
+    cover?: string;
+    is_celebrity?: boolean;
+    is_hidden?: boolean;
 }
 
-const initialState: Partial<IUserInitialState> = {
+const initialState: IUserInitialState = {
 }
 
 const userSlice = createSlice({
@@ -29,10 +29,10 @@ const userSlice = createSlice({
             state.name = data.name;
             state.bio = data.bio;
             state.is_celebrity = data.is_celebrity;
-            state.cover = `${process.env.REACT_APP_API_URL}/${data.cover}`;
-            state.avatar = `${process.env.REACT_APP_API_URL}/${data.avatar}`;
+            state.cover = `${process.env.REACT_APP_API_URL}${data.cover}`;
+            state.avatar = `${process.env.REACT_APP_API_URL}${data.avatar}`;
         })
-    }
+    },
 });
 
 
