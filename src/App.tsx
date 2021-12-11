@@ -15,6 +15,7 @@ import CustomThemeProvider from "./modules/contexts/theme/theme.context";
 
 import "./App.css";
 import { fetchCurrentUser } from "./redux/slices/user/user-thunks";
+import { fetchTimelinePosts } from "./redux/slices/post/post-thunks";
 
 function App() {
   const state: IAuthSlice = useSelector((state: RootState) => state.auth);
@@ -28,6 +29,7 @@ function App() {
         const response: any = await dispatch(fetchCurrentUser());
         if (response.type !== "user/fetchCurrentUser/rejected" && response.payload.status === 200) {
           dispatch(syncAuth({isAuthenticated: true, token}));
+          await dispatch(fetchTimelinePosts());
         }
         else {
           dispatch(syncAuth({isAuthenticated: false}));
