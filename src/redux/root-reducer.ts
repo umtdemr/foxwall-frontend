@@ -6,6 +6,7 @@ import layout from "./slices/layout";
 import auth from "./slices/auth";
 import user from "./slices/user";
 import post from "./slices/post";
+import profile from "./slices/profile";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   auth,
   user,
   post,
+  profile,
 });
 
 export default persistReducer(persistConfig, rootReducer);
