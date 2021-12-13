@@ -15,7 +15,7 @@ const AddPostForm: React.FC = () => {
   const state: IUserInitialState = useSelector((state: RootState) => state.user);
   return (
     <Box mt={5} sx={{ display: "flex" }}>
-      <Link to="/profile/username">
+      <Link to={`/profile/${state.username}`}>
         <Avatar src={state.cover}></Avatar>
       </Link>
       <Box ml={3} sx={{ width: "100%" }}>

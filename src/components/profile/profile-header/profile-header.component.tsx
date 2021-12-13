@@ -20,6 +20,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
                 width: "100%",
                 position: "relative",
                 paddingTop: "39.06%",
+                overflow: "hidden",
             }}
             >
                 <img src={data.profile?.cover}
