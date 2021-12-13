@@ -33,13 +33,26 @@ const ImageUploadPostForm: React.FC = () => {
     }
 
     setImages(localImages);
-
   }
+
+  const handleImageDelete = (id: number) => {
+    setImages(images.filter(img => img.id !== id));
+  }
+
   return (
     <Stack direction="row">
-      <ImageUploadPreview images={images} />
+      <ImageUploadPreview 
+        images={images}
+        handleDelete={handleImageDelete}
+      />
       <label htmlFor="icon-button-file">
-        <Input accept="image/*" id="icon-button-file" type="file" multiple onChange={(e: ChangeEvent) => handleImageChange(e)}/>
+        <Input 
+          accept="image/*"
+          id="icon-button-file" 
+          type="file" 
+          multiple 
+          onChange={(e: ChangeEvent) => handleImageChange(e)}
+        />
         <IconButton aria-label="upload picture" component="span">
           <AddAPhoto sx={{ color: theme.palette.primary.main }} />
         </IconButton>
