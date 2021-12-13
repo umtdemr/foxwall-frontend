@@ -17,10 +17,11 @@ const ImageUploadPostForm: React.FC = () => {
   const theme = useTheme();
   const [images, setImages] = useState<ImageInput[]>([]);
   const handleImageChange = (e: ChangeEvent) => {
+    const files = (e.target as HTMLInputElement).files!;
+    if (files.length > 2) return;
+  
     setImages([]);
     const localImages: ImageInput[] = [];
-  
-    const files = (e.target as HTMLInputElement).files!;
     for (let index = 0; index < files.length; index++) {
       const image = files[index];
       const appendData = {
