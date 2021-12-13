@@ -18,7 +18,7 @@ const PostList: React.FC<PostListProps> = ({ postsData }) => {
             {
                 (!postsData.loading && postsData.results.length === 0)
                 ? <Typography variant="subtitle1" sx={{ textAlign: "center", m: 20}}>No post found</Typography>
-                : postsData.results.map(post => { console.log(post); return <Post post={post} /> })
+                : postsData.results.map(post => <Post post={post} /> )
             }
         </>
     )

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 
 import PostHeader from "./post-header";
 import PostAction from "./post-action";
@@ -12,7 +12,6 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ post }) => {
-  console.log(post);
   return (
     <Box mt={4}>
       <Paper elevation={3} sx={{ padding: "10px" }}>
