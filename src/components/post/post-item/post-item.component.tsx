@@ -12,13 +12,13 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ post }) => {
-  
+  console.log(post);
   return (
     <Box mt={4}>
       <Paper elevation={3} sx={{ padding: "10px" }}>
         <PostHeader user={post.user}/>
-        <PostContent />
-        <PostAction />
+        <PostContent text={post.text} />
+        <PostAction num_likes={post.num_likes } />
       </Paper>
     </Box>
   );

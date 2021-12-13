@@ -4,7 +4,11 @@ import { Stack, IconButton, Typography } from "@mui/material";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
-const PostAction: React.FC = () => {
+interface PostActionProps {
+  num_likes: number;
+}
+
+const PostAction: React.FC<PostActionProps> = ({ num_likes }) => {
   const [liked, setLiked] = useState(false);
   const theme = useTheme();
 
@@ -22,7 +26,7 @@ const PostAction: React.FC = () => {
           <FavoriteBorder />
         )}
       </IconButton>
-      <Typography variant="subtitle2">123 likes </Typography>
+      <Typography variant="subtitle2">{num_likes} likes </Typography>
     </Stack>
   );
 };

@@ -1,6 +1,6 @@
 import { GlobalUser } from "./user_types";
 
-type PostImages = { image: string}
+type PostImages = { image: string }
 
 export interface GlobalPost {
     user: GlobalUser,
