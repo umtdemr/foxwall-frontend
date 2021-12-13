@@ -13,7 +13,7 @@ export interface IPostInitialState {
 
 
 const initialState: IPostInitialState = {
-    loading: false,
+    loading: true,
     error: "",
     results: [],
 }

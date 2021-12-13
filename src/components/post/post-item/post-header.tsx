@@ -4,16 +4,22 @@ import { Link } from "react-router-dom";
 import { Avatar, Stack, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { useTheme } from "@mui/material/styles";
+import { GlobalUser } from "../../../types/global/user_types";
 
 
-const PostHeader: React.FC = () => {
+interface PostHeaderProps {
+  user: GlobalUser,
+}
+
+
+const PostHeader: React.FC<PostHeaderProps> = ({ user }) => {
   const theme = useTheme();
   return (
     <Stack direction="row" alignItems="center">
-      <Link to="/profile/username">
+      <Link to={`/profile/${user.username}`}>
         <Avatar
           sx={{ marginRight: "10px" }}
-          src="https://www.pngrepo.com/png/9649/512/avatar.png"
+          src={user.profile.avatar}
         ></Avatar>
       </Link>
       <Stack direction="column">
@@ -23,20 +29,22 @@ const PostHeader: React.FC = () => {
             textDecoration: "none",
           }}>
             <Typography variant="subtitle1" sx={{ marginRight: "5px" }}>
-              Ümit Demir
+              {user.profile.name}
             </Typography>
           </Link>
-          <Avatar
-            sx={{
-              width: 16,
-              height: 16,
-              bgcolor: theme.palette.primary.main,
-            }}
-          >
+          {
+            user.profile.is_celebrity && <Avatar
+              sx={{
+                width: 16,
+                height: 16,
+                bgcolor: theme.palette.primary.main,
+              }}
+            >
             <CheckIcon sx={{ width: 12, height: 12 }} />
           </Avatar>
+          }
         </Stack>
-        <Typography variant="caption">12 days ago</Typography>
+        <Typography variant="caption">{user.username} | 12 days ago</Typography>
       </Stack>
     </Stack>
   );

@@ -4,12 +4,19 @@ import { Box, Paper, Typography } from "@mui/material";
 import PostHeader from "./post-header";
 import PostAction from "./post-action";
 import PostContent from "./post-content";
+import { GlobalPost } from "../../../types/global/post_types";
 
-const Post: React.FC = () => {
+
+interface PostProps {
+  post: GlobalPost
+}
+
+const Post: React.FC<PostProps> = ({ post }) => {
+  
   return (
     <Box mt={4}>
       <Paper elevation={3} sx={{ padding: "10px" }}>
-        <PostHeader />
+        <PostHeader user={post.user}/>
         <PostContent />
         <PostAction />
       </Paper>
