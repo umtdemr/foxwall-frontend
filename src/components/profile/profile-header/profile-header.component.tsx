@@ -4,9 +4,14 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import { Typography } from '@mui/material';
+import profile, { IProfileInitialState } from '../../../redux/slices/profile';
 
 
-const ProfileHeader: React.FC = () => {
+interface ProfileHeaderProps {
+    data: IProfileInitialState;
+}
+
+const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
     const history = useHistory();
     const routeMatch = useRouteMatch();
     return (
@@ -17,7 +22,7 @@ const ProfileHeader: React.FC = () => {
                 paddingTop: "39.06%",
             }}
             >
-                <img src="https://via.placeholder.com/1024x400"
+                <img src={data.profile?.cover}
                     style={{
                         position: "absolute",
                         left: "0",
@@ -41,7 +46,7 @@ const ProfileHeader: React.FC = () => {
                         border: "3px solid #fff",
                         marginTop: "-30px",
                     }}
-                    src="https://www.pngrepo.com/png/9649/512/avatar.png"
+                    src={data.profile?.avatar}
                 ></Avatar>
                 <button 
                     className="button_outline dark align-baseline"
@@ -56,9 +61,9 @@ const ProfileHeader: React.FC = () => {
                     padding: "0 30px;",
                 }}
             >
-                <Typography variant="h5">Ümit</Typography>
-                <Typography variant="body2" color="#777">@username</Typography>
-                <Typography variant="body1" mt={2}>Geek chick in over drive.</Typography>
+                <Typography variant="h5">{data.profile?.name}</Typography>
+                <Typography variant="body2" color="#777">@{data.username}</Typography>
+                <Typography variant="body1" mt={2}>{data.profile?.bio}</Typography>
             </Stack>
         </Box>
     );

@@ -3,13 +3,13 @@ import { UserProfile } from "../../../types/global/profile_types";
 import { fetchProfile } from "./profile-thunks";
 
 
-export interface IPostInitialState extends Partial<UserProfile>{
+export interface IProfileInitialState extends Partial<UserProfile>{
     loading: boolean;
     error: string;
 }
 
 
-const initialState: IPostInitialState = {
+const initialState: IProfileInitialState = {
     loading: true,
     error: '',
     profile: {
