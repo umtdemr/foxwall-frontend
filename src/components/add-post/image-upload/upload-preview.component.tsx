@@ -22,7 +22,7 @@ const ImageUploadPreview: React.FC<ImageUploadPreviewProps> = ({ images, handleD
     <Stack spacing={1} direction="row" alignItems="center">
       {
         images.map(image => 
-          <Box sx={{ position: "relative" }}>
+          <Box sx={{ position: "relative" }} key={image.id}>
             <Chip
               onDelete={() => handleDelete(image.id)}
               avatar={
