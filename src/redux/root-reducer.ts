@@ -11,7 +11,7 @@ import profile from "./slices/profile";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [], // this shuld be null for now
+  whitelist: ["auth"], // this shuld be null for now
 };
 
 const rootReducer = combineReducers({

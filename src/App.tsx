@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import SearchModal from "./components/search-modal/search-modal.component";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthActionProvider } from "./modules/contexts/auth/auth.context";
 import AuthPage from "./pages/auth/auth-page";
 import HomePage from "./pages/home/home-page";
-import { syncAuth } from "./redux/slices/auth";
+import { IAuthSlice, syncAuth } from "./redux/slices/auth";
 import ProfilePage from "./pages/profile/profile-page";
 import EditProfilePage from "./pages/profile/edit/edit-profile-page";
 import Layout from "./components/layout/layout";
@@ -15,9 +15,11 @@ import CustomThemeProvider from "./modules/contexts/theme/theme.context";
 import "./App.css";
 import { fetchCurrentUser } from "./redux/slices/user/user-thunks";
 import { fetchTimelinePosts } from "./redux/slices/post/post-thunks";
+import { RootState } from "./redux/store";
 
 function App() {
-  const token = localStorage.getItem("token");
+  const state: IAuthSlice = useSelector((state: RootState) => state.auth);
+  const token = state.user.token;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,9 +46,11 @@ function App() {
 
   if (token === null || token === "") {
     return (
+      <CustomThemeProvider>
         <AuthActionProvider>
           <AuthPage />
         </AuthActionProvider>
+      </CustomThemeProvider>
     )
   }
 

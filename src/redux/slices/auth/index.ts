@@ -14,10 +14,6 @@ export interface IAuthSlice {
     content?: string;
     severity?: 'success' | 'error' | 'warning' | 'info',
   },
-  login: {
-    loading: boolean;
-    errorMessage?: string;
-  }
 }
 
 
@@ -26,9 +22,6 @@ const initialState: IAuthSlice = {
   user: {},
   message: {
     show: false,
-  },
-  login: {
-    loading: false,
   },
 };
 
@@ -61,13 +54,8 @@ const authSlice = createSlice({
       state.message.content = "Register success! Please login";
       state.message.severity = "success";
     });
-    builder.addCase(loginThunk.pending, (state, action) => {
-      state.login!.loading = true;
-    });
     builder.addCase(loginThunk.fulfilled, (state, action) => {
       state.isAuthenticated = true;
-      state.login.loading = false;
-      state.login.errorMessage = "";
       state.user.token = action?.payload?.data.token;
       state.user.username = action?.payload?.data.username;
       state.user.email = action?.payload?.data.email;
