@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import SearchModal from "./components/search-modal/search-modal.component";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthActionProvider } from "./modules/contexts/auth/auth.context";
 import AuthPage from "./pages/auth/auth-page";
 import HomePage from "./pages/home/home-page";
-import { IAuthSlice, syncAuth } from "./redux/slices/auth";
-import { RootState } from "./redux/store";
+import { syncAuth } from "./redux/slices/auth";
 import ProfilePage from "./pages/profile/profile-page";
 import EditProfilePage from "./pages/profile/edit/edit-profile-page";
 import Layout from "./components/layout/layout";
@@ -18,14 +17,12 @@ import { fetchCurrentUser } from "./redux/slices/user/user-thunks";
 import { fetchTimelinePosts } from "./redux/slices/post/post-thunks";
 
 function App() {
-  const state: IAuthSlice = useSelector((state: RootState) => state.auth);
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
 
   useEffect(() => {
     const userLogin = async () => {
-      const token = localStorage.getItem("token");
-  
-      if (token != null) {
+      if (token !== null && token !== "") {
         const response: any = await dispatch(fetchCurrentUser());
         if (response.type !== "user/fetchCurrentUser/rejected" && response.payload.status === 200) {
           dispatch(syncAuth({isAuthenticated: true, token}));
@@ -33,19 +30,30 @@ function App() {
         }
         else {
           dispatch(syncAuth({isAuthenticated: false}));
+          localStorage.removeItem("token");
+          
         }
       } else {
         dispatch(syncAuth({ isAuthenticated: false }));
+        localStorage.removeItem("token");
       }
     }
     userLogin();
-  }, [dispatch])
+  }, [dispatch, token])
+
+
+  if (token === null || token === "") {
+    return (
+        <AuthActionProvider>
+          <AuthPage />
+        </AuthActionProvider>
+    )
+  }
 
   return (
     <CustomThemeProvider>
       <div className="content">
         <Router>
-          {state.isAuthenticated ? (
             <div className="page">
               <Layout>
                 <Switch>
@@ -62,11 +70,6 @@ function App() {
               </Layout>
               <SearchModal />
             </div>
-          ) : (
-            <AuthActionProvider>
-              <AuthPage />
-            </AuthActionProvider>
-          )}
         </Router>
       </div>
     </CustomThemeProvider>
