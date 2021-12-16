@@ -4,6 +4,9 @@
 .form_field.full {
     width: 100%;
 }
+.form_field.dark input {
+    color: #fff !important;
+}
 .form_have_not_text {
     font-size: 12px;
     margin-left: 20px;
