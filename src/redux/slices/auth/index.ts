@@ -12,6 +12,7 @@ export interface IAuthSlice {
   message: {
     show: boolean;
     content?: string;
+    severity?: 'success' | 'error' | 'warning' | 'info',
   },
   login: {
     loading: boolean;
@@ -53,10 +54,12 @@ const authSlice = createSlice({
     builder.addCase(registerThunk.rejected, (state, action) => {
       state.message.show = true;
       state.message.content = "Error during registiration";
+      state.message.severity = "error";
     });
     builder.addCase(registerThunk.fulfilled, (state, action) => {
       state.message.show = true;
       state.message.content = "Register success! Please login";
+      state.message.severity = "success";
     });
     builder.addCase(loginThunk.pending, (state, action) => {
       state.login!.loading = true;
@@ -76,6 +79,7 @@ const authSlice = createSlice({
     builder.addCase(loginThunk.rejected, (state, action) => {
       state.message.show = true;
       state.message.content = "Invalid Credentials";
+      state.message.severity = "error";
     });
   },
 });

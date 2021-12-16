@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Snackbar } from "@mui/material";
+import { Alert, Box, Snackbar } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import { authActionTypes } from "../../../types/auth/auth-types";
@@ -26,11 +26,15 @@ const FormBox: React.FC<FormBoxProps> = ({ type }) => {
   return (
     <>
       <Snackbar 
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         autoHideDuration={5000}
-        message={state.message.content}
         open={state.message.show}
         onClose={handleSnackBarClose}
-      />
+      >
+        <Alert onClose={handleSnackBarClose} severity={state.message.severity} sx={{ width: '100%' }}>
+          {state.message.content}
+        </Alert>
+      </Snackbar>
       <Box mt={5} className="form_box"
         sx={{
           bgcolor: theme.palette.background.default,
