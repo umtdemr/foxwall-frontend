@@ -16,9 +16,6 @@ const TextFieldFormik: React.FC<FieldAttributes<{}>> = ({placeholder, className,
     helperText={errorText} 
     error={!!errorText}
     type={type}
-    style={{
-      color: 'red !important'
-    }}
   />
 }
 
