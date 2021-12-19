@@ -49,6 +49,7 @@ const AddPostForm: React.FC = () => {
           <Button 
             variant="outlined"
             onClick={handleSubmit}
+            disabled={postState.create.loading}
           >Create</Button>
         </Box>
       </Box>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GlobalPost } from "../../../types/global/post_types";
-import { fetchTimelinePosts } from "./post-thunks";
+import { createPost, fetchTimelinePosts } from "./post-thunks";
 
 
 
@@ -10,6 +10,9 @@ export interface IPostInitialState {
         error: string;
         count?: number,
         results: GlobalPost[] | [],
+    },
+    create: {
+        loading: boolean;
     }
 }
 
@@ -19,6 +22,9 @@ const initialState: IPostInitialState = {
         loading: true,
         error: "",
         results: [],
+    },
+    create: {
+        loading: false,
     },
 }
 
@@ -42,6 +48,17 @@ const postSlice = createSlice({
             state.fetch.loading = false;
             state.fetch.error = "An error occurred during fetching post data...";
         });
+
+
+        builder.addCase(createPost.pending, (state, action) => {
+            state.create.loading = true;
+        });
+        builder.addCase(createPost.fulfilled, (state, action) => {
+            state.create.loading = false;
+        });
+
+        // TODO Add rejected builder
+
     },
 });
 
