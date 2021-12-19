@@ -3,18 +3,20 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
-import { Button, TextField } from "@mui/material";
+import { Button, Skeleton, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
 import ImageUploadPostForm from "../image-upload/image-upload.component";
 import { IUserInitialState } from "../../../redux/slices/user";
 import { RootState } from "../../../redux/store";
 import { createPost } from "../../../redux/slices/post/post-thunks";
+import { IPostInitialState } from "../../../redux/slices/post";
 
 
 const AddPostForm: React.FC = () => {
   const [text, setText] = useState("");
-  const state: IUserInitialState = useSelector((state: RootState) => state.user);
+  const userState: IUserInitialState = useSelector((state: RootState) => state.user);
+  const postState: IPostInitialState = useSelector((state: RootState) => state.post);
   const dispatch = useDispatch();
 
 
@@ -26,8 +28,8 @@ const AddPostForm: React.FC = () => {
 
   return (
     <Box mt={5} sx={{ display: "flex" }}>
-      <Link to={`/profile/${state.username}`}>
-        <Avatar src={state.avatar}></Avatar>
+      <Link to={`/profile/${userState.username}`}>
+        <Avatar src={userState.avatar}></Avatar>
       </Link>
       <Box ml={3} sx={{ width: "100%" }}>
         <Paper>
@@ -36,7 +38,7 @@ const AddPostForm: React.FC = () => {
             maxRows={4}
             minRows={4}
             sx={{ width: "100%" }}
-            placeholder={`What do you think, ${state.name}?`}
+            placeholder={`What do you think, ${userState.name}?`}
             label={"Text"}
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -44,7 +46,10 @@ const AddPostForm: React.FC = () => {
         </Paper>
         <Box mt={5} sx={{ display: "flex", justifyContent: "flex-end" }}>
           <ImageUploadPostForm />
-          <Button variant="outlined" onClick={handleSubmit}>Create</Button>
+          <Button 
+            variant="outlined"
+            onClick={handleSubmit}
+          >Create</Button>
         </Box>
       </Box>
     </Box>

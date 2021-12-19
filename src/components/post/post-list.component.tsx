@@ -13,12 +13,12 @@ const PostList: React.FC<PostListProps> = ({ postsData }) => {
     return (
         <>
             {
-                postsData.loading && <PostSkeleton />
+                postsData.fetch.loading && <PostSkeleton />
             }
             {
-                (!postsData.loading && postsData.results.length === 0)
+                (!postsData.fetch.loading && postsData.fetch.results.length === 0)
                 ? <Typography variant="subtitle1" sx={{ textAlign: "center", m: 20}}>No post found</Typography>
-                : postsData.results.map(post => <Post post={post} key={post.uuid} /> )
+                : postsData.fetch.results.map(post => <Post post={post} key={post.uuid} /> )
             }
         </>
     )

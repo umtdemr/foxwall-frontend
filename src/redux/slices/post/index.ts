@@ -5,17 +5,21 @@ import { fetchTimelinePosts } from "./post-thunks";
 
 
 export interface IPostInitialState {
-    loading: boolean;
-    error: string;
-    count?: number,
-    results: GlobalPost[] | [],
+    fetch: {
+        loading: boolean;
+        error: string;
+        count?: number,
+        results: GlobalPost[] | [],
+    }
 }
 
 
 const initialState: IPostInitialState = {
-    loading: true,
-    error: "",
-    results: [],
+    fetch: {
+        loading: true,
+        error: "",
+        results: [],
+    },
 }
 
 
@@ -25,18 +29,18 @@ const postSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchTimelinePosts.pending, (state, action) => {
-            state.loading = true;
-            state.error = "";
+            state.fetch.loading = true;
+            state.fetch.error = "";
         });
         builder.addCase(fetchTimelinePosts.fulfilled, (state, action) => {
-            state.loading = false;
-            state.count = action.payload.data.count;
-            state.results = action.payload.data.results;
-            state.error = "";
+            state.fetch.loading = false;
+            state.fetch.count = action.payload.data.count;
+            state.fetch.results = action.payload.data.results;
+            state.fetch.error = "";
         });
         builder.addCase(fetchTimelinePosts.rejected, (state, action) => {
-            state.loading = false;
-            state.error = "An error occurred during fetching post data...";
+            state.fetch.loading = false;
+            state.fetch.error = "An error occurred during fetching post data...";
         });
     },
 });
