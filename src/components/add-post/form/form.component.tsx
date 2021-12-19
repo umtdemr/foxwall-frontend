@@ -27,7 +27,7 @@ const AddPostForm: React.FC = () => {
   return (
     <Box mt={5} sx={{ display: "flex" }}>
       <Link to={`/profile/${state.username}`}>
-        <Avatar src={state.cover}></Avatar>
+        <Avatar src={state.avatar}></Avatar>
       </Link>
       <Box ml={3} sx={{ width: "100%" }}>
         <Paper>
