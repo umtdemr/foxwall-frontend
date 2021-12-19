@@ -18,6 +18,16 @@ export const fetchTimelinePosts = createAsyncThunk(
 );
 
 
+export const fetchProfilePosts = createAsyncThunk(
+    "post/fetchProfile",
+    async (username: string, thunkAPI) => {
+        const API = useAuthenticatedAPI();
+
+        const response = await API.get(`/user/profile/${username}/posts/`);
+        return response;
+    }
+);
+
 export const createPost = createAsyncThunk(
     "post/createPost",
     async (postData: PostData, thunkAPI) => {

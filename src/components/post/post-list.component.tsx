@@ -1,11 +1,11 @@
 import { Typography } from '@mui/material';
 import React from 'react'
-import { IPostInitialState } from '../../redux/slices/post';
+import { IFetchPostData, IPostInitialState } from '../../redux/slices/post';
 import Post from './post-item/post-item.component';
 import PostSkeleton from './post-item/post-skeleton';
 
 interface PostListProps {
-    postsData: IPostInitialState
+    postsData: IFetchPostData
 }
 
 
@@ -13,12 +13,12 @@ const PostList: React.FC<PostListProps> = ({ postsData }) => {
     return (
         <>
             {
-                postsData.fetch.loading && <PostSkeleton />
+                postsData.loading && <PostSkeleton />
             }
             {
-                (!postsData.fetch.loading && postsData.fetch.results.length === 0)
+                (!postsData.loading && postsData.results.length === 0)
                 ? <Typography variant="subtitle1" sx={{ textAlign: "center", m: 20}}>No post found</Typography>
-                : postsData.fetch.results.map(post => <Post post={post} key={post.uuid} /> )
+                : postsData.results.map(post => <Post post={post} key={post.uuid} /> )
             }
         </>
     )

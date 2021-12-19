@@ -1,19 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GlobalPost } from "../../../types/global/post_types";
-import { createPost, fetchTimelinePosts } from "./post-thunks";
+import { createPost, fetchProfilePosts, fetchTimelinePosts } from "./post-thunks";
 
 
+export interface IFetchPostData {
+    loading: boolean;
+    error: string;
+    count?: number,
+    results: GlobalPost[] | [],
+}
 
 export interface IPostInitialState {
-    fetch: {
-        loading: boolean;
-        error: string;
-        count?: number,
-        results: GlobalPost[] | [],
-    },
+    fetch: IFetchPostData,
     create: {
         loading: boolean;
-    }
+    },
+    profile: IFetchPostData,
 }
 
 
@@ -25,6 +27,11 @@ const initialState: IPostInitialState = {
     },
     create: {
         loading: false,
+    },
+    profile: {
+        loading: false,
+        error: "",
+        results: [],
     },
 }
 
@@ -47,6 +54,21 @@ const postSlice = createSlice({
         builder.addCase(fetchTimelinePosts.rejected, (state, action) => {
             state.fetch.loading = false;
             state.fetch.error = "An error occurred during fetching post data...";
+        });
+
+
+        builder.addCase(fetchProfilePosts.pending, (state, action) => {
+            state.profile.loading = true;
+        });
+        builder.addCase(fetchProfilePosts.fulfilled, (state, action) => {
+            state.profile.loading = false;
+            state.profile.count = action.payload.data.count;
+            state.profile.results = action.payload.data.results;
+            state.profile.error = "";
+        });
+        builder.addCase(fetchProfilePosts.rejected, (state, action) => {
+            state.profile.loading = false;
+            state.profile.error = "An error occurred during fetching post data...";
         });
 
 

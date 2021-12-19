@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="home">
       <AddPostForm />
-      <PostList postsData={state} />
+      <PostList postsData={state.fetch} />
     </div>
   );
 };
