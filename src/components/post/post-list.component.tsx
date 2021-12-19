@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React from 'react'
-import { IFetchPostData, IPostInitialState } from '../../redux/slices/post';
+import { IFetchPostData } from '../../redux/slices/post';
 import Post from './post-item/post-item.component';
 import PostSkeleton from './post-item/post-skeleton';
 

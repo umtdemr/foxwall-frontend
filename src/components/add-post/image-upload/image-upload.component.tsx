@@ -1,12 +1,9 @@
 import React, { ChangeEvent, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import { AddAPhoto } from "@mui/icons-material";
-import { blue } from "@mui/material/colors";
 import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import ImageUploadPreview from "./upload-preview.component";
-import { useTheme } from "@mui/material/styles";
-import { number } from "yup/lib/locale";
 import { ImageInput } from "../../../types/global/form/image_input";
 
 const Input = styled("input")({

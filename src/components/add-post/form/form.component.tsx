@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
-import { Button, Skeleton, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
 import ImageUploadPostForm from "../image-upload/image-upload.component";
