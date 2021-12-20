@@ -9,4 +9,8 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Should customize theme more.
 - [ ] Start writing test after finished design
 - [ ] Fix bio issue after registiration
+- [ ] Create global message state management
+- [ ] Correct auth messages
+- [ ] Correct and compatible upload messages
+- [ ] Clear images and text after uploading post
 
