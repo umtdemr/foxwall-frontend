@@ -42,10 +42,13 @@ export const createPost = createAsyncThunk(
         );
         
         const data = new FormData();
-        data.append("text", postData.text!);
-        
-        for (const item of postData.images!) {
-            data.append("image", item.fileOriginal);
+        if (postData.text) {
+            data.append("text", postData.text!);
+        }
+        if (postData.images) {
+            for (const item of postData.images) {
+                data.append("image", item.fileOriginal);
+            }
         }
 
         const response = await API.post(
