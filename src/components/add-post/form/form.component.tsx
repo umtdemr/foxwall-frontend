@@ -34,6 +34,7 @@ const AddPostForm: React.FC = () => {
         id: localImages.length,
         file: URL.createObjectURL(image),
         name: image.name,
+        fileOriginal: image,
       };
       
       localImages.push(appendData);
@@ -50,6 +51,7 @@ const AddPostForm: React.FC = () => {
   const handleSubmit = async () => {
     dispatch(createPost({
       text,
+      images,
     }));
   }
 

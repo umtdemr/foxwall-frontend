@@ -1,9 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { useAuthenticatedAPI } from "../../../modules/api/api";
+import { ImageInput } from "../../../types/global/form/image_input";
 
 
 interface PostData {
     text?: string;
+    images?: ImageInput[];
 }
 
 
@@ -41,6 +43,10 @@ export const createPost = createAsyncThunk(
         
         const data = new FormData();
         data.append("text", postData.text!);
+        
+        for (const item of postData.images!) {
+            data.append("image", item.fileOriginal);
+        }
 
         const response = await API.post(
             "/post/create/",
