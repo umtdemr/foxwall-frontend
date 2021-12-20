@@ -11,13 +11,40 @@ import { IUserInitialState } from "../../../redux/slices/user";
 import { RootState } from "../../../redux/store";
 import { createPost } from "../../../redux/slices/post/post-thunks";
 import { IPostInitialState } from "../../../redux/slices/post";
+import { ImageInput } from "../../../types/global/form/image_input";
 
 
 const AddPostForm: React.FC = () => {
   const [text, setText] = useState("");
+  const [images, setImages] = useState<ImageInput[]>([]);
   const userState: IUserInitialState = useSelector((state: RootState) => state.user);
   const postState: IPostInitialState = useSelector((state: RootState) => state.post);
   const dispatch = useDispatch();
+
+
+  const handleImageChange = (e: React.ChangeEvent) => {
+    const files = (e.target as HTMLInputElement).files!;
+    if (files.length > 2) return;
+  
+    setImages([]);
+    const localImages: ImageInput[] = [];
+    for (let index = 0; index < files.length; index++) {
+      const image = files[index];
+      const appendData = {
+        id: localImages.length,
+        file: URL.createObjectURL(image),
+        name: image.name,
+      };
+      
+      localImages.push(appendData);
+    }
+
+    setImages(localImages);
+  }
+
+  const handleImageDelete = (id: number) => {
+    setImages(images.filter(img => img.id !== id));
+  }
 
 
   const handleSubmit = async () => {
@@ -45,7 +72,11 @@ const AddPostForm: React.FC = () => {
           />
         </Paper>
         <Box mt={5} sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <ImageUploadPostForm />
+          <ImageUploadPostForm
+            images={images} 
+            handleImageChange={handleImageChange}
+            handleImageDelete={handleImageDelete}
+          />
           <Button 
             variant="outlined"
             onClick={handleSubmit}

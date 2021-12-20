@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import IconButton from "@mui/material/IconButton";
 import { AddAPhoto } from "@mui/icons-material";
 import Stack from "@mui/material/Stack";
@@ -10,33 +10,15 @@ const Input = styled("input")({
   display: "none",
 });
 
-const ImageUploadPostForm: React.FC = () => {
+
+interface ImageUploadPostFormProps {
+  images: ImageInput[];
+  handleImageChange: (e: ChangeEvent) => void;
+  handleImageDelete: (id: number) => void;
+}
+
+const ImageUploadPostForm: React.FC<ImageUploadPostFormProps> = ({images, handleImageChange, handleImageDelete}) => {
   const theme = useTheme();
-  const [images, setImages] = useState<ImageInput[]>([]);
-  const handleImageChange = (e: ChangeEvent) => {
-    const files = (e.target as HTMLInputElement).files!;
-    if (files.length > 2) return;
-  
-    setImages([]);
-    const localImages: ImageInput[] = [];
-    for (let index = 0; index < files.length; index++) {
-      const image = files[index];
-      const appendData = {
-        id: localImages.length,
-        file: URL.createObjectURL(image),
-        name: image.name,
-      };
-      
-      localImages.push(appendData);
-    }
-
-    setImages(localImages);
-  }
-
-  const handleImageDelete = (id: number) => {
-    setImages(images.filter(img => img.id !== id));
-  }
-
   return (
     <Stack direction="row">
       <ImageUploadPreview 
