@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -54,6 +54,13 @@ const AddPostForm: React.FC = () => {
       images,
     }));
   }
+
+  useEffect(() => {
+    if (postState.create.loading) {
+      setImages([]);
+      setText("");
+    }
+  }, [postState.create.loading]);
 
   return (
     <Box mt={5} sx={{ display: "flex" }}>
