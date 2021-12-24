@@ -78,6 +78,9 @@ const postSlice = createSlice({
         builder.addCase(createPost.fulfilled, (state, action) => {
             state.create.loading = false;
         });
+        builder.addCase(createPost.rejected, (state, action) => {
+            state.create.loading = false;
+        });
 
         // TODO Add rejected builder
 
