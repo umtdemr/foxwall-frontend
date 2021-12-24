@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GlobalPost } from "../../../types/global/post_types";
 import { createPost, fetchProfilePosts, fetchTimelinePosts } from "./post-thunks";
 
@@ -39,7 +39,27 @@ const initialState: IPostInitialState = {
 const postSlice = createSlice({
     name: "post",
     initialState,
-    reducers: {},
+    reducers: {
+        addPost: (state, action?: PayloadAction<GlobalPost>) => {
+            const addData = {
+                user: {
+                    id: 12,
+                    username: "umtdemr",
+                    profile: {
+                        name: "ümit demir",
+                        avatar: "http://127.0.0.1:8000/media/users/ea8c55ac-3378-47b9-a1fc-6168c6376baf/45e32d3208fa451b89d8315be0c43faa.jpg",
+                        is_hidden: false,
+                        is_celebrity: false,
+                    },
+                },
+                text: "deneme bir post",
+                num_likes: 0,
+                uuid: "12123",
+            };
+
+            state.fetch.results = [addData, ...state.fetch.results];
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchTimelinePosts.pending, (state, action) => {
             state.fetch.loading = true;
@@ -86,5 +106,9 @@ const postSlice = createSlice({
 
     },
 });
+
+export const {
+    addPost,
+} = postSlice.actions;
 
 export default postSlice.reducer;
