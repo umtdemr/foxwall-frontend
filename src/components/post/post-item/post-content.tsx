@@ -8,11 +8,12 @@ import {
 
 
 interface PostContentProps {
+  username: string;
   text?: string;
   images?: {image: string}[];
 }
 
-const PostContent: React.FC<PostContentProps> = ({ text, images}) => {
+const PostContent: React.FC<PostContentProps> = ({ username, text, images}) => {
   return (
     <Box mt={2}>
       {
@@ -24,11 +25,11 @@ const PostContent: React.FC<PostContentProps> = ({ text, images}) => {
       {
         images && <ImageList variant="quilted" cols={4}>
           {
-            images.map(image => 
-              <ImageListItem cols={2} rows={2}>
-                <img src={image.image} />
+            images.map(image => (
+              <ImageListItem cols={4/images.length} rows={2}>
+                <img src={image.image} alt={username + "'s post"}/>
               </ImageListItem>
-            )
+            ))
           }
       </ImageList>
       }
