@@ -67,6 +67,14 @@ const AddPostForm: React.FC = () => {
       );
 
       const newPostUUID = response.payload.data.token;
+      const postImages = [];
+      if (images.length > 0) {
+        for (const image of images) {
+          postImages.push({
+            image: image.file,
+          })
+        }
+      }
       const newPostData = {
         user: {
             id: 12,
@@ -78,7 +86,8 @@ const AddPostForm: React.FC = () => {
                 is_celebrity: false,
             },
         },
-        text: "deneme bir post",
+        text,
+        images: postImages,
         num_likes: 0,
         uuid: newPostUUID,
     };

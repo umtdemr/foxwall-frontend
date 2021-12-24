@@ -40,24 +40,8 @@ const postSlice = createSlice({
     name: "post",
     initialState,
     reducers: {
-        addPost: (state, action?: PayloadAction<GlobalPost>) => {
-            const addData = {
-                user: {
-                    id: 12,
-                    username: "umtdemr",
-                    profile: {
-                        name: "ümit demir",
-                        avatar: "http://127.0.0.1:8000/media/users/ea8c55ac-3378-47b9-a1fc-6168c6376baf/45e32d3208fa451b89d8315be0c43faa.jpg",
-                        is_hidden: false,
-                        is_celebrity: false,
-                    },
-                },
-                text: "deneme bir post",
-                num_likes: 0,
-                uuid: "12123",
-            };
-
-            state.fetch.results = [addData, ...state.fetch.results];
+        addPost: (state, action: PayloadAction<GlobalPost>) => {
+            state.fetch.results = [action.payload, ...state.fetch.results];
         },
     },
     extraReducers: (builder) => {
