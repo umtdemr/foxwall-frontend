@@ -25,8 +25,8 @@ const PostContent: React.FC<PostContentProps> = ({ username, text, images}) => {
       {
         images && <ImageList variant="quilted" cols={4}>
           {
-            images.map(image => (
-              <ImageListItem cols={4/images.length} rows={2}>
+            images.map((image, index) => (
+              <ImageListItem cols={4/images.length} rows={2} key={index}>
                 <img src={image.image} alt={username + "'s post"}/>
               </ImageListItem>
             ))
