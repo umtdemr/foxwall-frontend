@@ -16,6 +16,7 @@ import "./App.css";
 import { fetchCurrentUser } from "./redux/slices/user/user-thunks";
 import { fetchTimelinePosts } from "./redux/slices/post/post-thunks";
 import { RootState } from "./redux/store";
+import { SnackbarProvider } from "notistack";
 
 function App() {
   const state: IAuthSlice = useSelector((state: RootState) => state.auth);
@@ -55,28 +56,35 @@ function App() {
   }
 
   return (
-    <CustomThemeProvider>
-      <div className="content">
-        <Router>
-            <div className="page">
-              <Layout>
-                <Switch>
-                  <Route exact path="/">
-                    <HomePage />
-                  </Route>
-                  <Route exact path="/profile/:username">
-                    <ProfilePage />
-                  </Route>
-                  <Route path="/profile/:username/edit">
-                    <EditProfilePage />
-                  </Route>
-                </Switch>
-              </Layout>
-              <SearchModal />
-            </div>
-        </Router>
-      </div>
-    </CustomThemeProvider>
+    <SnackbarProvider
+      anchorOrigin={{
+        horizontal: "right",
+        vertical: "top",
+      }}
+    >
+      <CustomThemeProvider>
+        <div className="content">
+          <Router>
+              <div className="page">
+                <Layout>
+                  <Switch>
+                    <Route exact path="/">
+                      <HomePage />
+                    </Route>
+                    <Route exact path="/profile/:username">
+                      <ProfilePage />
+                    </Route>
+                    <Route path="/profile/:username/edit">
+                      <EditProfilePage />
+                    </Route>
+                  </Switch>
+                </Layout>
+                <SearchModal />
+              </div>
+          </Router>
+        </div>
+      </CustomThemeProvider>
+    </SnackbarProvider>
   );
 }
 

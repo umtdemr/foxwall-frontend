@@ -12,6 +12,7 @@ import { RootState } from "../../../redux/store";
 import { createPost } from "../../../redux/slices/post/post-thunks";
 import { IPostInitialState } from "../../../redux/slices/post";
 import { ImageInput } from "../../../types/global/form/image_input";
+import { useSnackbar } from "notistack";
 
 
 const AddPostForm: React.FC = () => {
@@ -20,6 +21,8 @@ const AddPostForm: React.FC = () => {
   const userState: IUserInitialState = useSelector((state: RootState) => state.user);
   const postState: IPostInitialState = useSelector((state: RootState) => state.post);
   const dispatch = useDispatch();
+
+  const { enqueueSnackbar } = useSnackbar();
 
 
   const handleImageChange = (e: React.ChangeEvent) => {
@@ -49,10 +52,28 @@ const AddPostForm: React.FC = () => {
 
 
   const handleSubmit = async () => {
-    dispatch(createPost({
+    const response: any = await dispatch(createPost({
       text,
       images,
     }));
+
+    if (response.type === "post/createPost/fulfilled") {
+      enqueueSnackbar(
+        "Post has been created",
+        {
+          variant: "success",
+          preventDuplicate: true,
+        }
+      )
+    } else if (response.type === "post/createPost/rejected") {
+      enqueueSnackbar(
+        "There was an error during creating post...", 
+        {
+          variant: "error",
+          preventDuplicate: true,
+        }
+      );
+    }
   }
 
   useEffect(() => {
