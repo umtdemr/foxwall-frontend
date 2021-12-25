@@ -77,13 +77,13 @@ const AddPostForm: React.FC = () => {
       }
       const newPostData = {
         user: {
-            id: 12,
-            username: "umtdemr",
+            id: 0,  // TODO change default id with actual id
+            username: userState.username!,
             profile: {
-                name: "ümit demir",
-                avatar: "http://127.0.0.1:8000/media/users/ea8c55ac-3378-47b9-a1fc-6168c6376baf/45e32d3208fa451b89d8315be0c43faa.jpg",
-                is_hidden: false,
-                is_celebrity: false,
+                name: userState.name!,
+                avatar: userState.avatar!,
+                is_hidden: userState.is_hidden!,
+                is_celebrity: userState.is_celebrity!,
             },
         },
         text,
