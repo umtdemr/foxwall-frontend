@@ -24,7 +24,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ user }) => {
       </Link>
       <Stack direction="column">
         <Stack direction="row" alignItems="center">
-          <Link to="/profile/qwe" style={{
+          <Link to={`/profile/${user.username}`} style={{
             color: theme.palette.text.primary,
             textDecoration: "none",
           }}>
