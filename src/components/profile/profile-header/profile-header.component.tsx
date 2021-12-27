@@ -1,10 +1,10 @@
 import React from 'react'
-import { useHistory, useRouteMatch } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import { Typography } from '@mui/material';
 import profile, { IProfileInitialState } from '../../../redux/slices/profile';
+import ProfileActions from './profile-actions/profile-actions';
 
 
 interface ProfileHeaderProps {
@@ -12,8 +12,6 @@ interface ProfileHeaderProps {
 }
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
-    const history = useHistory();
-    const routeMatch = useRouteMatch();
     return (
         <Box>
             <Box sx={{
@@ -49,14 +47,10 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
                     }}
                     src={data.profile?.avatar}
                 ></Avatar>
-                <button 
-                    className="button_outline dark align-baseline"
-                    onClick={() => history.push(`${routeMatch.url}/edit`)}
-                    style={{ 
-                        marginTop: "10px",
-                    }}>
-                    edit profile
-                </button>
+                <ProfileActions 
+                    
+                />
+                
             </Stack>
             <Stack sx={{
                     padding: "0 30px;",
