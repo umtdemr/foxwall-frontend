@@ -2,7 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import profile, { IProfileInitialState } from '../../../redux/slices/profile';
 import ProfileActions from './profile-actions/profile-actions';
 
@@ -30,6 +30,40 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
                     }}
                     alt="Username's cover"
                 />
+                <Box
+                    sx={{
+                        position: "absolute",
+                        right: "0",
+                        bottom: "0",
+                        width: "100%",
+                        height: "100%",
+                        padding: "20px",
+                        backdropFilter: "blur(10px)",
+                        background: "rgba(255, 255, 255, .2)",
+                        display: "grid",
+                        placeItems: "center",
+                    }}
+                >
+                    <Stack>
+                        <Typography variant='subtitle1'>
+                            Ümit requested to follow you
+                        </Typography>
+                        <Stack direction="row" justifyContent="space-around">
+                            <Button 
+                                color='error'
+                                variant='contained'
+                            >
+                                Decline
+                            </Button>
+                            <Button 
+                                color='success'
+                                variant='contained'
+                            >
+                                Accept
+                            </Button>
+                        </Stack>
+                    </Stack>
+                </Box>
             </Box>
             <Stack
                 sx={{
