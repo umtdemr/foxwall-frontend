@@ -2,9 +2,10 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
-import { Button, Typography } from '@mui/material';
+import { Button, CircularProgress, Typography } from '@mui/material';
 import profile, { IProfileInitialState } from '../../../redux/slices/profile';
 import ProfileActions from './profile-actions/profile-actions';
+import { green } from '@mui/material/colors';
 
 
 interface ProfileHeaderProps {
@@ -49,18 +50,45 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
                             Ümit requested to follow you
                         </Typography>
                         <Stack direction="row" justifyContent="space-around">
-                            <Button 
-                                color='error'
-                                variant='contained'
-                            >
-                                Decline
-                            </Button>
-                            <Button 
-                                color='success'
-                                variant='contained'
-                            >
-                                Accept
-                            </Button>
+                            <Box sx={{position: "relative"}}>
+                                <Button 
+                                    color='error'
+                                    variant='contained'
+                                >
+                                    Decline
+                                </Button>
+                                <CircularProgress
+                                    size={24}
+                                    sx={{
+                                    color: green[500],
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    marginTop: '-12px',
+                                    marginLeft: '-12px',
+                                    }}
+                                />
+                            </Box>
+                            <Box sx={{position: "relative"}}>
+                                <Button 
+                                    color='success'
+                                    variant='contained'
+                                >
+                                    Accept
+                                </Button>
+                                <CircularProgress
+                                    size={24}
+                                    sx={{
+                                    color: green[500],
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    marginTop: '-12px',
+                                    marginLeft: '-12px',
+                                    }}
+                                />
+                            </Box>
+                            
                         </Stack>
                     </Stack>
                 </Box>
