@@ -1,11 +1,12 @@
 import React from 'react'
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
-import { Button, CircularProgress, Typography } from '@mui/material';
-import profile, { IProfileInitialState } from '../../../redux/slices/profile';
+import { 
+    Box,
+    Stack,
+    Avatar,
+    Typography
+} from '@mui/material';
+import { IProfileInitialState } from '../../../redux/slices/profile';
 import ProfileActions from './profile-actions/profile-actions';
-import { green } from '@mui/material/colors';
 import HeaderActions from './header-actions/header-actions.component';
 
 
