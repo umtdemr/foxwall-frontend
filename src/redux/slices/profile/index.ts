@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserProfile } from "../../../types/global/profile_types";
-import { fetchProfile } from "./profile-thunks";
+import { cancelFollowRequest, fetchProfile, followProfile, unfollowProfile } from "./profile-thunks";
 
 
 export interface IProfileInitialState extends Partial<UserProfile>{
@@ -46,6 +46,17 @@ const profileSlice = createSlice({
             state.profile!.bio = data.profile.bio;
             state.profile!.is_hidden = data.profile.is_hidden;
             state.profile!.is_celebrity = data.profile.is_celebrity;
+        });
+
+
+        builder.addCase(followProfile.fulfilled, (state, action) => {
+            state.is_sent_follow_request = true;
+        });
+        builder.addCase(cancelFollowRequest.fulfilled, (state, action) => {
+            state.is_sent_follow_request = false;
+        });
+        builder.addCase(unfollowProfile.fulfilled, (state, action) => {
+            state.is_following = false;
         });
     },
 });

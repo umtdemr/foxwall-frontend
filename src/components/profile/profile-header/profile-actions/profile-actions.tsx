@@ -1,9 +1,10 @@
 import { Button, Stack } from '@mui/material';
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
 import { IAuthSlice } from '../../../../redux/slices/auth';
 import { IProfileInitialState } from '../../../../redux/slices/profile';
+import { cancelFollowRequest, followProfile, unfollowProfile } from '../../../../redux/slices/profile/profile-thunks';
 import { RootState } from '../../../../redux/store';
 
 
@@ -15,6 +16,17 @@ const ProfileActions = () => {
     const routeMatch = useRouteMatch();
     const authState: IAuthSlice = useSelector((state: RootState) => state.auth);
     const profileState: IProfileInitialState = useSelector((state: RootState) => state.profile);
+    const dispatch = useDispatch();
+
+    const handleAction = () => {
+        if (!profileState.is_following && !profileState.is_sent_follow_request) {
+            dispatch(followProfile(profileState.username!));
+        } else if (profileState.is_sent_follow_request) {
+            dispatch(cancelFollowRequest(profileState.username!));
+        } else {
+            dispatch(unfollowProfile(profileState.username!));
+        }
+    }
     
     useEffect(() => {
         if (username === authState.user.username ) {
@@ -22,6 +34,7 @@ const ProfileActions = () => {
         }
         
     }, [authState.user.username, username]);
+
     useEffect(() => {
         if (profileState.is_following) setActionButtonText("unfollow")
         else if (profileState.is_sent_follow_request) setActionButtonText("cancel follow request")
@@ -46,7 +59,7 @@ const ProfileActions = () => {
                         direction="row"
                         mt={2}
                     >
-                        <Button>
+                        <Button onClick={() => handleAction()}>
                            {actionButtonText}
                         </Button>
                     </Stack>
