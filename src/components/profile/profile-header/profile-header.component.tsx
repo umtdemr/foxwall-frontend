@@ -8,6 +8,8 @@ import {
 import { IProfileInitialState } from '../../../redux/slices/profile';
 import ProfileActions from './profile-actions/profile-actions';
 import HeaderActions from './header-actions/header-actions.component';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
 
 interface ProfileHeaderProps {
@@ -15,6 +17,7 @@ interface ProfileHeaderProps {
 }
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
+    const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
     return (
         <Box>
             <Box sx={{
@@ -33,7 +36,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
                     }}
                     alt="Username's cover"
                 />
-               <HeaderActions /> 
+                {
+                    state.is_came_follow_request && <HeaderActions /> 
+                }
             </Box>
             <Stack
                 sx={{
