@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserProfile } from "../../../types/global/profile_types";
-import { cancelFollowRequest, fetchProfile, followProfile, unfollowProfile } from "./profile-thunks";
+import { cameFollowRequestAction, cancelFollowRequest, fetchProfile, followProfile, unfollowProfile } from "./profile-thunks";
 
 
 export interface IProfileInitialState extends Partial<UserProfile>{
@@ -56,6 +56,17 @@ const profileSlice = createSlice({
             state.is_sent_follow_request = false;
         });
         builder.addCase(unfollowProfile.fulfilled, (state, action) => {
+            state.is_following = false;
+        });
+
+        builder.addCase(cameFollowRequestAction.fulfilled, (state, action) => {
+            // Just in case validation. This will be replaced with better
+            // TODO 
+            if (action.payload.data.message === "rejected") {
+                state.is_came_follow_request = false;
+            } else if (action.payload.data.message === "allowed") {
+                state.is_came_follow_request = false;
+            }
             state.is_following = false;
         });
     },

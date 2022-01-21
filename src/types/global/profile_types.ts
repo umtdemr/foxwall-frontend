@@ -18,3 +18,9 @@ export interface UserProfile {
     is_sent_follow_request: boolean,
     is_came_follow_request: boolean
 }
+
+
+export interface ICameFollowRequestAction {
+    username: string,
+    accept: boolean
+}
