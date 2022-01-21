@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Box,
     Stack,
@@ -7,8 +7,13 @@ import {
     CircularProgress,
 } from '@mui/material';
 import { green } from '@mui/material/colors';
+import { IProfileInitialState } from '../../../../redux/slices/profile';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../redux/store';
 
 const HeaderActions: React.FC = () => {
+    const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
+    const [loading, setLoading] = useState(false);
     return (
         <Box
             sx={{
@@ -26,46 +31,52 @@ const HeaderActions: React.FC = () => {
         >
             <Stack>
                 <Typography variant='subtitle1'>
-                    Ümit requested to follow you
+                    {state.profile?.name} requested to follow you
                 </Typography>
                 <Stack direction="row" justifyContent="space-around">
                     <Box sx={{position: "relative"}}>
                         <Button 
                             color='error'
                             variant='contained'
+                            disabled={loading}
                         >
                             Decline
                         </Button>
-                        <CircularProgress
-                            size={24}
-                            sx={{
-                            color: green[500],
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            marginTop: '-12px',
-                            marginLeft: '-12px',
-                            }}
-                        />
+                        {
+                            loading &&  <CircularProgress
+                                size={24}
+                                sx={{
+                                color: green[500],
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                marginTop: '-12px',
+                                marginLeft: '-12px',
+                                }}
+                            />
+                        }
                     </Box>
                     <Box sx={{position: "relative"}}>
                         <Button 
                             color='success'
                             variant='contained'
+                            disabled={loading}
                         >
                             Accept
                         </Button>
-                        <CircularProgress
-                            size={24}
-                            sx={{
-                            color: green[500],
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            marginTop: '-12px',
-                            marginLeft: '-12px',
-                            }}
-                        />
+                        {
+                            loading && <CircularProgress
+                                size={24}
+                                sx={{
+                                color: green[500],
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                marginTop: '-12px',
+                                marginLeft: '-12px',
+                                }}
+                            />
+                        }
                     </Box>
                     
                 </Stack>
