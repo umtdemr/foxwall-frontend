@@ -8,12 +8,24 @@ import {
 } from '@mui/material';
 import { green } from '@mui/material/colors';
 import { IProfileInitialState } from '../../../../redux/slices/profile';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
+import { cameFollowRequestAction } from '../../../../redux/slices/profile/profile-thunks';
 
 const HeaderActions: React.FC = () => {
     const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleAction = async (actionType: boolean) => {
+        setLoading(true);
+        await dispatch(cameFollowRequestAction({
+            username: state.username!,
+            accept: actionType,
+        }))
+        setLoading(false);
+    }
+
     return (
         <Box
             sx={{
@@ -39,6 +51,7 @@ const HeaderActions: React.FC = () => {
                             color='error'
                             variant='contained'
                             disabled={loading}
+                            onClick={() => handleAction(false)}
                         >
                             Decline
                         </Button>
@@ -61,6 +74,7 @@ const HeaderActions: React.FC = () => {
                             color='success'
                             variant='contained'
                             disabled={loading}
+                            onClick={() => handleAction(true)}
                         >
                             Accept
                         </Button>

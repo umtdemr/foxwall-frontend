@@ -37,7 +37,7 @@ export const cameFollowRequestAction = createAsyncThunk(
     "profile/cameFollowAction",
     async (followData: ICameFollowRequestAction, thunkAPI) => {
         const API = useAuthenticatedAPI();
-        const apiUrl = followData.accept ? '/follow/allow-follow-request' : '/follow/reject-follow-request/';
+        const apiUrl = followData.accept ? '/follow/allow-follow-request/' : '/follow/reject-follow-request/';
         const response = await API.post(apiUrl, { username: followData.username });
         
         return response;
