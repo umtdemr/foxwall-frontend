@@ -10,7 +10,7 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [ ] Start writing test after finished design
 - [ ] Fix bio issue after registiration
 - [x] Create global message state management
-- [ ] Correct auth messages
+- [x] Correct auth messages
 - [ ] Correct and compatible upload messages
 - [ ] Clear images and text after uploading post
 
