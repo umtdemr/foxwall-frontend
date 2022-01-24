@@ -4,18 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { ILayoutState, toggleSearchPopup } from "../../redux/slices/layout";
 import { RootState } from "../../redux/store";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  borderRadius: "5px",
-  border: "2px solid #999",
-  boxShadow: 24,
-  p: 4,
-};
+import { boxStyle } from "./search-model.style";
+
+
 
 const SearchModal: React.FC = () => {
   const state: ILayoutState = useSelector((state: RootState) => state.layout);
@@ -27,7 +18,7 @@ const SearchModal: React.FC = () => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Box sx={boxStyle}>
         <Typography variant="h5" mb={2}>
           Search from foxwallers
         </Typography>
