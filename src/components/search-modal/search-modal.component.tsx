@@ -1,18 +1,16 @@
 import React from "react";
-import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Modal, Stack, TextField, Typography } from "@mui/material";
+import { Box, Modal, Stack, TextField, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { ILayoutState, toggleSearchPopup } from "../../redux/slices/layout";
 import { RootState } from "../../redux/store";
-import { useTheme } from "@mui/material/styles";
 
 import { boxStyle } from "./search-model.style";
-import { Link } from "react-router-dom";
+import SearchResults from "./search-results/search-results.component";
 
 
 const SearchModal: React.FC = () => {
   const state: ILayoutState = useSelector((state: RootState) => state.layout);
   const dispatch = useDispatch();
-  const theme = useTheme();
 
   return (
     <Modal
@@ -28,27 +26,7 @@ const SearchModal: React.FC = () => {
         <Stack>
           <TextField placeholder="username, name..." />
         </Stack>
-        <Stack>
-          <List>
-            <ListItem>
-              <Link to="/">
-                <ListItemAvatar>
-                  <Avatar
-                    src="https://www.pngrepo.com/png/9649/512/avatar.png"
-                  />
-                </ListItemAvatar>
-              </Link>
-              <Link to="/">
-                <ListItemText
-                    primary="John doe"
-                    sx={{
-                      color: theme.palette.text.primary,
-                    }}
-                />
-              </Link>
-            </ListItem>
-          </List>
-        </Stack>
+        <SearchResults /> 
       </Box>
     </Modal>
   );
