@@ -20,7 +20,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
             {
                 results.length > 0 && <List sx={{maxHeight: "204px", overflowY: "auto", marginTop: "15px"}}>
                     {
-                        results.map(result => <ListItem>
+                        results.map(result => <ListItem key={result.id}>
                             <Link to={`/profile/${result.username}`} onClick={() => dispatch(toggleSearchPopup())}>
                                 <ListItemAvatar>
                                 <Avatar

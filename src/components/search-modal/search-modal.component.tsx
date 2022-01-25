@@ -29,6 +29,8 @@ const SearchModal: React.FC = () => {
     const delayedApiSearch = setTimeout(() => {
       if (query !== "" && query.length > 0) {
         searchFromAPI();
+      } else {
+        setResuts([]);
       }
     }, 1000);
 
