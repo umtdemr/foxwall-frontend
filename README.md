@@ -13,4 +13,5 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Correct auth messages
 - [ ] Correct and compatible upload messages
 - [ ] Clear images and text after uploading post
+- [ ] Sidebar requests
 
