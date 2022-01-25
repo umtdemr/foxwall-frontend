@@ -8,6 +8,7 @@ import { boxStyle } from "./search-model.style";
 import SearchResults from "./search-results/search-results.component";
 import { useAuthenticatedAPI } from "../../modules/api/api";
 import { UserProfile } from "../../types/global/profile_types";
+import { LinearProgress } from "@material-ui/core";
 
 
 const SearchModal: React.FC = () => {
@@ -55,6 +56,7 @@ const SearchModal: React.FC = () => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
+          <LinearProgress sx={{ width: "83.5%", top: '150px', position: "fixed" }}></LinearProgress>
         </Stack>
         <SearchResults results={results} /> 
       </Box>
