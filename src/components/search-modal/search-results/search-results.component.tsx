@@ -2,31 +2,35 @@ import React, { useState } from 'react';
 import { useTheme } from "@mui/material/styles";
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Stack, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { UserProfile } from '../../../types/global/profile_types';
 
 
-const SearchResults: React.FC = () => {
+interface SearchResultsProps {
+    results: UserProfile[]
+}
+
+
+const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
     const theme = useTheme();
-    const [demoData, setDemoData] = useState([1,2,4,5,6,7]);
-
     return (
         <Stack>
             {
-                demoData.length > 0 && <List sx={{maxHeight: "204px", overflowY: "auto", marginTop: "15px"}}>
+                results.length > 0 && <List sx={{maxHeight: "204px", overflowY: "auto", marginTop: "15px"}}>
                     {
-                        demoData.map(data => <ListItem>
-                            <Link to="/">
+                        results.map(result => <ListItem>
+                            <Link to={`/profile/${result.username}`}>
                                 <ListItemAvatar>
                                 <Avatar
-                                    src="https://www.pngrepo.com/png/9649/512/avatar.png"
+                                    src={result.profile.avatar}
                                 />
                                 </ListItemAvatar>
                             </Link>
-                            <Link to="/" style={{
+                            <Link to={`/profile/${result.username}`} style={{
                                     textDecoration: "none",
                                 }} 
                             >
                                 <ListItemText
-                                    primary="John doe"
+                                    primary={result.profile.name}
                                     sx={{
                                     color: theme.palette.text.primary,
                                     }}
@@ -37,7 +41,7 @@ const SearchResults: React.FC = () => {
                 </List>
             }
             {
-                demoData.length === 0 && <Typography textAlign="center" m={2}>Sonuç bulunamadı</Typography>
+                results.length === 0 && <Typography textAlign="center" m={2}>Sonuç bulunamadı</Typography>
             }
           
         </Stack>

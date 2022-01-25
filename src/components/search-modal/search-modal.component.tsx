@@ -7,17 +7,24 @@ import { RootState } from "../../redux/store";
 import { boxStyle } from "./search-model.style";
 import SearchResults from "./search-results/search-results.component";
 import { useAuthenticatedAPI } from "../../modules/api/api";
+import { UserProfile } from "../../types/global/profile_types";
 
 
 const SearchModal: React.FC = () => {
   const state: ILayoutState = useSelector((state: RootState) => state.layout);
   const [query, setQuery] = useState("");
+  const [results, setResuts] = useState<UserProfile[]>([]);
   const dispatch = useDispatch();
   const API = useAuthenticatedAPI();
 
   useEffect(() => {
     const searchFromAPI = async () => {
-      const response = await API.get(`/user/search/?q=${query}`);
+      try {
+        const response = await API.get(`/user/search/?q=${query}`);
+        setResuts(response.data);
+      } catch {
+        setResuts([]);
+      }
     }
     const delayedApiSearch = setTimeout(() => {
       if (query !== "" && query.length > 0) {
@@ -26,7 +33,7 @@ const SearchModal: React.FC = () => {
     }, 1000);
 
     return () => clearTimeout(delayedApiSearch);
-  }, [query, API])
+  }, [query])
 
 
   return (
@@ -47,7 +54,7 @@ const SearchModal: React.FC = () => {
             onChange={(e) => setQuery(e.target.value)}
           />
         </Stack>
-        <SearchResults /> 
+        <SearchResults results={results} /> 
       </Box>
     </Modal>
   );
