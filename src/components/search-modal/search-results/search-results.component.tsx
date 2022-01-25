@@ -8,11 +8,12 @@ import { toggleSearchPopup } from '../../../redux/slices/layout';
 
 
 interface SearchResultsProps {
-    results: UserProfile[]
+    results: UserProfile[],
+    resultState: "loading" | "notfound" | "nomessage"
 }
 
 
-const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
+const SearchResults: React.FC<SearchResultsProps> = ({ results, resultState }) => {
     const theme = useTheme();
     const dispatch = useDispatch();
     return (
@@ -47,7 +48,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ results }) => {
                 </List>
             }
             {
-                results.length === 0 && <Typography textAlign="center" m={2}>Sonuç bulunamadı</Typography>
+                resultState === "notfound" && <Typography textAlign="center" m={2}>Not found any foxwaller</Typography>
             }
           
         </Stack>
