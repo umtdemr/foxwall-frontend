@@ -6,6 +6,7 @@ import RequestItem from "./request-item.component";
 import { useSelector } from "react-redux";
 import { IRequestsData } from "../../redux/slices/requests";
 import { RootState } from "../../redux/store";
+import RequestItemSkeleton from "./request-item.skeleton";
 
 
 const RequestItems: React.FC = () => {
@@ -28,6 +29,9 @@ const RequestItems: React.FC = () => {
             )
           }
         </TransitionGroup>
+        {
+          state.loading && <RequestItemSkeleton />
+        }
       </List>
     </Stack>
   )
