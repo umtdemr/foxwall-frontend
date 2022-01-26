@@ -6,6 +6,9 @@ import { Check, Remove } from "@mui/icons-material";
 import { Avatar, Box, IconButton, ListItem, ListItemAvatar, ListItemText, Alert } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { IResultCreator } from "../../types/global/profile_types";
+import { useDispatch } from "react-redux";
+import { cameFollowRequestAction } from "../../redux/slices/profile/profile-thunks";
+import { fetchReceivedRequests } from "../../redux/slices/requests/requests-thunks";
 
 
 interface RequestItemProps {
@@ -21,9 +24,20 @@ const RequestItem: React.FC<RequestItemProps> = ({ item }) => {
   const [alertMessage, setAlertMessage] = useState("");
 
   const theme = useTheme();
+  const dispatch = useDispatch();
 
-  const clickEvent = (type: TClickEvent ) => {
+  const clickEvent = async (type: TClickEvent ) => {
+    const response: any = await dispatch(cameFollowRequestAction({
+      username: item.username,
+      accept: type === "accept" ? true : false,
+    }));
+
     setReqMessage(type);
+    if (response.payload.status === 200) {
+      setTimeout(() => {
+        dispatch(fetchReceivedRequests());
+      }, 1000);
+    }
   }
 
   useEffect(() => {
