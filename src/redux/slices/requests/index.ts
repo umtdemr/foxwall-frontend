@@ -22,10 +22,6 @@ const requestsSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchReceivedRequests.pending, (state, action) => {
-            state.loading = true;
-        });
-
         builder.addCase(fetchReceivedRequests.fulfilled, (state, action) => {
             const data = action.payload.data;
             state.loading = false;
