@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IRequestResults } from "../../../types/global/request_types";
 import { fetchReceivedRequests } from "./requests-thunks";
 
 
 export interface IRequestsData {
-    results: [],
+    results: IRequestResults[],
     count: number
 }
 

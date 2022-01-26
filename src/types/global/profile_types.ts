@@ -24,3 +24,16 @@ export interface ICameFollowRequestAction {
     username: string,
     accept: boolean
 }
+
+export interface IResultCreatorProfile {
+    name: string;
+    avatar: string;
+    is_hidden: boolean;
+    is_celebrity: boolean;
+}
+
+export interface IResultCreator {
+    id: number;
+    username: string;
+    profile: IResultCreatorProfile;
+}
