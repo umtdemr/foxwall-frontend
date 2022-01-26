@@ -4,20 +4,19 @@ import { Link } from "react-router-dom"
 
 import { Check, Remove } from "@mui/icons-material";
 import { Avatar, Box, IconButton, ListItem, ListItemAvatar, ListItemText, Alert } from "@mui/material";
-import { IRequestItem } from "./request-item.type";
 import { useTheme } from "@mui/material/styles";
+import { IResultCreator } from "../../types/global/profile_types";
 
 
 interface RequestItemProps {
-  item: IRequestItem;
-  handleDelete: (id: number) => void;
+  item: IResultCreator;
 }
 
 type TClickEvent = "decline" | "accept"
 type TReqMessage = "nan" | TClickEvent
 
 
-const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
+const RequestItem: React.FC<RequestItemProps> = ({ item }) => {
   const [reqMessage, setReqMessage] = useState<TReqMessage>("nan");
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -25,17 +24,16 @@ const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
 
   const clickEvent = (type: TClickEvent ) => {
     setReqMessage(type);
-    handleDelete(item.id);
   }
 
   useEffect(() => {
-    if (reqMessage === "accept") setAlertMessage(`Accepted ${item.name}'s request`)
-    else if (reqMessage === "decline") setAlertMessage(`Declined ${item.name}'s request`)
+    if (reqMessage === "accept") setAlertMessage(`Accepted ${item.profile.name}'s request`)
+    else if (reqMessage === "decline") setAlertMessage(`Declined ${item.profile.name}'s request`)
 
     return () => {
       setAlertMessage("");
     }
-  }, [reqMessage, item.name]);
+  }, [reqMessage, item.profile.name]);
 
   return (
     <ListItem
@@ -53,7 +51,7 @@ const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
       <Link to="/profile/qwe">
         <ListItemAvatar>
           <Avatar
-            src="https://www.pngrepo.com/png/9649/512/avatar.png"
+            src={item.profile.avatar}
           />
         </ListItemAvatar>
       </Link>
@@ -63,7 +61,7 @@ const RequestItem: React.FC<RequestItemProps> = ({ item, handleDelete }) => {
         }} 
       >
         <ListItemText
-          primary={item.name}
+          primary={item.profile.name}
           sx={{
             color: theme.palette.text.primary,
           }}
