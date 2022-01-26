@@ -7,6 +7,7 @@ import auth from "./slices/auth";
 import user from "./slices/user";
 import post from "./slices/post";
 import profile from "./slices/profile";
+import requests from "./slices/requests";
 
 const persistConfig = {
   key: "root",
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   user,
   post,
   profile,
+  requests,
 });
 
 export default persistReducer(persistConfig, rootReducer);
