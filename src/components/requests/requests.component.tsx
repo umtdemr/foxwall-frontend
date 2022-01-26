@@ -4,6 +4,9 @@ import { TransitionGroup } from 'react-transition-group';
 
 import RequestItem from "./request-item.component";
 import { IRequestItem } from "./request-item.type";
+import { useSelector } from "react-redux";
+import { IRequestsData } from "../../redux/slices/requests";
+import { RootState } from "../../redux/store";
 
 
 const RequestItems: React.FC = () => {
@@ -17,6 +20,8 @@ const RequestItems: React.FC = () => {
       name: "Demir Ümit",
     },
   ])
+  
+  const state: IRequestsData = useSelector((state: RootState) => state.requests);
 
   const deleteItem = (id: number) => {
     let tempRequests = requests;

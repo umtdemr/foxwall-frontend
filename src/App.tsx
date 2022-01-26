@@ -17,6 +17,7 @@ import { fetchCurrentUser } from "./redux/slices/user/user-thunks";
 import { fetchTimelinePosts } from "./redux/slices/post/post-thunks";
 import { RootState } from "./redux/store";
 import { SnackbarProvider } from "notistack";
+import { fetchReceivedRequests } from "./redux/slices/requests/requests-thunks";
 
 function App() {
   const state: IAuthSlice = useSelector((state: RootState) => state.auth);
@@ -30,6 +31,7 @@ function App() {
         if (response.type !== "user/fetchCurrentUser/rejected" && response.payload.status === 200) {
           dispatch(syncAuth({isAuthenticated: true, token}));
           await dispatch(fetchTimelinePosts());
+          await dispatch(fetchReceivedRequests());
         }
         else {
           dispatch(syncAuth({isAuthenticated: false}));
