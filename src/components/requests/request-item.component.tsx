@@ -48,14 +48,15 @@ const RequestItem: React.FC<RequestItemProps> = ({ item }) => {
         </>
       }
     >
-      <Link to="/profile/qwe">
+      <Link to={`/profile/${item.username}/`}>
         <ListItemAvatar>
           <Avatar
             src={item.profile.avatar}
           />
         </ListItemAvatar>
       </Link>
-      <Link to="/profile/qwe"
+      <Link 
+        to={`/profile/${item.username}/`}
         style={{
           textDecoration: "none",
         }} 
