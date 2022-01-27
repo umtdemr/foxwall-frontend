@@ -91,6 +91,7 @@ const AddPostForm: React.FC = () => {
         num_likes: 0,
         uuid: newPostUUID,
         is_i_liked: false,
+        created_at: "now",
     };
 
       dispatch(addPost(newPostData));

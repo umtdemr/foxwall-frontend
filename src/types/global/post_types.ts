@@ -9,4 +9,5 @@ export interface GlobalPost {
     num_likes: number,
     uuid: string;
     is_i_liked: boolean;
+    created_at: string;
 }

@@ -5,14 +5,16 @@ import { Avatar, Stack, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { useTheme } from "@mui/material/styles";
 import { GlobalUser } from "../../../types/global/user_types";
+import timeDifference from "../../../modules/utils/relative_time";
 
 
 interface PostHeaderProps {
-  user: GlobalUser,
+  user: GlobalUser;
+  createdAt: string;
 }
 
 
-const PostHeader: React.FC<PostHeaderProps> = ({ user }) => {
+const PostHeader: React.FC<PostHeaderProps> = ({ user, createdAt }) => {
   const theme = useTheme();
   return (
     <Stack direction="row" alignItems="center">
@@ -44,7 +46,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ user }) => {
           </Avatar>
           }
         </Stack>
-        <Typography variant="caption">{user.username} | 12 days ago</Typography>
+        <Typography variant="caption">{user.username} | { timeDifference(createdAt) }</Typography>
       </Stack>
     </Stack>
   );
