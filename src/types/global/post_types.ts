@@ -8,4 +8,5 @@ export interface GlobalPost {
     images?: PostImages[];
     num_likes: number,
     uuid: string;
+    is_i_liked: boolean;
 }

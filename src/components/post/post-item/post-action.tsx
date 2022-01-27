@@ -8,10 +8,11 @@ import { useAuthenticatedAPI } from "../../../modules/api/api";
 interface PostActionProps {
   num_likes: number;
   uuid: string;
+  is_i_liked: boolean;
 }
 
-const PostAction: React.FC<PostActionProps> = ({ num_likes, uuid}) => {
-  const [liked, setLiked] = useState(false);
+const PostAction: React.FC<PostActionProps> = ({ num_likes, uuid, is_i_liked }) => {
+  const [liked, setLiked] = useState(is_i_liked);
   const [localNumLikes, setLocalNumLikes] = useState(num_likes);
   const theme = useTheme();
   const API = useAuthenticatedAPI();
