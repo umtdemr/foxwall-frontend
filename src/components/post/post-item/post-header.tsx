@@ -27,23 +27,24 @@ const PostHeader: React.FC<PostHeaderProps> = ({ user, createdAt, uuid }) => {
   const authUserState: IAuthSlice = useSelector((state: RootState) => state.auth);
 
   const handleDelete = async () => {
-    const response: any = await dispatch(deletePost(uuid));
-    if (response.payload.status === 204) {
-      enqueueSnackbar(
-        "Post has been deleted",
-        {
-          variant: "success",
-        }
-      );
-    } else {
-      enqueueSnackbar(
-        "An error occurred while deleting post",
-        {
-          variant: "error",
-        }
-      )
+    if (window.confirm("Do you really want to remove this post")) {
+      const response: any = await dispatch(deletePost(uuid));
+      if (response.payload.status === 204) {
+        enqueueSnackbar(
+          "Post has been deleted",
+          {
+            variant: "success",
+          }
+        );
+      } else {
+        enqueueSnackbar(
+          "An error occurred while deleting post",
+          {
+            variant: "error",
+          }
+        )
+      }
     }
-
   }
 
   return (
