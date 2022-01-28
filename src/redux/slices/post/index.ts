@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { string } from "yup/lib/locale";
 import { GlobalPost } from "../../../types/global/post_types";
 import { createPost, deletePost, fetchProfilePosts, fetchTimelinePosts } from "./post-thunks";
 
@@ -89,7 +90,11 @@ const postSlice = createSlice({
         // TODO Add rejected builder
 
         builder.addCase(deletePost.fulfilled, (state, action) => {
-            console.log(action);
+            const URL = action!.payload!.config!.url!;
+            const uuidMatch = URL.match(/\/post\/delete\/([a-zA-Z0-9-]*)/) as [string, string];
+            const uuid = uuidMatch[1];
+            state.profile.results = state.profile.results.filter(post => post.uuid !== uuid);
+            state.fetch.results = state.fetch.results.filter(post => post.uuid !== uuid);
         });
 
     },
