@@ -15,7 +15,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
   return (
     <Box mt={4}>
       <Paper elevation={3} sx={{ padding: "10px" }}>
-        <PostHeader user={post.user} createdAt={post.created_at} />
+        <PostHeader user={post.user} createdAt={post.created_at} uuid={post.uuid} />
         <PostContent text={post.text} images={post.images} username={post.user.username}/>
         <PostAction num_likes={post.num_likes } uuid={post.uuid} is_i_liked={post.is_i_liked} />
       </Paper>

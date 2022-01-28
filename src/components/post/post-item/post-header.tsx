@@ -7,19 +7,45 @@ import { useTheme } from "@mui/material/styles";
 import { GlobalUser } from "../../../types/global/user_types";
 import timeDifference from "../../../modules/utils/relative_time";
 import { IAuthSlice } from "../../../redux/slices/auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import { deletePost } from "../../../redux/slices/post/post-thunks";
+import { useSnackbar } from "notistack";
 
 
 interface PostHeaderProps {
   user: GlobalUser;
   createdAt: string;
+  uuid: string;
 }
 
 
-const PostHeader: React.FC<PostHeaderProps> = ({ user, createdAt }) => {
+const PostHeader: React.FC<PostHeaderProps> = ({ user, createdAt, uuid }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const authUserState: IAuthSlice = useSelector((state: RootState) => state.auth);
+
+  const handleDelete = async () => {
+    const response: any = await dispatch(deletePost(uuid));
+    if (response.payload.status === 204) {
+      enqueueSnackbar(
+        "Post has been deleted",
+        {
+          variant: "success",
+        }
+      );
+    } else {
+      enqueueSnackbar(
+        "An error occurred while deleting post",
+        {
+          variant: "error",
+        }
+      )
+    }
+
+  }
+
   return (
     <Stack direction="row" alignItems="center" justifyContent="space-between">
       <Stack direction="row" alignItems="center">
@@ -55,8 +81,12 @@ const PostHeader: React.FC<PostHeaderProps> = ({ user, createdAt }) => {
         </Stack>
       </Stack>
       {
-        authUserState.user.username === user.username && <IconButton aria-label="delete" title="Delete post">
-          <RemoveCircle />
+        authUserState.user.username === user.username && <IconButton 
+          aria-label="delete" 
+          title="Delete post"
+          onClick={() => handleDelete()}
+          >
+            <RemoveCircle />
         </IconButton>
       }
     </Stack>

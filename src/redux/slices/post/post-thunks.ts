@@ -57,4 +57,15 @@ export const createPost = createAsyncThunk(
         );
         return response;
     }
+);
+
+
+export const deletePost = createAsyncThunk(
+    "post/deletePost",
+    async (uuid: string, thunkAPI) => {
+        const API = useAuthenticatedAPI();
+
+        const response = await API.delete(`/post/delete/${uuid}/`);
+        return response;
+    }
 )

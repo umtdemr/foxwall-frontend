@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { GlobalPost } from "../../../types/global/post_types";
-import { createPost, fetchProfilePosts, fetchTimelinePosts } from "./post-thunks";
+import { createPost, deletePost, fetchProfilePosts, fetchTimelinePosts } from "./post-thunks";
 
 
 export interface IFetchPostData {
@@ -87,6 +87,10 @@ const postSlice = createSlice({
         });
 
         // TODO Add rejected builder
+
+        builder.addCase(deletePost.fulfilled, (state, action) => {
+            console.log(action);
+        });
 
     },
 });
