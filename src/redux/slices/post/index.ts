@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { string } from "yup/lib/locale";
 import { GlobalPost } from "../../../types/global/post_types";
 import { createPost, deletePost, fetchProfilePosts, fetchTimelinePosts } from "./post-thunks";
 
