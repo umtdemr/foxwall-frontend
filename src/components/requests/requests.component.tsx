@@ -32,7 +32,7 @@ const RequestItems: React.FC = () => {
           }
         </TransitionGroup>
         {
-          state.loading && new Array(2).fill(2).map(_ => <RequestItemSkeleton />)
+          state.loading && [0, 1].map(id => <RequestItemSkeleton key={id} />)
         }
       </List>
     </Stack>
