@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
     Box,
     Stack,
@@ -8,22 +8,41 @@ import {
 } from '@mui/material';
 import { Check, FindInPage } from "@mui/icons-material"
 import ImageOverlay from '../../image-overlay/image-overlay.component';
+import { IProfileInitialState } from '../../../redux/slices/profile';
+import { RootState } from '../../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProfile } from '../../../redux/slices/profile/profile-thunks';
+import { useParams } from 'react-router-dom';
 
 const EditProfileHeader: React.FC = () => {
+    const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
+    const [editUsername, setEditUsername] = useState(state.username);
+    const [editName, setEditName] = useState(state.profile?.name);
+    const [editBio, setEditBio] = useState(state.profile?.bio);
+    const { username } = useParams<{ username: string }>();
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        if (!state.profile?.avatar) {
+            dispatch(fetchProfile(username));
+        }
+    }, [state]);
+
     return (
         <Box>
             <Box sx={{
                 width: "100%",
                 position: "relative",
                 paddingTop: "39.06%",
+                overflow: "hidden",
             }}
             >
-                <img src="https://via.placeholder.com/1024x400"
+                <img src={state.profile?.cover}
                     style={{
-                        width: "100%",
                         position: "absolute",
                         left: "0",
                         top: "0",
+                        width: "100%",
                     }}
                     alt="Username's cover"
                 />
@@ -45,7 +64,7 @@ const EditProfileHeader: React.FC = () => {
                         height: 90,
                         border: "3px solid #fff",
                         marginTop: "-30px",
-                        backgroundImage: "url(https://www.pngrepo.com/png/9649/512/avatar.png)",
+                        backgroundImage: `url(${state.profile?.avatar})`,
                         backgroundSize: "100%",
                         backgroundPosition: "center",
                         borderRadius: 90,
@@ -62,12 +81,12 @@ const EditProfileHeader: React.FC = () => {
                 <Stack direction="row" mt={5} justifyContent="space-between"> 
                     <TextField 
                         label="name"
-                        defaultValue="Ümit"
+                        value={editName}
                         sx={{width: "50%"}}
                     />
                     <TextField 
                         label="username"
-                        defaultValue="mediumgoal"
+                        value={editUsername}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">@</InputAdornment>,
                         }}
@@ -77,7 +96,7 @@ const EditProfileHeader: React.FC = () => {
 
                 <TextField 
                     label="bio"
-                    defaultValue="geek over"
+                    value={editBio}
                     multiline
                     fullWidth
                     margin="normal"
