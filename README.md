@@ -14,4 +14,4 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [ ] Clear images and text after uploading post
 - [x] Sidebar requests
 - [ ] Fix wrong follow status on decline or accept
-
+- [ ] Add edit profile feature
