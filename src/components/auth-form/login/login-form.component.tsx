@@ -11,7 +11,7 @@ import { AuthActionContext } from "../../../modules/contexts/auth/auth.context";
 import { authActionTypes } from "../../../types/auth/auth-types";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
-import TextFieldFormik from "../text-formik-field/text-formik-field.component";
+import TextFieldFormik from "../../text-formik-field/text-formik-field.component";
 
 
 const loginValidationSchema = yup.object({

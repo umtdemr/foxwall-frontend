@@ -11,7 +11,7 @@ import { AuthActionContext } from "../../../modules/contexts/auth/auth.context";
 import { registerThunk } from "../../../redux/slices/auth/auth-thunks";
 
 import * as yup from "yup";
-import TextFieldFormik from "../text-formik-field/text-formik-field.component";
+import TextFieldFormik from "../../text-formik-field/text-formik-field.component";
 
 
 const validationSchema = yup.object({
