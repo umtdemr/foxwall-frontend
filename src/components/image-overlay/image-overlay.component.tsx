@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Box from "@mui/material/Box"
 
-const ImageOverlay: React.FC = ({ children }) => {
+interface ImageOverlayProps {
+    handleImageLoad: (e: React.ChangeEvent, where: "avatar" | "cover") => void;
+}
+
+const ImageOverlay: React.FC<ImageOverlayProps> = ({ children, handleImageLoad }) => {
+    const fileField = useRef() as React.MutableRefObject<HTMLInputElement>;
     return (
         <Box sx={{
             position: "absolute",
@@ -17,8 +22,15 @@ const ImageOverlay: React.FC = ({ children }) => {
             left: "0",
             top: "0",
         }}
-        onClick={() => alert("there is more...")}
+        onClick={() => fileField.current.click()}
         >
+            <input 
+                type="file" 
+                style={{display: "none"}} 
+                accept="image/*"
+                ref={fileField}
+                onChange={(e: React.ChangeEvent) => handleImageLoad(e, "avatar")}
+            />
             {children}
         </Box>
     );

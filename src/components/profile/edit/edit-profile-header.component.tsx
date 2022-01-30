@@ -28,6 +28,19 @@ const EditProfileHeader: React.FC = () => {
         }
     }, [state]);
 
+    const handleImageLoadPreview = (imgUrl: string, where: "avatar" | "cover") => {
+        if (where === "avatar") {
+            // change avatar bg
+        }
+    }
+    
+    const handleImageLoad = (e: React.ChangeEvent, where: "avatar" | "cover") => {
+        const file = (e.target as HTMLInputElement).files![0];
+        handleImageLoadPreview(URL.createObjectURL(file), where);
+        console.log(file);
+        console.log(where);
+    }
+
     return (
         <Box>
             <Box sx={{
@@ -46,7 +59,9 @@ const EditProfileHeader: React.FC = () => {
                     }}
                     alt="Username's cover"
                 />
-                <ImageOverlay>
+                <ImageOverlay
+                    handleImageLoad={handleImageLoad}
+                >
                     <FindInPage /> 
                 </ImageOverlay>
             </Box>
@@ -71,8 +86,11 @@ const EditProfileHeader: React.FC = () => {
                         position: "relative",
                         overflow: "hidden",
                     }}
+                    className="avatar_box"
                 >
-                    <ImageOverlay>
+                    <ImageOverlay
+                        handleImageLoad={handleImageLoad}
+                    >
                         <FindInPage /> 
                     </ImageOverlay>
                 </Box>
