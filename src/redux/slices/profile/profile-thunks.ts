@@ -58,6 +58,14 @@ export const updateProfile = createAsyncThunk(
     "profile/updateProfile",
     async (profileData: IUpdateProfile, thunkAPI) => {
         const API = useAuthenticatedAPI();
-        // TODO Finish update profile
+        const data = new FormData();
+        if (profileData.username) data.append("username", profileData.username)
+        if (profileData.name) data.append("name", profileData.name)
+        if (profileData.bio) data.append("bio", profileData.bio)
+        if (profileData.avatar) data.append("avatar", profileData.avatar)
+        if (profileData.cover) data.append("cover", profileData.cover)
+
+        const response = await API.patch("/user/me/", data);
+        return response;
     }
 )

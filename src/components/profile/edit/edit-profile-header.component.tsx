@@ -11,8 +11,9 @@ import ImageOverlay from '../../image-overlay/image-overlay.component';
 import { IProfileInitialState } from '../../../redux/slices/profile';
 import { RootState } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProfile } from '../../../redux/slices/profile/profile-thunks';
+import { fetchProfile, updateProfile } from '../../../redux/slices/profile/profile-thunks';
 import { useParams } from 'react-router-dom';
+import { IUpdateProfile } from '../../../types/global/profile_types';
 
 const EditProfileHeader: React.FC = () => {
     const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
@@ -57,6 +58,22 @@ const EditProfileHeader: React.FC = () => {
     }
 
     const saveProfile = async () => {
+        if (editUsername!.trim().length < 3) { 
+            alert("Username should be at least 3 character");
+            return;
+        }
+        if (editName!.trim().length < 2) { 
+            alert("Name should be at least 2 character");
+            return;
+        }
+        const updateProfileData: IUpdateProfile = {};
+        if (editUsername !== state.username) updateProfileData.username = editUsername
+        if (editName !== state.profile?.name) updateProfileData.name = editName
+        if (editBio !== state.profile?.bio) updateProfileData.bio = editBio
+        if (avatarImg !== undefined) updateProfileData.avatar = avatarImg
+        if (coverImg !== undefined) updateProfileData.cover = coverImg
+        
+        dispatch(updateProfile(updateProfileData));
     }
 
     return (
