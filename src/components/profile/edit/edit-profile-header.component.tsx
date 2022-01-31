@@ -12,7 +12,7 @@ import { IProfileInitialState } from '../../../redux/slices/profile';
 import { RootState } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile, updateProfile } from '../../../redux/slices/profile/profile-thunks';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { IUpdateProfile } from '../../../types/global/profile_types';
 import { useSnackbar } from 'notistack';
 
@@ -25,16 +25,26 @@ const EditProfileHeader: React.FC = () => {
     const [coverImg, setCoverImg] = useState<File>();
     const { username } = useParams<{ username: string }>();
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
     
     useEffect(() => {
         const fetchFreshProfile = async () => {
             const response: any = await dispatch(fetchProfile(username));
-            const profileData = response.payload.data;
-            setEditName(profileData.profile.name);
-            setEditUsername(profileData.username);
-            setEditBio(profileData.profile.bio);
+            if (!response.error) {
+                const profileData = response.payload.data;
+                setEditName(profileData.profile.name);
+                setEditUsername(profileData.username);
+                setEditBio(profileData.profile.bio);
+            } else {
+                enqueueSnackbar(
+                    `Error during loading profile of ${username}`,
+                    {
+                        variant: "error",
+                    }
+                );
+                history.push("/");
+            }
         }
         if (!state.profile?.avatar) fetchFreshProfile()
     }, []);
