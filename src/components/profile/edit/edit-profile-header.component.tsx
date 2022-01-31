@@ -25,10 +25,15 @@ const EditProfileHeader: React.FC = () => {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        if (!state.profile?.avatar) {
-            dispatch(fetchProfile(username));
+        const fetchFreshProfile = async () => {
+            const response: any = await dispatch(fetchProfile(username));
+            const profileData = response.payload.data;
+            setEditName(profileData.profile.name);
+            setEditUsername(profileData.username);
+            setEditBio(profileData.profile.bio);
         }
-    }, [state]);
+        if (!state.profile?.avatar) fetchFreshProfile()
+    }, []);
 
     const handleImageLoadPreview = (imgUrl: string, where: "avatar" | "cover") => {
         if (where === "avatar") {
@@ -49,6 +54,11 @@ const EditProfileHeader: React.FC = () => {
         } else if (where === "cover") {
             setCoverImg(file);
         }
+    }
+
+    const saveProfile = async () => {
+        console.log(avatarImg);
+        console.log(coverImg);
     }
 
     return (
@@ -113,11 +123,13 @@ const EditProfileHeader: React.FC = () => {
                     <TextField 
                         label="name"
                         value={editName}
+                        onChange={(e) => setEditName(e.target.value)}
                         sx={{width: "50%"}}
                     />
                     <TextField 
                         label="username"
                         value={editUsername}
+                        onChange={(e) => setEditUsername(e.target.value)}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">@</InputAdornment>,
                         }}
@@ -128,6 +140,7 @@ const EditProfileHeader: React.FC = () => {
                 <TextField 
                     label="bio"
                     value={editBio}
+                    onChange={(e) => setEditBio(e.target.value)}
                     multiline
                     fullWidth
                     margin="normal"
@@ -137,6 +150,7 @@ const EditProfileHeader: React.FC = () => {
                 <Button 
                     variant="contained" 
                     endIcon={<Check />}
+                    onClick={() => saveProfile()}
                 >Save</Button>
             </Box>
         </Box>
