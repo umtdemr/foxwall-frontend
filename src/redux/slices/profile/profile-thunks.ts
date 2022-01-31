@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { useAuthenticatedAPI } from "../../../modules/api/api";
-import { ICameFollowRequestAction } from "../../../types/global/profile_types";
+import { ICameFollowRequestAction, IUpdateProfile } from "../../../types/global/profile_types";
 
 
 export const fetchProfile = createAsyncThunk(
@@ -53,3 +53,11 @@ export const unfollowProfile = createAsyncThunk(
         return response;
     }
 );
+
+export const updateProfile = createAsyncThunk(
+    "profile/updateProfile",
+    async (profileData: IUpdateProfile, thunkAPI) => {
+        const API = useAuthenticatedAPI();
+        // TODO Finish update profile
+    }
+)

@@ -37,3 +37,12 @@ export interface IResultCreator {
     username: string;
     profile: IResultCreatorProfile;
 }
+
+
+export interface IUpdateProfile {
+    username?: string;
+    bio?: string;
+    name?: string;
+    avatar?: File;
+    cover?: File;
+}

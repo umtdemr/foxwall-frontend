@@ -57,8 +57,6 @@ const EditProfileHeader: React.FC = () => {
     }
 
     const saveProfile = async () => {
-        console.log(avatarImg);
-        console.log(coverImg);
     }
 
     return (
