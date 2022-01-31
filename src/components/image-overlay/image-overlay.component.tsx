@@ -3,9 +3,10 @@ import Box from "@mui/material/Box"
 
 interface ImageOverlayProps {
     handleImageLoad: (e: React.ChangeEvent, where: "avatar" | "cover") => void;
+    where: "avatar" | "cover";
 }
 
-const ImageOverlay: React.FC<ImageOverlayProps> = ({ children, handleImageLoad }) => {
+const ImageOverlay: React.FC<ImageOverlayProps> = ({ children, handleImageLoad, where }) => {
     const fileField = useRef() as React.MutableRefObject<HTMLInputElement>;
     return (
         <Box sx={{
@@ -29,7 +30,7 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({ children, handleImageLoad }
                 style={{display: "none"}} 
                 accept="image/*"
                 ref={fileField}
-                onChange={(e: React.ChangeEvent) => handleImageLoad(e, "avatar")}
+                onChange={(e: React.ChangeEvent) => handleImageLoad(e, where)}
             />
             {children}
         </Box>

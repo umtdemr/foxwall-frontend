@@ -19,6 +19,8 @@ const EditProfileHeader: React.FC = () => {
     const [editUsername, setEditUsername] = useState(state.username);
     const [editName, setEditName] = useState(state.profile?.name);
     const [editBio, setEditBio] = useState(state.profile?.bio);
+    const [avatarImg, setAvatarImg] = useState<File>();
+    const [coverImg, setCoverImg] = useState<File>();
     const { username } = useParams<{ username: string }>();
     const dispatch = useDispatch();
     
@@ -31,14 +33,22 @@ const EditProfileHeader: React.FC = () => {
     const handleImageLoadPreview = (imgUrl: string, where: "avatar" | "cover") => {
         if (where === "avatar") {
             // change avatar bg
+            const avatarBoxWrapper = document.querySelector(".avatar_box") as HTMLDivElement;
+            avatarBoxWrapper.style.backgroundImage = `url(${imgUrl})`;
+        } else if (where === "cover") {
+            const coverBox = document.querySelector(".cover_box") as HTMLImageElement;
+            coverBox.src = imgUrl;
         }
     }
     
     const handleImageLoad = (e: React.ChangeEvent, where: "avatar" | "cover") => {
         const file = (e.target as HTMLInputElement).files![0];
         handleImageLoadPreview(URL.createObjectURL(file), where);
-        console.log(file);
-        console.log(where);
+        if (where === "avatar") {
+            setAvatarImg(file);
+        } else if (where === "cover") {
+            setCoverImg(file);
+        }
     }
 
     return (
@@ -58,9 +68,11 @@ const EditProfileHeader: React.FC = () => {
                         width: "100%",
                     }}
                     alt="Username's cover"
+                    className="cover_box"
                 />
                 <ImageOverlay
                     handleImageLoad={handleImageLoad}
+                    where="cover"
                 >
                     <FindInPage /> 
                 </ImageOverlay>
@@ -90,6 +102,7 @@ const EditProfileHeader: React.FC = () => {
                 >
                     <ImageOverlay
                         handleImageLoad={handleImageLoad}
+                        where="avatar"
                     >
                         <FindInPage /> 
                     </ImageOverlay>
