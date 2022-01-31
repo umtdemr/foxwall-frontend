@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile, updateProfile } from '../../../redux/slices/profile/profile-thunks';
 import { useParams } from 'react-router-dom';
 import { IUpdateProfile } from '../../../types/global/profile_types';
+import { useSnackbar } from 'notistack';
 
 const EditProfileHeader: React.FC = () => {
     const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
@@ -24,6 +25,8 @@ const EditProfileHeader: React.FC = () => {
     const [coverImg, setCoverImg] = useState<File>();
     const { username } = useParams<{ username: string }>();
     const dispatch = useDispatch();
+
+    const { enqueueSnackbar } = useSnackbar();
     
     useEffect(() => {
         const fetchFreshProfile = async () => {
@@ -73,7 +76,24 @@ const EditProfileHeader: React.FC = () => {
         if (avatarImg !== undefined) updateProfileData.avatar = avatarImg
         if (coverImg !== undefined) updateProfileData.cover = coverImg
         
-        dispatch(updateProfile(updateProfileData));
+        const response: any = await dispatch(updateProfile(updateProfileData));
+        if (response.payload.status === 200)
+        {
+            enqueueSnackbar(
+                "Profile has been updated",
+                {
+                    variant: "success",
+                }
+            );
+        } else {
+            enqueueSnackbar(
+                "An error has occurred during updating profile",
+                {
+                    variant: "error",
+                }
+            );
+        }
+
     }
 
     return (
