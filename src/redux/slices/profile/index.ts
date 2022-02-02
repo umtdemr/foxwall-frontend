@@ -46,6 +46,8 @@ const profileSlice = createSlice({
             state.profile!.bio = data.profile.bio;
             state.profile!.is_hidden = data.profile.is_hidden;
             state.profile!.is_celebrity = data.profile.is_celebrity;
+            state.follower_count = data.follower_count;
+            state.follows_count = data.follows_count;
         });
 
 

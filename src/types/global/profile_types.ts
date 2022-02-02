@@ -16,7 +16,9 @@ export interface UserProfile {
     is_following: boolean,
     is_followed_me: boolean,
     is_sent_follow_request: boolean,
-    is_came_follow_request: boolean
+    is_came_follow_request: boolean,
+    follower_count: number;
+    follows_count: number;
 }
 
 
