@@ -68,6 +68,18 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
                 <Typography variant="h5">{data.profile?.name}</Typography>
                 <Typography variant="body2" color="#777">@{data.username}</Typography>
                 <Typography variant="body1" mt={2}>{data.profile?.bio}</Typography>
+                <Stack mt={1} direction="row">
+                    <Typography variant='body2'>
+                        {data.follows_count} 
+                        &nbsp;
+                        <span style={{color: '#777'}}>follows</span>
+                    </Typography>
+                    <Typography variant='body2' ml={2}>
+                        {data.follower_count}
+                        &nbsp;
+                        <span style={{color: '#777'}}>follower</span>
+                    </Typography>
+                </Stack>
             </Stack>
         </Box>
     );
