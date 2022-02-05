@@ -10,6 +10,7 @@ import ProfileActions from './profile-actions/profile-actions';
 import HeaderActions from './header-actions/header-actions.component';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
+import CelebrityCheck from '../celebrity-check/celebrity-check.component';
 
 
 interface ProfileHeaderProps {
@@ -65,7 +66,10 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
                     padding: "0 30px;",
                 }}
             >
-                <Typography variant="h5">{data.profile?.name}</Typography>
+                <Stack direction="row" alignItems="center">
+                    <Typography variant="h5" mr={1}>{data.profile?.name}</Typography>
+                    { data.profile?.is_celebrity && <CelebrityCheck /> }
+                </Stack>
                 <Typography variant="body2" color="#777">@{data.username}</Typography>
                 <Typography variant="body1" mt={2}>{data.profile?.bio}</Typography>
                 <Stack mt={1} direction="row">
