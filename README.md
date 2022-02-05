@@ -10,8 +10,7 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Fix bio issue after registiration
 - [x] Create global message state management
 - [x] Correct auth messages
-- [ ] Correct and compatible upload messages
-- [ ] Clear images and text after uploading post
+- [x] Clear images and text after uploading post
 - [x] Sidebar requests
 - [ ] Fix wrong follow status on decline or accept
 - [x] Add edit profile feature
