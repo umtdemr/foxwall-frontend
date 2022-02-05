@@ -68,7 +68,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ data }) => {
             >
                 <Stack direction="row" alignItems="center">
                     <Typography variant="h5" mr={1}>{data.profile?.name}</Typography>
-                    { data.profile?.is_celebrity && <CelebrityCheck /> }
+                    { data.profile?.is_celebrity && <CelebrityCheck width={25} height={25} /> }
                 </Stack>
                 <Typography variant="body2" color="#777">@{data.username}</Typography>
                 <Typography variant="body1" mt={2}>{data.profile?.bio}</Typography>
