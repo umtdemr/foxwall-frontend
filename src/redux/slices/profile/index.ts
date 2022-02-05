@@ -69,7 +69,6 @@ const profileSlice = createSlice({
             } else if (action.payload.data.message === "allowed") {
                 state.is_came_follow_request = false;
             }
-            state.is_following = false;
         });
     },
 });

@@ -12,7 +12,7 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Correct auth messages
 - [x] Clear images and text after uploading post
 - [x] Sidebar requests
-- [ ] Fix wrong follow status on decline or accept
+- [x] Fix wrong follow status on decline or accept
 - [x] Add edit profile feature
 - [ ] Fix search case insensitive issue
 - [ ] Fetch profile and edit profile data on page components
