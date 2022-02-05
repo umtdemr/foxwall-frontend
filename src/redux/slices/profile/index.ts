@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserProfile } from "../../../types/global/profile_types";
-import { cameFollowRequestAction, cancelFollowRequest, fetchProfile, followProfile, unfollowProfile } from "./profile-thunks";
+import { cancelFollowRequest, fetchProfile, followProfile, unfollowProfile } from "./profile-thunks";
 
 
 export interface IProfileInitialState extends Partial<UserProfile>{
@@ -25,7 +25,11 @@ const initialState: IProfileInitialState = {
 const profileSlice = createSlice({
     name: "profile",
     initialState,
-    reducers: {},
+    reducers: {
+        changeIsCameFollowRequest: (state, action: PayloadAction<{isCameIssue: boolean}>) => {
+            state.is_came_follow_request = action.payload.isCameIssue;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchProfile.pending, (state, action) => {
             state.loading = true;
@@ -61,17 +65,13 @@ const profileSlice = createSlice({
             state.is_following = false;
         });
 
-        builder.addCase(cameFollowRequestAction.fulfilled, (state, action) => {
-            // Just in case validation. This will be replaced with better
-            // TODO 
-            if (action.payload.data.message === "rejected") {
-                state.is_came_follow_request = false;
-            } else if (action.payload.data.message === "allowed") {
-                state.is_came_follow_request = false;
-            }
-        });
     },
 });
+
+
+export const { 
+    changeIsCameFollowRequest,
+} = profileSlice.actions;
 
 
 export default profileSlice.reducer;

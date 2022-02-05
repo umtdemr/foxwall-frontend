@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IRequestResults } from "../../../types/global/request_types";
-import { fetchReceivedRequests } from "./requests-thunks";
+import { changeIsCameFollowRequest } from "../profile";
+import { cameFollowRequestAction, fetchReceivedRequests } from "./requests-thunks";
 
 
 export interface IRequestsData {
@@ -27,6 +28,15 @@ const requestsSlice = createSlice({
             state.loading = false;
             state.count = data.count;
             state.results = data.results;
+        });
+
+        builder.addCase(cameFollowRequestAction.fulfilled, (state, action) => {
+            // TODO : change is came follow request state
+            if (action.payload.data.message === "rejected") {
+                changeIsCameFollowRequest({ isCameIssue: true });
+            } else if (action.payload.data.message === "allowed") {
+                changeIsCameFollowRequest({ isCameIssue: false });
+            }
         });
     },
 });

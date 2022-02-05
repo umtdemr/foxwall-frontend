@@ -10,7 +10,7 @@ import { green } from '@mui/material/colors';
 import { IProfileInitialState } from '../../../../redux/slices/profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
-import { cameFollowRequestAction } from '../../../../redux/slices/profile/profile-thunks';
+import { cameFollowRequestAction } from '../../../../redux/slices/requests/requests-thunks';
 
 const HeaderActions: React.FC = () => {
     const state: IProfileInitialState = useSelector((state: RootState) => state.profile);

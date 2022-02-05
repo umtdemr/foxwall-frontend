@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { useAuthenticatedAPI } from "../../../modules/api/api";
-import { ICameFollowRequestAction, IUpdateProfile } from "../../../types/global/profile_types";
+import { IUpdateProfile } from "../../../types/global/profile_types";
 
 
 export const fetchProfile = createAsyncThunk(
@@ -33,16 +33,7 @@ export const cancelFollowRequest = createAsyncThunk(
 );
 
 
-export const cameFollowRequestAction = createAsyncThunk(
-    "profile/cameFollowAction",
-    async (followData: ICameFollowRequestAction, thunkAPI) => {
-        const API = useAuthenticatedAPI();
-        const apiUrl = followData.accept ? '/follow/allow-follow-request/' : '/follow/reject-follow-request/';
-        const response = await API.post(apiUrl, { username: followData.username });
-        
-        return response;
-    }
-) 
+
 
 
 export const unfollowProfile = createAsyncThunk(
