@@ -64,9 +64,11 @@ const authSlice = createSlice({
 
       localStorage.setItem("token", action?.payload?.data.token);
     });
-    builder.addCase(loginThunk.rejected, (state, action) => {
+    builder.addCase(loginThunk.rejected, (state, action: any) => {
       state.message.show = true;
-      state.message.content = "Invalid Credentials";
+      action.payload.status === 401 
+      ? state.message.content = "Invalid Credentials"
+      : state.message.content = "Error during logging in"
       state.message.severity = "error";
     });
   },
