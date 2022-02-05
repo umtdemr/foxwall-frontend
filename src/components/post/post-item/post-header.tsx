@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { Avatar, IconButton, Stack, Typography } from "@mui/material";
-import { RemoveCircle, Check } from '@mui/icons-material';
+import { RemoveCircle } from '@mui/icons-material';
 import { useTheme } from "@mui/material/styles";
 import { GlobalUser } from "../../../types/global/user_types";
 import timeDifference from "../../../modules/utils/relative_time";
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { deletePost } from "../../../redux/slices/post/post-thunks";
 import { useSnackbar } from "notistack";
+import CelebrityCheck from "../../profile/celebrity-check/celebrity-check.component";
 
 
 interface PostHeaderProps {
@@ -67,15 +68,8 @@ const PostHeader: React.FC<PostHeaderProps> = ({ user, createdAt, uuid }) => {
               </Typography>
             </Link>
             {
-              user.profile.is_celebrity && <Avatar
-                sx={{
-                  width: 16,
-                  height: 16,
-                  bgcolor: theme.palette.primary.main,
-                }}
-              >
-              <Check sx={{ width: 12, height: 12 }} />
-            </Avatar>
+              user.profile.is_celebrity && <CelebrityCheck />
+              
             }
           </Stack>
           <Typography variant="caption">{user.username} | { timeDifference(createdAt) }</Typography>
