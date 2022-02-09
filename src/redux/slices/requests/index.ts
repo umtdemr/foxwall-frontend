@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IRequestResults } from "../../../types/global/request_types";
 import { changeIsCameFollowRequest } from "../profile";
 import { cameFollowRequestAction, fetchReceivedRequests } from "./requests-thunks";
@@ -21,7 +21,13 @@ const initialState: IRequestsData = {
 const requestsSlice = createSlice({
     name: 'requests',
     initialState,
-    reducers: {},
+    reducers: {
+        removeRequest: (state, action: PayloadAction<{ username: string }>) => {
+            state.results = state.results.filter((resultItem: IRequestResults) => 
+                resultItem.creator.username !== action.payload.username
+            );
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchReceivedRequests.fulfilled, (state, action) => {
             const data = action.payload.data;
@@ -29,17 +35,13 @@ const requestsSlice = createSlice({
             state.count = data.count;
             state.results = data.results;
         });
-
-        builder.addCase(cameFollowRequestAction.fulfilled, (state, action) => {
-            // TODO : change is came follow request state
-            if (action.payload.data.message === "rejected") {
-                changeIsCameFollowRequest({ isCameIssue: true });
-            } else if (action.payload.data.message === "allowed") {
-                changeIsCameFollowRequest({ isCameIssue: false });
-            }
-        });
     },
 });
+
+
+export const {
+    removeRequest,
+} = requestsSlice.actions;
 
 
 export default requestsSlice.reducer;

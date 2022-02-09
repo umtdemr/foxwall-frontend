@@ -7,10 +7,11 @@ import {
     CircularProgress,
 } from '@mui/material';
 import { green } from '@mui/material/colors';
-import { IProfileInitialState } from '../../../../redux/slices/profile';
+import { changeIsCameFollowRequest, IProfileInitialState } from '../../../../redux/slices/profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 import { cameFollowRequestAction } from '../../../../redux/slices/requests/requests-thunks';
+import { removeRequest } from '../../../../redux/slices/requests';
 
 const HeaderActions: React.FC = () => {
     const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
@@ -23,6 +24,8 @@ const HeaderActions: React.FC = () => {
             username: state.username!,
             accept: actionType,
         }))
+        dispatch(changeIsCameFollowRequest({ isCameIssue: false }));
+        dispatch(removeRequest({ username: state.username! }));
         setLoading(false);
     }
 
@@ -36,13 +39,13 @@ const HeaderActions: React.FC = () => {
                 height: "100%",
                 padding: "20px",
                 backdropFilter: "blur(10px)",
-                background: "rgba(255, 255, 255, .2)",
+                background: "rgba(255, 255, 255, .5)",
                 display: "grid",
                 placeItems: "center",
             }}
         >
             <Stack>
-                <Typography variant='subtitle1'>
+                <Typography variant='subtitle1' color="#000">
                     {state.profile?.name} requested to follow you
                 </Typography>
                 <Stack direction="row" justifyContent="space-around">
