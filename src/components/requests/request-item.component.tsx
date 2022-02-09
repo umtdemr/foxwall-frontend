@@ -6,8 +6,11 @@ import { Check, Remove } from "@mui/icons-material";
 import { Avatar, Box, IconButton, ListItem, ListItemAvatar, ListItemText, Alert } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { IResultCreator } from "../../types/global/profile_types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cameFollowRequestAction, fetchReceivedRequests } from "../../redux/slices/requests/requests-thunks";
+import { removeRequest } from "../../redux/slices/requests";
+import { changeIsCameFollowRequest, IProfileInitialState } from "../../redux/slices/profile";
+import { RootState } from "../../redux/store";
 
 
 interface RequestItemProps {
@@ -19,6 +22,7 @@ type TReqMessage = "nan" | TClickEvent
 
 
 const RequestItem: React.FC<RequestItemProps> = ({ item }) => {
+  const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
   const [reqMessage, setReqMessage] = useState<TReqMessage>("nan");
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -26,17 +30,14 @@ const RequestItem: React.FC<RequestItemProps> = ({ item }) => {
   const dispatch = useDispatch();
 
   const clickEvent = async (type: TClickEvent ) => {
-    const response: any = await dispatch(cameFollowRequestAction({
+    await dispatch(cameFollowRequestAction({
       username: item.username,
       accept: type === "accept" ? true : false,
     }));
 
     setReqMessage(type);
-    if (response.payload.status === 200) {
-      setTimeout(() => {
-        dispatch(fetchReceivedRequests());
-      }, 1000);
-    }
+    dispatch(removeRequest({ username: item.username }));
+    if (item.username === state.username) dispatch(changeIsCameFollowRequest({ isCameIssue: false }));
   }
 
   useEffect(() => {
