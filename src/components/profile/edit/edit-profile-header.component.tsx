@@ -11,7 +11,7 @@ import ImageOverlay from '../../image-overlay/image-overlay.component';
 import { IProfileInitialState } from '../../../redux/slices/profile';
 import { RootState } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProfile, updateProfile } from '../../../redux/slices/profile/profile-thunks';
+import { updateProfile } from '../../../redux/slices/profile/profile-thunks';
 import { useHistory, useParams } from 'react-router-dom';
 import { IUpdateProfile } from '../../../types/global/profile_types';
 import { useSnackbar } from 'notistack';
@@ -29,25 +29,10 @@ const EditProfileHeader: React.FC = () => {
     const { enqueueSnackbar } = useSnackbar();
     
     useEffect(() => {
-        const fetchFreshProfile = async () => {
-            const response: any = await dispatch(fetchProfile(username));
-            if (!response.error) {
-                const profileData = response.payload.data;
-                setEditName(profileData.profile.name);
-                setEditUsername(profileData.username);
-                setEditBio(profileData.profile.bio);
-            } else {
-                enqueueSnackbar(
-                    `Error during loading profile of ${username}`,
-                    {
-                        variant: "error",
-                    }
-                );
-                history.push("/");
-            }
-        }
-        if (!state.profile?.avatar) fetchFreshProfile()
-    }, []);
+        setEditName(state.profile?.name);
+        setEditUsername(state.username);
+        setEditBio(state.profile?.bio);
+    }, [state]);
 
     const handleImageLoadPreview = (imgUrl: string, where: "avatar" | "cover") => {
         if (where === "avatar") {
