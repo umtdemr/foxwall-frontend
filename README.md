@@ -17,4 +17,4 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Fix search case insensitive issue
 - [x] Fetch profile and edit profile data on page components
 - [ ] Fix issue of updating username...
-- [ ] Fix changeIsCameFollowRequest issue 
+- [x] Fix changeIsCameFollowRequest issue 
