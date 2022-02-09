@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IRequestResults } from "../../../types/global/request_types";
-import { changeIsCameFollowRequest } from "../profile";
-import { cameFollowRequestAction, fetchReceivedRequests } from "./requests-thunks";
+import { fetchReceivedRequests } from "./requests-thunks";
 
 
 export interface IRequestsData {

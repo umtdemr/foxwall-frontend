@@ -7,7 +7,7 @@ import { Avatar, Box, IconButton, ListItem, ListItemAvatar, ListItemText, Alert 
 import { useTheme } from "@mui/material/styles";
 import { IResultCreator } from "../../types/global/profile_types";
 import { useDispatch, useSelector } from "react-redux";
-import { cameFollowRequestAction, fetchReceivedRequests } from "../../redux/slices/requests/requests-thunks";
+import { cameFollowRequestAction } from "../../redux/slices/requests/requests-thunks";
 import { removeRequest } from "../../redux/slices/requests";
 import { changeIsCameFollowRequest, IProfileInitialState } from "../../redux/slices/profile";
 import { RootState } from "../../redux/store";
