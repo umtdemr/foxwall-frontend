@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { Container, Grid } from "@mui/material";
 import SideBar from "../sidebar/sidebar_component";
-import HeadWithLogo from "../head/head-with-logo.component";
 import BottomNav from "../bottom-nav/bottom-nav.component";
+import LeftSideBar from "../sidebar/left_sidebar.component";
 
 const Layout: React.FC = ({ children }) => {
   const [screenWidth, setScreenWidth] = useState<number>();
@@ -29,8 +29,10 @@ const Layout: React.FC = ({ children }) => {
   return (
     <Container style={{ paddingBottom: isMobile ? "80px": "20px" }}>
       <Grid container justifyContent="center" spacing={2}>
+        <Grid item md={2} className="left_sidebar__wrapper">
+          <LeftSideBar />
+        </Grid>
         <Grid item md={6} xs={12}>
-          <HeadWithLogo />
           {children}
         </Grid>
         {

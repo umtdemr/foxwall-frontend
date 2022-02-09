@@ -44,6 +44,14 @@ code {
   position: fixed;
   width: 373px;
 }
+.left_sidebar__wrapper {
+  position: relative;
+  padding-top: 10px;
+}
+.left_sidebar {
+  width: 100%;
+  position: fixed;
+}
 
 @media screen and (max-width: 900px) {
   .sidebar {
