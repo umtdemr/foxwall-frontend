@@ -42,6 +42,11 @@ const authSlice = createSlice({
       state.message.show = false;
       state.message.content = '';
     },
+    logout: (state) => {
+      state.isAuthenticated = false;
+      state.user.token = "";
+      localStorage.removeItem("token");
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerThunk.rejected, (state, action) => {
@@ -77,6 +82,7 @@ const authSlice = createSlice({
 export const { 
   syncAuth,
   removeMessage,
+  logout,
 } = authSlice.actions;
 
 export default authSlice.reducer;
