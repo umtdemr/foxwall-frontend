@@ -18,3 +18,5 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Fetch profile and edit profile data on page components
 - [x] Fix issue of updating username...
 - [x] Fix changeIsCameFollowRequest issue 
+- [ ] Add left sidebar
+- [ ] Fix Responsive issues 
