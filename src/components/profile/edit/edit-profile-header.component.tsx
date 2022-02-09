@@ -12,7 +12,7 @@ import { IProfileInitialState } from '../../../redux/slices/profile';
 import { RootState } from '../../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from '../../../redux/slices/profile/profile-thunks';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { IUpdateProfile } from '../../../types/global/profile_types';
 import { useSnackbar } from 'notistack';
 
@@ -23,7 +23,6 @@ const EditProfileHeader: React.FC = () => {
     const [editBio, setEditBio] = useState(state.profile?.bio);
     const [avatarImg, setAvatarImg] = useState<File>();
     const [coverImg, setCoverImg] = useState<File>();
-    const { username } = useParams<{ username: string }>();
     const dispatch = useDispatch();
     const history = useHistory();
     const { enqueueSnackbar } = useSnackbar();
