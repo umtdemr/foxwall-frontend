@@ -15,6 +15,7 @@ import { updateProfile } from '../../../redux/slices/profile/profile-thunks';
 import { useHistory } from 'react-router-dom';
 import { IUpdateProfile } from '../../../types/global/profile_types';
 import { useSnackbar } from 'notistack';
+import { logout } from '../../../redux/slices/auth';
 
 const EditProfileHeader: React.FC = () => {
     const state: IProfileInitialState = useSelector((state: RootState) => state.profile);
@@ -88,7 +89,9 @@ const EditProfileHeader: React.FC = () => {
                 }
             );
         }
-
+        if (editUsername !== state.username) {
+            dispatch(logout());
+        }
     }
 
     return (
