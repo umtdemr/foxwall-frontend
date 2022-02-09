@@ -42,15 +42,27 @@ code {
 
 .sidebar {
   position: fixed;
-  width: 373px;
+  width: 292px;
 }
 .left_sidebar__wrapper {
   position: relative;
   padding-top: 10px;
 }
 .left_sidebar {
-  width: 100%;
+  width: 292px;
   position: fixed;
+}
+.nav_item__link {
+  text-decoration: none;
+}
+.nav_item__link:hover .nav_item__wrapper {
+  background-color: #FF6600;
+}
+.nav_item__wrapper {
+  width: fit-content;
+  padding: 10px 6px;
+  border-radius: 20px;
+  transition: 100ms all ease-in;
 }
 
 @media screen and (max-width: 900px) {
