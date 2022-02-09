@@ -29,14 +29,18 @@ const Layout: React.FC = ({ children }) => {
   return (
     <Container style={{ paddingBottom: isMobile ? "80px": "20px" }}>
       <Grid container justifyContent="center" spacing={2}>
-        <Grid item md={2} className="left_sidebar__wrapper">
-          <LeftSideBar />
-        </Grid>
+        {
+          !isMobile && (
+            <Grid item md={3} className="left_sidebar__wrapper">
+              <LeftSideBar />
+            </Grid>
+          )
+        }
         <Grid item md={6} xs={12}>
           {children}
         </Grid>
         {
-          !isMobile && (<Grid item md={4} xs={12}>
+          !isMobile && (<Grid item md={3} xs={12}>
               <SideBar />
             </Grid>
           ) 

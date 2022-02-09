@@ -115,7 +115,7 @@ const AddPostForm: React.FC = () => {
   }, [postState.create.loading]);
 
   return (
-    <Box sx={{ display: "flex", marginTop: "10px", }}>
+    <Box sx={{ display: "flex", marginTop: "10px" }}>
       <Link to={`/profile/${userState.username}`}>
         <Avatar src={userState.avatar}></Avatar>
       </Link>
