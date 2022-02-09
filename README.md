@@ -15,6 +15,6 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Fix wrong follow status on decline or accept
 - [x] Add edit profile feature
 - [x] Fix search case insensitive issue
-- [ ] Fetch profile and edit profile data on page components
+- [x] Fetch profile and edit profile data on page components
 - [ ] Fix issue of updating username...
 - [ ] Fix changeIsCameFollowRequest issue 

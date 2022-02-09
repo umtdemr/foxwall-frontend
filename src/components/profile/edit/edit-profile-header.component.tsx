@@ -80,7 +80,7 @@ const EditProfileHeader: React.FC = () => {
                     variant: "success",
                 }
             );
-            history.push(`/profile/${username}/`);
+            history.push(`/profile/${editUsername}/`);
         } else {
             enqueueSnackbar(
                 "An error has occurred during updating profile",
