@@ -38,7 +38,7 @@ const SidebarNav: React.FC = () => {
                     height: 32,
                     color: theme.palette.text.primary,
                 }}/>} 
-                link="/"
+                link="/logout"
                 text="Logout"
             />
         </Stack>
