@@ -38,11 +38,19 @@ const LoginForm: React.FC = () => {
         validationSchema={loginValidationSchema}
         onSubmit={ async (data, { setSubmitting }) => {
           setSubmitting(true);
-          
-          await dispatch(loginThunk({
-            email: data.authID,
+          const loginData: {
+            password: string;
+            email?: string;
+            username?: string;
+          } = {
             password: data.password,
-          }));
+          }
+          if (data.authID.includes("@"))
+            loginData.email = data.authID
+          else
+            loginData.username = data.authID
+          
+          await dispatch(loginThunk(loginData));
 
         }}
       >
