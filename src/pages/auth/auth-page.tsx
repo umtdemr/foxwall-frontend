@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { Stack, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -12,6 +12,12 @@ import { AuthActionContext } from "../../modules/contexts/auth/auth.context";
 const AuthPage: React.FC = () => {
   const { current_type, changeType } = useContext(AuthActionContext);
   const theme = useTheme();
+  
+  useEffect(() => {
+    if (window.location.pathname !== "/") {
+      window.location.pathname = "/";
+    }
+  }, [])
 
   return (
     <div className="home no-login">
