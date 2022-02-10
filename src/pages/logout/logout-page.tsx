@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { logout } from '../../../redux/slices/auth';
+import { logout } from '../../redux/slices/auth';
 
 
 const LogoutPage: React.FC = () => {
