@@ -24,29 +24,28 @@ const AuthPage: React.FC = () => {
       <div className="left">
         <div className="text-centerr">
           <ul>
-            <li>Etkileşim içinde ol</li>
-            <li>Gündemi kaçırma</li>
-            <li>Dünyayı takip et</li>
+            <li>Don't miss the agenda</li>
+            <li>Follow the whole world</li>
           </ul>
         </div>
       </div>
       <div className="right">
         <div className="text-centerr" style={{ width: "80%" }}>
-          <h4 style={{ textAlign: "center",  color: theme.palette.text.primary}}>Dünyada neler dönüyor?</h4>
+          <h4 style={{ textAlign: "center",  color: theme.palette.text.primary}}>What's happening in the world?</h4>
           {current_type === "" && (
             <Stack spacing={2} direction="row" justifyContent="center">
               <Button
                 variant="outlined"
                 onClick={() => changeType!(authActionTypes.LOGIN)}
               >
-                Giriş Yap
+                Login
               </Button>
               <Button
                 variant="outlined"
                 onClick={() => changeType!(authActionTypes.REGISTER)}
                 color="secondary"
               >
-                Kayıt Ol
+                Register
               </Button>
             </Stack>
           )}
