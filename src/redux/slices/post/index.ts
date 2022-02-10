@@ -43,6 +43,11 @@ const postSlice = createSlice({
         addPost: (state, action: PayloadAction<GlobalPost>) => {
             state.fetch.results = [action.payload, ...state.fetch.results];
         },
+        setProfilePostEmpty: (state) => {
+            state.profile.loading = false;
+            state.profile.error = "";
+            state.profile.results = [];
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchTimelinePosts.pending, (state, action) => {
@@ -101,6 +106,7 @@ const postSlice = createSlice({
 
 export const {
     addPost,
+    setProfilePostEmpty,
 } = postSlice.actions;
 
 export default postSlice.reducer;

@@ -29,6 +29,9 @@ const profileSlice = createSlice({
         changeIsCameFollowRequest: (state, action: PayloadAction<{isCameIssue: boolean}>) => {
             state.is_came_follow_request = action.payload.isCameIssue;
         },
+        setProfileEmpty: (state) => {
+            state = initialState;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProfile.pending, (state, action) => {
@@ -71,6 +74,7 @@ const profileSlice = createSlice({
 
 export const { 
     changeIsCameFollowRequest,
+    setProfileEmpty,
 } = profileSlice.actions;
 
 

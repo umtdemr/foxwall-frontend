@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import PostList from '../../components/post/post-list.component';
 import ProfileHeader from '../../components/profile/profile-header/profile-header.component';
 import ProfileHeaderSkeleton from '../../components/profile/profile-header/skeleton/profile-header.skeleton';
-import { IPostInitialState } from '../../redux/slices/post';
+import { IPostInitialState, setProfilePostEmpty } from '../../redux/slices/post';
 import { fetchProfilePosts } from '../../redux/slices/post/post-thunks';
-import { IProfileInitialState } from '../../redux/slices/profile';
+import { IProfileInitialState, setProfileEmpty } from '../../redux/slices/profile';
 import { fetchProfile } from '../../redux/slices/profile/profile-thunks';
 import { RootState } from '../../redux/store';
 
@@ -20,6 +20,10 @@ const ProfilePage: React.FC = () => {
     useEffect(() => {
         dispatch(fetchProfile(username!));
         dispatch(fetchProfilePosts(username!));
+        return (() => {
+            dispatch(setProfileEmpty());
+            dispatch(setProfilePostEmpty());
+        });
     }, [username, dispatch])
 
     return (
