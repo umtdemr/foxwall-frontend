@@ -11,40 +11,45 @@ import {
 } from "@mui/icons-material";
 import { useLocation, useHistory } from "react-router-dom";
 import { RootState } from '../../redux/store';
+import { IUserInitialState } from '../../redux/slices/user';
 
 enum NAV_TYPES {
     NAN,
     HOME = "/",
     SEARCH = "/search",
     ACTIVITIES = "/activities",
-    PROFILE = "/profile/username",
+    PROFILE = "/profile/",
 }
 
 const BottomNav = () => {
     const location = useLocation();
     const history = useHistory();
     const [navValue, setNavValue] = useState<NAV_TYPES>(NAV_TYPES.NAN);
-    const state: ILayoutState = useSelector((state: RootState) => state.layout);
+    const layoutState: ILayoutState = useSelector((state: RootState) => state.layout);
+    const userState: IUserInitialState = useSelector((state: RootState) => state.user);
+    
     const dispatch = useDispatch();
     
     const handleNavChange = (event: React.SyntheticEvent, requestedAction: any) => {
-        if (requestedAction === NAV_TYPES.HOME || requestedAction === NAV_TYPES.PROFILE) {
+        if (requestedAction === NAV_TYPES.HOME) {
             history.push(requestedAction);
         } else if (requestedAction === NAV_TYPES.SEARCH) {
             dispatch(toggleSearchPopup());
+        } else if (requestedAction === NAV_TYPES.PROFILE) {
+            history.push(`/profile/${userState.username}`);
         }
     }
 
     useEffect(() => {
-        if (state.isSearchPopupOpen) {
+        if (layoutState.isSearchPopupOpen) {
             setNavValue(NAV_TYPES.SEARCH);
         }
         else if (location.pathname === "/") {
             setNavValue(NAV_TYPES.HOME);
-        } else if (location.pathname === "/profile/username" || location.pathname === "/profile/username/edit") {
+        } else if (location.pathname.includes(`profile/${userState.username}`)) {
             setNavValue(NAV_TYPES.PROFILE);
         }
-    }, [location, state])
+    }, [location, layoutState, userState.username])
 
     return (
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
