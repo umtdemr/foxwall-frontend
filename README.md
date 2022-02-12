@@ -20,3 +20,4 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Fix changeIsCameFollowRequest issue 
 - [x] Add left sidebar
 - [ ] Fix Responsive issues 
+- [ ] Deploy app
