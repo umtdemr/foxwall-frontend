@@ -11,6 +11,7 @@ const MobileHeader: React.FC = () => {
     const theme = useTheme();
     return (
         <Box>
+            {/* // TODO: Add mobile nav here */}
             <Stack 
                 direction="row" 
                 alignItems="center"
