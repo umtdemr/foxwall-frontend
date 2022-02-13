@@ -16,10 +16,11 @@ const MobileHeader: React.FC = () => {
                 alignItems="center"
                 sx={{
                     position: "fixed",
-                    top:"0",
+                    top: "0",
+                    left: "0",
                     padding: "10px 0",
                     width: "100%",
-                    backgroundColor: "rgba(0,0,0,.8)",
+                    backgroundColor: theme.palette.mode === "dark" ? "rgba(0,0,0,.8)" : "rgba(255, 255, 255, 0.8)",
                     zIndex: "99",
                     backdropFilter: "blur(25px)",
                 }}
