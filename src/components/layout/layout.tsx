@@ -4,6 +4,7 @@ import { Container, Grid } from "@mui/material";
 import SideBar from "../sidebar/sidebar_component";
 import BottomNav from "../bottom-nav/bottom-nav.component";
 import LeftSideBar from "../sidebar/left_sidebar.component";
+import MobileHeader from "../mobile/header/mobile-header.component";
 
 const Layout: React.FC = ({ children }) => {
   const [screenWidth, setScreenWidth] = useState<number>();
@@ -27,7 +28,15 @@ const Layout: React.FC = ({ children }) => {
   }, [])
 
   return (
-    <Container style={{ paddingBottom: isMobile ? "80px": "20px" }}>
+    <Container style={{ 
+        paddingBottom: isMobile ? "80px": "20px", 
+        paddingTop: isMobile ? "60px": "0px",
+      }}
+    >
+      {
+        isMobile && <MobileHeader />
+      }
+      
       <Grid container justifyContent="center" spacing={2}>
         {
           !isMobile && (
