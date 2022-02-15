@@ -19,6 +19,6 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Fix issue of updating username...
 - [x] Fix changeIsCameFollowRequest issue 
 - [x] Add left sidebar
-- [ ] Fix Responsive issues 
+- [x] Fix Responsive issues 
 - [ ] Finish mobile nav
 - [ ] Deploy app
