@@ -4,6 +4,7 @@ import { useTheme }  from "@mui/material/styles"
 import { IUserInitialState } from '../../../redux/slices/user'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store'
+import MobileNavMenu from '../nav-menu/mobile-nav.component'
 
 
 const MobileHeader: React.FC = () => {
@@ -11,7 +12,7 @@ const MobileHeader: React.FC = () => {
     const theme = useTheme();
     return (
         <Box>
-            {/* // TODO: Add mobile nav here */}
+            <MobileNavMenu />
             <Stack 
                 direction="row" 
                 alignItems="center"
