@@ -1,8 +1,10 @@
 # Foxwall Frontend
 
 This is frontend implementation of the [foxwall api](https://github.com/umtdemr/foxwall). If you curious about the api please take a look.
+This project made with typescript/react.
 
 > This project currently in progress.
+
 
 ## TO DO
 
@@ -22,3 +24,5 @@ This is frontend implementation of the [foxwall api](https://github.com/umtdemr/
 - [x] Fix Responsive issues 
 - [ ] Finish mobile nav
 - [ ] Deploy app
+
+
