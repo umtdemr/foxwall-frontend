@@ -6,27 +6,26 @@ import { IUserInitialState } from '../../../redux/slices/user';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import SidebarNav from '../../sidebar/nav/nav.component';
+import './mobile-nav.styles.css';
 
+interface MobileNavMenuProps {
+    isOpen: boolean;
+    toggleNav: () => void;
+}
 
-const MobileNavMenu: React.FC = () => {
+const MobileNavMenu: React.FC<MobileNavMenuProps> = ({ isOpen, toggleNav }) => {
     const state: IUserInitialState = useSelector((state: RootState) => state.user);
     const theme = useTheme();
     return (
         <Stack
             sx={{
-                width: "350px",
-                height: "100%",
-                position: "fixed",
-                top: "0",
-                left: "0",
-                zIndex: "100",
-                padding: "20px",
                 backgroundColor: theme.palette.background.default,
             }}
+            className={`mobile-side-nav ${isOpen ? "opened" : "closed"}`}
         >
             <Stack justifyContent="space-between" direction="row" alignItems="center">
                 <Typography variant='h6'>Account Info</Typography>
-                <IconButton aria-label='close'>
+                <IconButton aria-label='close' onClick={() => toggleNav()}>
                     <Close />
                 </IconButton>
             </Stack>

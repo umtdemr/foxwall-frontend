@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Stack, Avatar, Typography } from "@mui/material"
 import { useTheme }  from "@mui/material/styles"
 import { IUserInitialState } from '../../../redux/slices/user'
@@ -9,10 +9,19 @@ import MobileNavMenu from '../nav-menu/mobile-nav.component'
 
 const MobileHeader: React.FC = () => {
     const state: IUserInitialState = useSelector((state: RootState) => state.user);
+    const [isOpen, setIsOpen] = useState(false);
     const theme = useTheme();
+
+    const toggleMobileNav = () => {
+        setIsOpen(!isOpen);
+    }
+
     return (
         <Box>
-            <MobileNavMenu />
+            <MobileNavMenu 
+                isOpen={isOpen}
+                toggleNav={toggleMobileNav}
+            />
             <Stack 
                 direction="row" 
                 alignItems="center"
@@ -27,9 +36,14 @@ const MobileHeader: React.FC = () => {
                     backdropFilter: "blur(25px)",
                 }}
                 >
-                <Avatar 
-                    src={state.avatar}
-                />
+                <button 
+                    onClick={() => toggleMobileNav()}
+                    style={{background: "transparent", border: "none"}}
+                >
+                    <Avatar 
+                        src={state.avatar}
+                    />
+                </button>
                 <Typography variant="h6" ml={2}>
                     Foxwall
                 </Typography>

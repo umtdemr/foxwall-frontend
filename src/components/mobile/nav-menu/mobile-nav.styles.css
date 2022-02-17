@@ -1,0 +1,19 @@
+.mobile-side-nav {
+    width: 350px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 20px;
+    transition: 300ms all;
+    will-change: transform;
+}
+
+.mobile-side-nav.opened {
+    transform: translateX(0px);
+}
+
+.mobile-side-nav.closed {
+    transform: translateX(-350px);
+}
