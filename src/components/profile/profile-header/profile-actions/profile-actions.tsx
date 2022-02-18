@@ -46,7 +46,10 @@ const ProfileActions = () => {
             {
                 isMe && (<button 
                     className="button_outline dark align-baseline"
-                    onClick={() => history.push(`${routeMatch.url}/edit`)}
+                    onClick={() => {
+                        const editUrl = routeMatch.url.endsWith("/") ? 'edit' : '/edit'
+                        history.push(`${routeMatch.url}${editUrl}`);
+                    }}
                     style={{ 
                         marginTop: "10px",
                     }}>
