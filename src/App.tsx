@@ -9,6 +9,7 @@ import { IAuthSlice, syncAuth } from "./redux/slices/auth";
 import ProfilePage from "./pages/profile/profile-page";
 import EditProfilePage from "./pages/profile/edit/edit-profile-page";
 import LogoutPage from "./pages/logout/logout-page";
+import RequestsPage from "./pages/requests/requests-page";
 import Layout from "./components/layout/layout";
 
 import CustomThemeProvider from "./modules/contexts/theme/theme.context";
@@ -82,6 +83,9 @@ function App() {
                     </Route>
                     <Route path="/logout">
                       <LogoutPage />
+                    </Route>
+                    <Route path="/requests">
+                      <RequestsPage />
                     </Route>
                   </Switch>
                 </Layout>
