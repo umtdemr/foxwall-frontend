@@ -29,6 +29,12 @@ const PostAction: React.FC<PostActionProps> = ({ num_likes, uuid, is_i_liked }) 
     }
   };
 
+  const handleLikePlural = (likeNum: number) => {
+    const pluralRule = new Intl.PluralRules('en-US');
+    if (pluralRule.select(likeNum) === 'one') return 'like'
+    return 'likes'
+  }
+
   return (
     <Stack mt={2} direction="row" justifyContent="flex-end" alignItems="center">
       <IconButton sx={{ alignSelf: "end" }} onClick={() => handleLike()}>
@@ -42,7 +48,7 @@ const PostAction: React.FC<PostActionProps> = ({ num_likes, uuid, is_i_liked }) 
           <FavoriteBorder />
         )}
       </IconButton>
-      <Typography variant="subtitle2">{localNumLikes} likes </Typography>
+      <Typography variant="subtitle2">{localNumLikes} {handleLikePlural(localNumLikes)} </Typography>
     </Stack>
   );
 };
