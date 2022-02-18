@@ -17,7 +17,7 @@ enum NAV_TYPES {
     NAN,
     HOME = "/",
     SEARCH = "/search",
-    ACTIVITIES = "/activities",
+    REQUESTS = "/requests",
     PROFILE = "/profile/",
 }
 
@@ -37,6 +37,8 @@ const BottomNav = () => {
             dispatch(toggleSearchPopup());
         } else if (requestedAction === NAV_TYPES.PROFILE) {
             history.push(`/profile/${userState.username}`);
+        } else if (requestedAction === NAV_TYPES.REQUESTS) {
+            history.push('/requests');
         }
     }
 
@@ -48,6 +50,8 @@ const BottomNav = () => {
             setNavValue(NAV_TYPES.HOME);
         } else if (location.pathname.includes(`profile/${userState.username}`)) {
             setNavValue(NAV_TYPES.PROFILE);
+        } else if (location.pathname === '/requests') {
+            setNavValue(NAV_TYPES.REQUESTS);
         }
     }, [location, layoutState, userState.username])
 
@@ -59,7 +63,7 @@ const BottomNav = () => {
             >
                 <BottomNavigationAction value={NAV_TYPES.HOME} label="Home" icon={<Home />} />
                 <BottomNavigationAction value={NAV_TYPES.SEARCH} label="Search" icon={<Search />} />
-                <BottomNavigationAction value={NAV_TYPES.ACTIVITIES} label="Activities" icon={<Favorite />} />
+                <BottomNavigationAction value={NAV_TYPES.REQUESTS} label="Requests" icon={<Favorite />} />
                 <BottomNavigationAction value={NAV_TYPES.PROFILE} label="Profile" icon={<Person />} />
             </BottomNavigation>
         </Paper>
