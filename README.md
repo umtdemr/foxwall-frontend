@@ -22,7 +22,7 @@ This project made with typescript/react.
 - [x] Fix changeIsCameFollowRequest issue 
 - [x] Add left sidebar
 - [x] Fix Responsive issues 
-- [ ] Finish mobile nav
+- [x] Finish mobile nav
 - [ ] Deploy app
 
 
