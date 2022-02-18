@@ -1,9 +1,8 @@
-# Foxwall Frontend
+# Foxwall Frontend 
+![Logo](./images/logo-with-text.png)
 
-This is frontend implementation of the [foxwall api](https://github.com/umtdemr/foxwall). If you curious about the api please take a look.
-This project made with typescript/react.
+This project is frontend implementation of the [Foxwall API](https://github.com/umtdemr/foxwall). If you curious about the API please take a look.
 
-> This project currently in progress.
 
 
 ## TO DO
