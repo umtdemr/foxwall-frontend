@@ -82,5 +82,6 @@ Here are some related projects
 
 ## TO DO
 
+- [ ] Refactore code
 - [ ] Deploy app
 
