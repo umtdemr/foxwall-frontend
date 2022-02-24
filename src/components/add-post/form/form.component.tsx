@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -46,9 +46,12 @@ const AddPostForm: React.FC = () => {
     setImages(localImages);
   }
 
-  const handleImageDelete = (id: number) => {
-    setImages(images.filter(img => img.id !== id));
-  }
+  const handleImageDelete = useCallback(
+    (id: number) => {
+        setImages(images.filter(img => img.id !== id));
+      },
+    [setImages, images]
+    )
 
 
   const handleSubmit = async () => {
