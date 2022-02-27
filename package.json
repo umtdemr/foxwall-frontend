@@ -1,6 +1,13 @@
 {
-  "name": "foxwall_frontend",
+  "name": "Foxwall frontend",
   "version": "0.1.0",
+  "description": "Implementation of Foxwall API",
+  "author": {
+    "name": "Ümit Demir",
+    "email": "umitde296@gmail.com",
+    "url": "https://umitde.com"
+  },
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.4.1",
