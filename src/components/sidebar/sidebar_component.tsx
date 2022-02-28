@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { toggleSearchPopup } from "../../redux/slices/layout";
 import RequestItems from "../requests/requests.component";
 import { ColorModeContext } from "../../modules/contexts/theme/theme.context";
-import SwitchButton from "../swith-button/switch-button";
+import SwitchButton from "../switch-button/switch-button";
 
 const SideBar: React.FC = () => {
   const dispatch = useDispatch();
