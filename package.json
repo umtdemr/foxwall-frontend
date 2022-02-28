@@ -1,9 +1,9 @@
 {
-  "name": "Foxwall frontend",
+  "name": "foxwall-frontend",
   "version": "0.1.0",
   "description": "Implementation of Foxwall API",
   "author": {
-    "name": "Ümit Demir",
+    "name": "Umit Demir",
     "email": "umitde296@gmail.com",
     "url": "https://umitde.com"
   },
