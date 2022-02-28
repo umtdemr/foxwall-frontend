@@ -25,33 +25,36 @@ const AddPostForm: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
 
 
-  const handleImageChange = (e: React.ChangeEvent) => {
-    const files = (e.target as HTMLInputElement).files!;
-    if (files.length > 2) return;
-  
-    setImages([]);
-    const localImages: ImageInput[] = [];
-    for (let index = 0; index < files.length; index++) {
-      const image = files[index];
-      const appendData = {
-        id: localImages.length,
-        file: URL.createObjectURL(image),
-        name: image.name,
-        fileOriginal: image,
-      };
-      
-      localImages.push(appendData);
-    }
+  const handleImageChange = useCallback(
+    (e: React.ChangeEvent) => {
+      const files = (e.target as HTMLInputElement).files!;
+      if (files.length > 2) return;
+    
+      setImages([]);
+      const localImages: ImageInput[] = [];
+      for (let index = 0; index < files.length; index++) {
+        const image = files[index];
+        const appendData = {
+          id: localImages.length,
+          file: URL.createObjectURL(image),
+          name: image.name,
+          fileOriginal: image,
+        };
+        
+        localImages.push(appendData);
+      }
 
-    setImages(localImages);
-  }
+      setImages(localImages);
+    },
+    [setImages]
+  )
 
   const handleImageDelete = useCallback(
     (id: number) => {
         setImages(images.filter(img => img.id !== id));
       },
     [setImages, images]
-    )
+  )
 
 
   const handleSubmit = async () => {
