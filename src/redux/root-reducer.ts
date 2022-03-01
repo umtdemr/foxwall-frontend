@@ -12,7 +12,7 @@ import requests from "./slices/requests";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"], // this shuld be null for now
+  whitelist: ["auth"],
 };
 
 const rootReducer = combineReducers({
