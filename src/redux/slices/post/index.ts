@@ -91,8 +91,6 @@ const postSlice = createSlice({
             state.create.loading = false;
         });
 
-        // TODO Add rejected builder
-
         builder.addCase(deletePost.fulfilled, (state, action) => {
             const URL = action!.payload!.config!.url!;
             const uuidMatch = URL.match(/\/post\/delete\/([a-zA-Z0-9-]*)/) as [string, string];

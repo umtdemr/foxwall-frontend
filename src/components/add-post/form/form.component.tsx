@@ -83,7 +83,7 @@ const AddPostForm: React.FC = () => {
       }
       const newPostData = {
         user: {
-            id: 0,  // TODO change default id with actual id
+            id: 0,
             username: userState.username!,
             profile: {
                 name: userState.name!,
