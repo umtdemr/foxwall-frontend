@@ -46,6 +46,7 @@ function App() {
     userLogin();
   }, [dispatch, token])
 
+  // If user is not authenticated show login page without React router
 
   if (token === null || token === "") {
     return (
