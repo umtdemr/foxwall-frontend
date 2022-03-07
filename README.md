@@ -8,37 +8,37 @@ This project is frontend implementation of the [Foxwall API](https://github.com/
 ![Project gif](https://media1.giphy.com/media/rmb8gnVkoibDPhQoNr/giphy.gif?cid=790b7611932a903817f7c158bd82417cbc2a7cd3c5aedaf4&rid=giphy.gif&ct=g)
 
 
-## Environment Variables
-
-To run this project, you will need to add the following environment variable to your .env file. API URL must has not backslash at the end of the url.
-
-`REACT_APP_API_URL=http://127.0.0.1:8000`
-
-
-
 ## Run Locally
+
 
 Before running locally, you may want to run API locally. Check out [Foxwall API](https://github.com/umtdemr/foxwall).
 
-Clone the project
+
+### Clone the project
 
 ```bash
   git clone https://github.com/umtdemr/foxwall-frontend
 ```
 
-Go to the project directory
+### Go to the project directory
 
 ```bash
   cd foxwall-frontend
 ```
 
-Install dependencies
+### Install dependencies
 
 ```bash
   yarn install
 ```
 
-Start the server
+### Environment Variables
+
+To run this project, you will need to add the following environment variable to your .env file. API URL must has not backslash at the end of the url.
+
+`REACT_APP_API_URL=http://127.0.0.1:8000`
+
+### Start the server
 
 ```bash
   yarn start
