@@ -46,14 +46,14 @@ const AddPostForm: React.FC = () => {
 
       setImages(localImages);
     },
-    [setImages]
+    [images]
   )
 
   const handleImageDelete = useCallback(
     (id: number) => {
         setImages(images.filter(img => img.id !== id));
       },
-    [setImages, images]
+    [images]
   )
 
 
