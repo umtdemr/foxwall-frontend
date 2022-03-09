@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { 
     Box,
     Stack,
@@ -45,15 +45,18 @@ const EditProfileHeader: React.FC = () => {
         }
     }
     
-    const handleImageLoad = (e: React.ChangeEvent, where: "avatar" | "cover") => {
-        const file = (e.target as HTMLInputElement).files![0];
-        handleImageLoadPreview(URL.createObjectURL(file), where);
-        if (where === "avatar") {
-            setAvatarImg(file);
-        } else if (where === "cover") {
-            setCoverImg(file);
-        }
-    }
+    const handleImageLoad = useCallback(
+      (e: React.ChangeEvent, where: "avatar" | "cover") => {
+          const file = (e.target as HTMLInputElement).files![0];
+          handleImageLoadPreview(URL.createObjectURL(file), where);
+          if (where === "avatar") {
+              setAvatarImg(file);
+          } else if (where === "cover") {
+              setCoverImg(file);
+          }
+      },
+      [avatarImg, avatarImg]
+  )
 
     const saveProfile = async () => {
         if (editUsername!.trim().length < 3) { 
