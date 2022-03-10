@@ -6,10 +6,6 @@ interface IAuthActionContext {
     changeType?: (newType: authActionTypes) => void;
 }
 
-// type State = { current_type: authActionTypes }
-// type Dispatch = (action: Action) => void
-// type Action = {type: string, payload: any}
-
 
 type AuthActionProviderProps = {children: React.ReactElement}
 
