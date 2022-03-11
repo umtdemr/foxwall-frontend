@@ -31,6 +31,7 @@ const ImageOverlay: React.FC<ImageOverlayProps> = ({ children, handleImageLoad, 
                 accept="image/*"
                 ref={fileField}
                 onChange={(e: React.ChangeEvent) => handleImageLoad(e, where)}
+                aria-label="Upload Image"
             />
             {children}
         </Box>
