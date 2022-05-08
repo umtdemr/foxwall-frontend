@@ -14,6 +14,7 @@ This project is frontend implementation of the [Foxwall API](https://github.com/
 Before running locally, you may want to run API locally. Check out [Foxwall API](https://github.com/umtdemr/foxwall).
 
 
+
 ### Clone the project
 
 ```bash
