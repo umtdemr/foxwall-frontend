@@ -49,11 +49,11 @@ To run this project, you will need to add the following environment variable to 
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Blaze Orange | ![#FF6600](https://via.placeholder.com/10/FF6600f?text=+) #FF6600 |
-| Razzmatazz | ![#F50057](https://via.placeholder.com/10/F50057?text=+) #F50057 |
-| Black Squeeze | ![#F1F5FA](https://via.placeholder.com/10/F1F5FA?text=+) #F1F5FA |
-| Cod Gray | ![#121212](https://via.placeholder.com/10/121212?text=+) #121212 | 
-| Mine Shaft | ![#242323](https://via.placeholder.com/10/242323?text=+) #242323 | 
+| Blaze Orange | ![#FF6600](https://via.placeholder.com/10/FF6600f) #FF6600 |
+| Razzmatazz | ![#F50057](https://via.placeholder.com/10/F50057) #F50057 |
+| Black Squeeze | ![#F1F5FA](https://via.placeholder.com/10/F1F5FA) #F1F5FA |
+| Cod Gray | ![#121212](https://via.placeholder.com/10/121212) #121212 | 
+| Mine Shaft | ![#242323](https://via.placeholder.com/10/242323) #242323 | 
 
 
 
